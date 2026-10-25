@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ابزارک فارسی؛ ابزارهای آنلاین رایگان برای محاسبه درصد، تولید رمز عبور و ساخت QR Code.">
+<meta name="theme-color" content="#0b1020">
+<title>ابزارک فارسی | ابزارهای رایگان آنلاین</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;background:#0b1020;color:#f5f7ff;
+  font-family:Tahoma,Arial,sans-serif;line-height:1.9
+}
+.container{width:min(100% - 30px,950px);margin:auto}
+header{padding:22px 0;background:#141c30;border-bottom:1px solid #2b3854}
+h1{margin:0;color:#91aaff}
+.subtitle,.muted{color:#b7c1d8}
+.hero{text-align:center;padding:35px 0}
+.hero h2{font-size:clamp(24px,5vw,36px)}
+.card{
+  background:#141c30;border:1px solid #2b3854;
+  border-radius:18px;padding:22px;margin-bottom:18px
+}
+input,textarea,button{
+  width:100%;padding:12px;margin-top:8px;
+  border-radius:10px;font:inherit
+}
+input,textarea{
+  background:#0b1020;color:white;border:1px solid #354363
+}
+label{display:block;margin-top:12px}
+button{
+  background:#91aaff;color:#0b1020;border:0;
+  font-weight:bold;cursor:pointer
+}
+button:hover{filter:brightness(1.08)}
+.result{
+  margin-top:14px;padding:14px;background:#0b1020;
+  border:1px solid #354363;border-radius:10px;overflow-wrap:anywhere
+}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.tool-link{padding:15px;background:#1b2740;border-radius:12px;text-align:center}
+#qr-image{display:block;max-width:100%;margin:18px auto;background:white;padding:10px;border-radius:8px}
+footer{text-align:center;color:#b7c1d8;padding:25px}
+small{color:#b7c1d8}
+</style>
+</head>
+
+<body>
+<header>
+<div class="container">
+<h1>ابزارک فارسی</h1>
+<div class="subtitle">ابزارهای آنلاین رایگان، سریع و کاربردی</div>
+</div>
+</header>
+
+<main class="container">
+<section class="hero">
+<h2>ابزارهای کاربردی، همیشه در دسترس</h2>
+<p class="muted">رایگان، ساده و بدون نیاز به ثبت‌نام</p>
+</section>
+
+<section class="grid">
+<div class="card" id="percent-tool">
+<h2>محاسبه درصد</h2>
+<label for="percent">درصد موردنظر</label>
+<input id="percent" type="number" step="any" placeholder="مثلاً ۲۰">
+<label for="amount">عدد اصلی</label>
+<input id="amount" type="number" step="any" placeholder="مثلاً ۵۰۰۰۰">
+<button id="calculate-btn">محاسبه کن</button>
+<div class="result" id="percent-result" aria-live="polite">نتیجه اینجا نمایش داده می‌شود.</div>
+</div>
+
+<div class="card" id="password-tool">
+<h2>تولید رمز عبور امن</h2>
+<label for="password-length">طول رمز عبور (۸ تا ۶۴)</label>
+<input id="password-length" type="number" min="8" max="64" value="16">
+<label><input id="lowercase" type="checkbox" checked style="width:auto"> حروف کوچک انگلیسی</label>
+<label><input id="uppercase" type="checkbox" checked style="width:auto"> حروف بزرگ انگلیسی</label>
+<label><input id="numbers" type="checkbox" checked style="width:auto"> اعداد</label>
+<label><input id="symbols" type="checkbox" checked style="width:auto"> نمادها</label>
+<button id="generate-password">تولید رمز</button>
+<div class="result" id="password-result" aria-live="polite">رمز تولیدشده اینجا نمایش داده می‌شود.</div>
+<button id="copy-password" type="button">کپی رمز</button>
+<small>رمز در مرورگر تولید می‌شود و به سرور ارسال نمی‌شود.</small>
+</div>
+</section>
+
+<section class="card" id="qr-tool">
+<h2>ساخت QR Code</h2>
+<p class="muted">متن یا لینک خود را وارد کنید.</p>
+<label for="qr-text">متن یا نشانی اینترنتی</label>
+<textarea id="qr-text" rows="3" placeholder="https://example.com"></textarea>
+<button id="generate-qr">ساخت QR Code</button>
+<div id="qr-result" aria-live="polite"></div>
+</section>
+
+<section class="card" id="text-tool">
+<h2>شمارش کلمات و حروف</h2>
+<label for="text-input">متن خود را وارد کنید</label>
+<textarea id="text-input" rows="4" placeholder="متن را اینجا بنویسید..."></textarea>
+<div class="result" id="text-result" aria-live="polite">کلمات: ۰ | نویسه‌ها: ۰</div>
+</section>
+
+<h2>ابزارهای دیگر</h2>
+<section class="tools">
+<div class="tool-link">قالب‌بندی JSON<br><small>به‌زودی</small></div>
+<div class="tool-link">فشرده‌سازی تصویر<br><small>به‌زودی</small></div>
+<div class="tool-link">ابزارهای سئو<br><small>به‌زودی</small></div>
+<div class="tool-link">تبدیل متن<br><small>به‌زودی</small></div>
+</section>
+</main>
+
+<footer>ابزارک فارسی | رایگان و در حال توسعه</footer>
+
+<script>
+'use strict';
+
+const $ = id => document.getElementById(id);
+const fa = value => Number(value).toLocaleString('fa-IR',{maximumFractionDigits:8});
+
+$('calculate-btn').addEventListener('click',()=>{
+  const p=$('percent').value;
+  const a=$('amount').value;
+  if(p.trim()===''||a.trim()===''){
+    $('percent-result').textContent='لطفاً هر دو عدد را وارد کنید.';
+    return;
+  }
+  const percent=Number(p), amount=Number(a);
+  if(!Number.isFinite(percent)||!Number.isFinite(amount)){
+    $('percent-result').textContent='اعداد واردشده معتبر نیستند.';
+    return;
+  }
+  $('percent-result').textContent=
+    `${fa(percent)}٪ از ${fa(amount)} برابر است با ${fa(percent/100*amount)}`;
+});
+
+function secureRandomInt(max){
+  const range=0x100000000;
+  const limit=range-(range%max);
+  const data=new Uint32Array(1);
+  let n;
+  do{
+    crypto.getRandomValues(data);
+    n=data[0];
+  }while(n>=limit);
+  return n%max;
+}
+
+$('generate-password').addEventListener('click',()=>{
+  const length=Number($('password-length').value);
+  if(!Number.isInteger(length)||length<8||length>64){
+    $('password-result').textContent='طول رمز باید عددی بین ۸ تا ۶۴ باشد.';
+    return;
+  }
+
+  const groups=[];
+  if($('lowercase').checked)groups.push('abcdefghijklmnopqrstuvwxyz');
+  if($('uppercase').checked)groups.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+  if($('numbers').checked)groups.push('0123456789');
+  if($('symbols').checked)groups.push('!@#$%^&*()-_=+[]{}?');
+
+  if(groups.length===0){
+    $('password-result').textContent='حداقل یک نوع نویسه را انتخاب کنید.';
+    return;
+  }
+
+  const all=groups.join('');
+  const chars=groups.map(group=>group[secureRandomInt(group.length)]);
+  while(chars.length<length)chars.push(all[secureRandomInt(all.length)]);
+
+  for(let i=chars.length-1;i>0;i--){
+    const j=secureRandomInt(i+1);
+    [chars[i],chars[j]]=[chars[j],chars[i]];
+  }
+
+  $('password-result').textContent=chars.join('');
+});
+
+$('copy-password').addEventListener('click',async()=>{
+  const password=$('password-result').textContent;
+  if(!password||password.includes(' ')){
+    $('password-result').textContent='ابتدا یک رمز تولید کنید.';
+    return;
+  }
+  try{
+    await navigator.clipboard.writeText(password);
+    $('copy-password').textContent='کپی شد!';
+    setTimeout(()=>$('copy-password').textContent='کپی رمز',1500);
+  }catch{
+    $('password-result').textContent += ' — برای کپی، متن را انتخاب کنید.';
+  }
+});
+
+$('generate-qr').addEventListener('click',()=>{
+  const value=$('qr-text').value.trim();
+  const result=$('qr-result');
+  result.replaceChildren();
+
+  if(!value){
+    result.textContent='لطفاً ابتدا متن یا لینک را وارد کنید.';
+    return;
+  }
+
+  if(!navigator.onLine){
+    result.textContent='برای ساخت QR Code به اینترنت نیاز دارید.';
+    return;
+  }
+
+  if(typeof QRCode==='undefined'){
+    result.textContent='کتابخانه QR Code بارگذاری نشده است. اتصال اینترنت را بررسی و صفحه را دوباره بارگذاری کنید.';
+    return;
+  }
+
+  const canvas=document.createElement('canvas');
+  result.appendChild(canvas);
+
+  QRCode.toCanvas(canvas,value,{width:240,margin:2},error=>{
+    if(error){
+      result.textContent='ساخت QR Code ناموفق بود.';
+      return;
+    }
+    const download=document.createElement('a');
+    download.textContent='دانلود تصویر QR Code';
+    download.href=canvas.toDataURL('image/png');
+    download.download='abzarak-qr.png';
+    download.style.display='block';
+    download.style.textAlign='center';
+    download.style.marginTop='12px';
+    result.appendChild(download);
+  });
+});
+
+$('text-input').addEventListener('input',()=>{
+  const text=$('text-input').value;
+  const words=text.trim()?text.trim().split(/\s+/u).length:0;
+  $('text-result').textContent=
+    `کلمات: ${fa(words)} | نویسه‌ها: ${fa(text.length)}`;
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+</body>
+</html>
