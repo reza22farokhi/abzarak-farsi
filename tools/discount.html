@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="محاسبه آنلاین مبلغ تخفیف و قیمت نهایی پس از تخفیف؛ رایگان با ابزارک فارسی.">
+  <meta name="theme-color" content="#0b1020">
+  <title>محاسبه تخفیف آنلاین | ابزارک فارسی</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>ابزارک فارسی</h1>
+      <div class="subtitle">محاسبه‌گر آنلاین تخفیف</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>محاسبه مبلغ تخفیف</h2>
+      <p class="muted">قیمت اولیه و درصد تخفیف را وارد کنید.</p>
+    </section>
+
+    <section class="card" aria-labelledby="discount-title">
+      <h2 id="discount-title">محاسبه‌گر تخفیف</h2>
+
+      <form id="discount-form" novalidate>
+        <label for="original-price">قیمت اولیه</label>
+        <input
+          id="original-price"
+          type="number"
+          min="0"
+          step="any"
+          inputmode="decimal"
+          placeholder="مثلاً ۵۰۰۰۰۰"
+          required
+        >
+
+        <label for="discount-percent">درصد تخفیف (۰ تا ۱۰۰)</label>
+        <input
+          id="discount-percent"
+          type="number"
+          min="0"
+          max="100"
+          step="any"
+          inputmode="decimal"
+          placeholder="مثلاً ۲۰"
+          required
+        >
+
+        <button id="calculate-discount" type="submit">محاسبه تخفیف</button>
+      </form>
+
+      <div class="result" id="discount-result" aria-live="polite">
+        نتیجه محاسبه اینجا نمایش داده می‌شود.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>مثال محاسبه</h2>
+      <p>اگر قیمت اولیه ۵۰۰٬۰۰۰ و تخفیف ۲۰ درصد باشد، مبلغ تخفیف ۱۰۰٬۰۰۰ و قیمت نهایی ۴۰۰٬۰۰۰ خواهد بود.</p>
+    </section>
+
+    <p><a href="../index.html">بازگشت به صفحه اصلی ابزارک فارسی</a></p>
+  </main>
+
+  <footer>ابزارک فارسی | ابزارهای رایگان آنلاین</footer>
+
+  <script src="../assets/js/common.js"></script>
+  <script src="../assets/js/discount.js"></script>
+</body>
+</html>

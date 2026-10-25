@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="محاسبه آنلاین درصد یک عدد با ابزارک فارسی؛ رایگان، سریع و بدون ثبت‌نام.">
+  <meta name="theme-color" content="#0b1020">
+  <title>محاسبه درصد آنلاین | ابزارک فارسی</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>ابزارک فارسی</h1>
+      <div class="subtitle">محاسبه‌گر آنلاین درصد</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>محاسبه درصد یک عدد</h2>
+      <p class="muted">درصد و عدد اصلی را وارد کنید تا نتیجه محاسبه شود.</p>
+    </section>
+
+    <section class="card" aria-labelledby="tool-title">
+      <h2 id="tool-title">محاسبه‌گر درصد</h2>
+
+      <form id="percentage-form" novalidate>
+        <label for="percent">درصد موردنظر</label>
+        <input
+          id="percent"
+          type="number"
+          step="any"
+          inputmode="decimal"
+          placeholder="مثلاً ۲۰"
+          required
+        >
+
+        <label for="amount">عدد اصلی</label>
+        <input
+          id="amount"
+          type="number"
+          step="any"
+          inputmode="decimal"
+          placeholder="مثلاً ۵۰۰۰۰"
+          required
+        >
+
+        <button id="calculate-btn" type="submit">محاسبه کن</button>
+      </form>
+
+      <div class="result" id="percent-result" aria-live="polite">
+        نتیجه اینجا نمایش داده می‌شود.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>روش محاسبه درصد</h2>
+      <p>برای محاسبه درصد یک عدد، درصد را بر ۱۰۰ تقسیم و در عدد اصلی ضرب کنید.</p>
+      <p dir="ltr">Result = (Percentage / 100) × Number</p>
+    </section>
+
+    <p><a href="../index.html">بازگشت به صفحه اصلی ابزارک فارسی</a></p>
+  </main>
+
+  <footer>ابزارک فارسی | ابزارهای رایگان آنلاین</footer>
+
+  <script src="../assets/js/common.js"></script>
+  <script src="../assets/js/percentage.js"></script>
+</body>
+</html>

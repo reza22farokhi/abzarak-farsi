@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="description"
+    content="اصلاح حروف عربی و فارسی، حذف فاصله‌های اضافی و مرتب‌سازی متن به‌صورت رایگان و آنلاین."
+  >
+
+  <meta name="theme-color" content="#0b1020">
+
+  <title>پاک‌سازی متن فارسی آنلاین | ابزارک فارسی</title>
+
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>ابزارک فارسی</h1>
+      <div class="subtitle">پاک‌ساز و مرتب‌کننده متن فارسی</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>پاک‌سازی متن فارسی</h2>
+      <p class="muted">
+        حروف و فاصله‌های متن خود را اصلاح کنید، بدون تغییر معنای آن.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>متن اصلی</h2>
+
+      <label for="original-text">متنی که می‌خواهید اصلاح کنید</label>
+
+      <textarea
+        id="original-text"
+        rows="8"
+        placeholder="متن خود را اینجا وارد کنید..."
+      ></textarea>
+
+      <button id="clean-text" type="button">پاک‌سازی متن</button>
+      <button id="clear-text" type="button">پاک کردن همه</button>
+    </section>
+
+    <section class="card">
+      <h2>نتیجه پاک‌سازی</h2>
+
+      <label for="cleaned-text">متن اصلاح‌شده</label>
+
+      <textarea
+        id="cleaned-text"
+        rows="8"
+        placeholder="نتیجه اصلاح متن اینجا نمایش داده می‌شود..."
+        readonly
+      ></textarea>
+
+      <button id="copy-result" type="button">کپی نتیجه</button>
+
+      <p id="cleaner-message" class="muted" aria-live="polite"></p>
+    </section>
+
+    <section class="card">
+      <h2>اصلاحات انجام‌شده</h2>
+
+      <ul>
+        <li>تبدیل «ي» عربی به «ی» فارسی.</li>
+        <li>تبدیل «ك» عربی به «ک» فارسی.</li>
+        <li>حذف فاصله‌های ابتدا و انتهای خطوط.</li>
+        <li>تبدیل فاصله‌های متوالی به یک فاصله.</li>
+        <li>حذف فاصله‌های پیش از علائم نگارشی رایج.</li>
+        <li>کاهش خطوط خالی تکراری.</li>
+      </ul>
+
+      <p class="muted">
+        متن اصلی تا زمانی که خودتان آن را پاک نکنید، در کادر اول باقی می‌ماند.
+      </p>
+    </section>
+
+    <p>
+      <a href="../index.html">بازگشت به صفحه اصلی ابزارک فارسی</a>
+    </p>
+  </main>
+
+  <footer>ابزارک فارسی | ابزارهای رایگان آنلاین</footer>
+
+  <script src="../assets/js/common.js"></script>
+  <script src="../assets/js/persian-cleaner.js"></script>
+</body>
+</html>

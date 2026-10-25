@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ساخت رایگان QR Code از متن و لینک، مشاهده تصویر و دانلود فایل PNG با ابزارک فارسی.">
+  <meta name="theme-color" content="#0b1020">
+  <title>ساخت QR Code رایگان | ابزارک فارسی</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/common.js" defer></script>
+  <script src="../assets/js/vendor/qrcode.min.js" defer></script>
+  <script src="../assets/js/qr.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="../index.html" style="color:inherit;text-decoration:none">ابزارک فارسی</a></h1>
+      <p class="subtitle">ابزارهای آنلاین رایگان و کاربردی</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>ساخت QR Code رایگان</h2>
+      <p class="muted">متن یا لینک خود را به کد QR تبدیل کنید و تصویر آن را دانلود کنید.</p>
+    </section>
+
+    <section class="card" aria-labelledby="qr-heading">
+      <h2 id="qr-heading">اطلاعات QR Code</h2>
+
+      <label for="qr-text">متن یا نشانی اینترنتی</label>
+      <textarea
+        id="qr-text"
+        rows="5"
+        maxlength="2000"
+        placeholder="متن یا لینک خود را اینجا وارد کنید..."
+        aria-describedby="qr-help"
+      ></textarea>
+
+      <small id="qr-help">حداکثر ۲۰۰۰ نویسه. برای ساخت QR ممکن است اتصال اینترنت لازم باشد.</small>
+
+      <div class="grid">
+        <button id="generate-qr" type="button">ساخت QR Code</button>
+        <button id="copy-qr-text" type="button">کپی متن ورودی</button>
+        <button id="clear-qr" type="button">پاک کردن</button>
+      </div>
+
+      <div id="qr-message" class="result" role="status" aria-live="polite" hidden></div>
+      <div id="qr-result" class="result" aria-label="نتیجه QR Code" hidden></div>
+    </section>
+
+    <section class="card">
+      <h2>راهنمای استفاده</h2>
+      <ol>
+        <li>متن یا لینک موردنظر را وارد کنید.</li>
+        <li>روی «ساخت QR Code» بزنید.</li>
+        <li>پس از نمایش تصویر، از گزینه دانلود برای ذخیره PNG استفاده کنید.</li>
+      </ol>
+      <p class="muted">برای ساخت QR از کتابخانه‌ای خارجی استفاده می‌شود. اگر کتابخانه بارگذاری نشود، پیام خطا نمایش داده خواهد شد.</p>
+      <p><a href="../index.html">بازگشت به صفحه اصلی ابزارک فارسی</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>ابزارک فارسی — ابزارهای رایگان آنلاین</p>
+    </div>
+  </footer>
+</body>
+</html>

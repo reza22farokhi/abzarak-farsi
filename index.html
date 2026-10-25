@@ -1,247 +1,302 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="ابزارک فارسی؛ ابزارهای آنلاین رایگان برای محاسبه درصد، تولید رمز عبور و ساخت QR Code.">
-<meta name="theme-color" content="#0b1020">
-<title>ابزارک فارسی | ابزارهای رایگان آنلاین</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ابزارک فارسی؛ مجموعه ابزارهای آنلاین رایگان برای محاسبه درصد و تخفیف، سود و زیان، شمارش و پاک‌سازی متن، تولید رمز عبور و ساخت QR Code.">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="robots" content="index, follow">
+  <title>ابزارک فارسی | مجموعه ابزارهای آنلاین رایگان</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .catalog-hero {
+      padding: 42px 0 28px;
+      text-align: center;
+    }
 
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;background:#0b1020;color:#f5f7ff;
-  font-family:Tahoma,Arial,sans-serif;line-height:1.9
-}
-.container{width:min(100% - 30px,950px);margin:auto}
-header{padding:22px 0;background:#141c30;border-bottom:1px solid #2b3854}
-h1{margin:0;color:#91aaff}
-.subtitle,.muted{color:#b7c1d8}
-.hero{text-align:center;padding:35px 0}
-.hero h2{font-size:clamp(24px,5vw,36px)}
-.card{
-  background:#141c30;border:1px solid #2b3854;
-  border-radius:18px;padding:22px;margin-bottom:18px
-}
-input,textarea,button{
-  width:100%;padding:12px;margin-top:8px;
-  border-radius:10px;font:inherit
-}
-input,textarea{
-  background:#0b1020;color:white;border:1px solid #354363
-}
-label{display:block;margin-top:12px}
-button{
-  background:#91aaff;color:#0b1020;border:0;
-  font-weight:bold;cursor:pointer
-}
-button:hover{filter:brightness(1.08)}
-.result{
-  margin-top:14px;padding:14px;background:#0b1020;
-  border:1px solid #354363;border-radius:10px;overflow-wrap:anywhere
-}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
-.tool-link{padding:15px;background:#1b2740;border-radius:12px;text-align:center}
-#qr-image{display:block;max-width:100%;margin:18px auto;background:white;padding:10px;border-radius:8px}
-footer{text-align:center;color:#b7c1d8;padding:25px}
-small{color:#b7c1d8}
-</style>
+    .catalog-hero h2 {
+      font-size: clamp(26px, 5vw, 40px);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .hero-description {
+      max-width: 680px;
+      margin: 0 auto 24px;
+      color: #b7c1d8;
+    }
+
+    .search-box {
+      max-width: 650px;
+      margin: 24px auto 12px;
+    }
+
+    .search-box input {
+      min-height: 54px;
+      font-size: 16px;
+    }
+
+    .catalog-meta {
+      color: #b7c1d8;
+      text-align: center;
+      margin: 12px 0 28px;
+    }
+
+    .catalog-section {
+      padding: 8px 0 24px;
+    }
+
+    .catalog-section > h2 {
+      font-size: 23px;
+      margin-bottom: 18px;
+    }
+
+    .tool-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 190px;
+      padding: 20px;
+      border: 1px solid #2b3854;
+      border-radius: 16px;
+      background: #141c30;
+      color: #f5f7ff;
+      text-decoration: none;
+      transition: transform .18s ease, border-color .18s ease;
+    }
+
+    .tool-card:hover,
+    .tool-card:focus-visible {
+      transform: translateY(-3px);
+      border-color: #91aaff;
+      outline: none;
+    }
+
+    .tool-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      background: #253454;
+      color: #c4d1ff;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .tool-card h3 {
+      margin: 0 0 8px;
+      color: #91aaff;
+      font-size: 18px;
+    }
+
+    .tool-card p {
+      margin: 0 0 16px;
+      color: #b7c1d8;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .tool-action {
+      margin-top: auto;
+      color: #c4d1ff;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .privacy-note {
+      margin: 8px 0 28px;
+      padding: 18px;
+      border: 1px solid #2b3854;
+      border-radius: 14px;
+      color: #b7c1d8;
+      background: #10182a;
+    }
+
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 24px;
+      color: #b7c1d8;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      right: 12px;
+      z-index: 10;
+      padding: 10px;
+      background: #91aaff;
+      color: #0b1020;
+    }
+
+    .skip-link:focus {
+      top: 12px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tool-card {
+        transition: none;
+      }
+
+      .tool-card:hover {
+        transform: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<header>
-<div class="container">
-<h1>ابزارک فارسی</h1>
-<div class="subtitle">ابزارهای آنلاین رایگان، سریع و کاربردی</div>
-</div>
-</header>
+  <a class="skip-link" href="#tool-catalog">رفتن به فهرست ابزارها</a>
 
-<main class="container">
-<section class="hero">
-<h2>ابزارهای کاربردی، همیشه در دسترس</h2>
-<p class="muted">رایگان، ساده و بدون نیاز به ثبت‌نام</p>
-</section>
+  <header>
+    <div class="container">
+      <h1>ابزارک فارسی</h1>
+      <div class="subtitle">ابزارهای آنلاین رایگان، سریع و کاربردی</div>
+    </div>
+  </header>
 
-<section class="grid">
-<div class="card" id="percent-tool">
-<h2>محاسبه درصد</h2>
-<label for="percent">درصد موردنظر</label>
-<input id="percent" type="number" step="any" placeholder="مثلاً ۲۰">
-<label for="amount">عدد اصلی</label>
-<input id="amount" type="number" step="any" placeholder="مثلاً ۵۰۰۰۰">
-<button id="calculate-btn">محاسبه کن</button>
-<div class="result" id="percent-result" aria-live="polite">نتیجه اینجا نمایش داده می‌شود.</div>
-</div>
+  <main class="container">
+    <section class="catalog-hero">
+      <h2>ابزار موردنیازت را سریع پیدا کن</h2>
+      <p class="hero-description">
+        مجموعه‌ای از ابزارهای ساده و کاربردی برای محاسبات روزمره،
+        کار با متن، امنیت رمز عبور و ساخت QR Code؛ بدون نیاز به ثبت‌نام.
+      </p>
 
-<div class="card" id="password-tool">
-<h2>تولید رمز عبور امن</h2>
-<label for="password-length">طول رمز عبور (۸ تا ۶۴)</label>
-<input id="password-length" type="number" min="8" max="64" value="16">
-<label><input id="lowercase" type="checkbox" checked style="width:auto"> حروف کوچک انگلیسی</label>
-<label><input id="uppercase" type="checkbox" checked style="width:auto"> حروف بزرگ انگلیسی</label>
-<label><input id="numbers" type="checkbox" checked style="width:auto"> اعداد</label>
-<label><input id="symbols" type="checkbox" checked style="width:auto"> نمادها</label>
-<button id="generate-password">تولید رمز</button>
-<div class="result" id="password-result" aria-live="polite">رمز تولیدشده اینجا نمایش داده می‌شود.</div>
-<button id="copy-password" type="button">کپی رمز</button>
-<small>رمز در مرورگر تولید می‌شود و به سرور ارسال نمی‌شود.</small>
-</div>
-</section>
+      <div class="search-box">
+        <label for="tool-search">جست‌وجو در ابزارها</label>
+        <input
+          id="tool-search"
+          type="search"
+          placeholder="مثلاً تخفیف، رمز عبور یا متن..."
+          autocomplete="off"
+          aria-describedby="search-help"
+        >
+        <small id="search-help">نام ابزار یا کاربرد آن را وارد کنید.</small>
+      </div>
+    </section>
 
-<section class="card" id="qr-tool">
-<h2>ساخت QR Code</h2>
-<p class="muted">متن یا لینک خود را وارد کنید.</p>
-<label for="qr-text">متن یا نشانی اینترنتی</label>
-<textarea id="qr-text" rows="3" placeholder="https://example.com"></textarea>
-<button id="generate-qr">ساخت QR Code</button>
-<div id="qr-result" aria-live="polite"></div>
-</section>
+    <p class="catalog-meta" id="tool-count" aria-live="polite">
+      ۷ ابزار در دسترس است.
+    </p>
 
-<section class="card" id="text-tool">
-<h2>شمارش کلمات و حروف</h2>
-<label for="text-input">متن خود را وارد کنید</label>
-<textarea id="text-input" rows="4" placeholder="متن را اینجا بنویسید..."></textarea>
-<div class="result" id="text-result" aria-live="polite">کلمات: ۰ | نویسه‌ها: ۰</div>
-</section>
+    <section class="catalog-section" id="tool-catalog" aria-labelledby="catalog-title">
+      <h2 id="catalog-title">فهرست ابزارها</h2>
 
-<h2>ابزارهای دیگر</h2>
-<section class="tools">
-<div class="tool-link">قالب‌بندی JSON<br><small>به‌زودی</small></div>
-<div class="tool-link">فشرده‌سازی تصویر<br><small>به‌زودی</small></div>
-<div class="tool-link">ابزارهای سئو<br><small>به‌زودی</small></div>
-<div class="tool-link">تبدیل متن<br><small>به‌زودی</small></div>
-</section>
-</main>
+      <div class="grid" id="tool-grid">
+        <a class="tool-card" href="tools/percentage.html"
+           data-search="درصد درصدگیری محاسبه درصد عدد ریاضی">
+          <span class="tool-icon" aria-hidden="true">٪</span>
+          <h3>محاسبه درصد</h3>
+          <p>درصد یک عدد را به‌سرعت محاسبه کن.</p>
+          <span class="tool-action">ورود به ابزار ←</span>
+        </a>
 
-<footer>ابزارک فارسی | رایگان و در حال توسعه</footer>
+        <a class="tool-card" href="tools/discount.html"
+           data-search="تخفیف قیمت فروش قیمت نهایی درصد تخفیف">
+          <span class="tool-icon" aria-hidden="true">٪</span>
+          <h3>محاسبه تخفیف</h3>
+          <p>مبلغ تخفیف و قیمت نهایی کالا را حساب کن.</p>
+          <span class="tool-action">ورود به ابزار ←</span>
+        </a>
 
-<script>
-'use strict';
+        <a class="tool-card" href="tools/profit.html"
+           data-search="سود زیان سود و زیان درآمد هزینه فروش حاشیه سود">
+          <span class="tool-icon" aria-hidden="true">+</span>
+          <h3>محاسبه سود و زیان</h3>
+          <p>سود، زیان و حاشیه سود را بر اساس اعداد واردشده بررسی کن.</p>
+          <span class="tool-action">ورود به ابزار ←</span>
+        </a>
 
-const $ = id => document.getElementById(id);
-const fa = value => Number(value).toLocaleString('fa-IR',{maximumFractionDigits:8});
+        <a class="tool-card" href="tools/text-counter.html"
+           data-search="شمارش متن کلمه کلمات حروف نویسه کاراکتر تعداد متن">
+          <span class="tool-icon" aria-hidden="true">Aa</span>
+          <h3>شمارش متن</h3>
+          <p>تعداد کلمات و نویسه‌های متن را مشاهده کن.</p>
+          <span class="tool-action">ورود به ابزار ←</span>
+        </a>
 
-$('calculate-btn').addEventListener('click',()=>{
-  const p=$('percent').value;
-  const a=$('amount').value;
-  if(p.trim()===''||a.trim()===''){
-    $('percent-result').textContent='لطفاً هر دو عدد را وارد کنید.';
-    return;
-  }
-  const percent=Number(p), amount=Number(a);
-  if(!Number.isFinite(percent)||!Number.isFinite(amount)){
-    $('percent-result').textContent='اعداد واردشده معتبر نیستند.';
-    return;
-  }
-  $('percent-result').textContent=
-    `${fa(percent)}٪ از ${fa(amount)} برابر است با ${fa(percent/100*amount)}`;
-});
+        <a class="tool-card" href="tools/persian-cleaner.html"
+           data-search="پاکسازی پاک سازی پاک‌کننده تمیز کردن متن فارسی فاصله نیم فاصله نویسه">
+          <span class="tool-icon" aria-hidden="true">فا</span>
+          <h3>پاک‌سازی متن فارسی</h3>
+          <p>برای مرتب‌کردن فاصله‌ها و یکدست‌سازی متن فارسی استفاده کن.</p>
+          <span class="tool-action">ورود به ابزار ←</span>
+        </a>
 
-function secureRandomInt(max){
-  const range=0x100000000;
-  const limit=range-(range%max);
-  const data=new Uint32Array(1);
-  let n;
-  do{
-    crypto.getRandomValues(data);
-    n=data[0];
-  }while(n>=limit);
-  return n%max;
-}
+        <a class="tool-card" href="tools/password.html"
+           data-search="رمز عبور پسورد گذرواژه امنیت رمز تصادفی">
+          <span class="tool-icon" aria-hidden="true">*</span>
+          <h3>تولید رمز عبور</h3>
+          <p>رمز عبور تصادفی با طول و انواع نویسه‌های انتخابی بساز.</p>
+          <span class="tool-action">ورود به ابزار ←</span>
+        </a>
 
-$('generate-password').addEventListener('click',()=>{
-  const length=Number($('password-length').value);
-  if(!Number.isInteger(length)||length<8||length>64){
-    $('password-result').textContent='طول رمز باید عددی بین ۸ تا ۶۴ باشد.';
-    return;
-  }
+        <a class="tool-card" href="tools/qr.html"
+           data-search="qr code کیو آر بارکد کد دوبعدی لینک نشانی اینترنتی">
+          <span class="tool-icon" aria-hidden="true">QR</span>
+          <h3>ساخت QR Code</h3>
+          <p>متن یا لینک خود را به کد QR تبدیل و تصویر آن را دریافت کن.</p>
+          <span class="tool-action">ورود به ابزار ←</span>
+        </a>
+      </div>
 
-  const groups=[];
-  if($('lowercase').checked)groups.push('abcdefghijklmnopqrstuvwxyz');
-  if($('uppercase').checked)groups.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-  if($('numbers').checked)groups.push('0123456789');
-  if($('symbols').checked)groups.push('!@#$%^&*()-_=+[]{}?');
+      <p class="empty-state" id="empty-state">
+        ابزاری با این عبارت پیدا نشد. عبارت دیگری را جست‌وجو کن.
+      </p>
+    </section>
 
-  if(groups.length===0){
-    $('password-result').textContent='حداقل یک نوع نویسه را انتخاب کنید.';
-    return;
-  }
+    <aside class="privacy-note">
+      <strong>سادگی و حریم خصوصی</strong>
+      <p>
+        ابزارها برای استفاده مستقیم در مرورگر طراحی شده‌اند.
+        برای هر ابزار، توضیحات و شرایط عملکرد همان صفحه را بررسی کن.
+      </p>
+    </aside>
+  </main>
 
-  const all=groups.join('');
-  const chars=groups.map(group=>group[secureRandomInt(group.length)]);
-  while(chars.length<length)chars.push(all[secureRandomInt(all.length)]);
+  <footer>
+    <div class="container">
+      ابزارک فارسی | ابزارهای آنلاین رایگان
+      <br>
+      <small>پروژه در حال توسعه است؛ ابزارهای جدید به‌تدریج اضافه می‌شوند.</small>
+    </div>
+  </footer>
 
-  for(let i=chars.length-1;i>0;i--){
-    const j=secureRandomInt(i+1);
-    [chars[i],chars[j]]=[chars[j],chars[i]];
-  }
+  <script>
+    'use strict';
 
-  $('password-result').textContent=chars.join('');
-});
+    const searchInput = document.getElementById('tool-search');
+    const toolCards = Array.from(document.querySelectorAll('.tool-card'));
+    const toolCount = document.getElementById('tool-count');
+    const emptyState = document.getElementById('empty-state');
 
-$('copy-password').addEventListener('click',async()=>{
-  const password=$('password-result').textContent;
-  if(!password||password.includes(' ')){
-    $('password-result').textContent='ابتدا یک رمز تولید کنید.';
-    return;
-  }
-  try{
-    await navigator.clipboard.writeText(password);
-    $('copy-password').textContent='کپی شد!';
-    setTimeout(()=>$('copy-password').textContent='کپی رمز',1500);
-  }catch{
-    $('password-result').textContent += ' — برای کپی، متن را انتخاب کنید.';
-  }
-});
+    function updateToolSearch() {
+      const query = searchInput.value.trim().toLocaleLowerCase('fa');
+      let visibleCount = 0;
 
-$('generate-qr').addEventListener('click',()=>{
-  const value=$('qr-text').value.trim();
-  const result=$('qr-result');
-  result.replaceChildren();
+      for (const card of toolCards) {
+        const searchableText = (
+          card.textContent + ' ' + (card.dataset.search || '')
+        ).toLocaleLowerCase('fa');
 
-  if(!value){
-    result.textContent='لطفاً ابتدا متن یا لینک را وارد کنید.';
-    return;
-  }
+        const matches = searchableText.includes(query);
+        card.hidden = !matches;
 
-  if(!navigator.onLine){
-    result.textContent='برای ساخت QR Code به اینترنت نیاز دارید.';
-    return;
-  }
+        if (matches) {
+          visibleCount += 1;
+        }
+      }
 
-  if(typeof QRCode==='undefined'){
-    result.textContent='کتابخانه QR Code بارگذاری نشده است. اتصال اینترنت را بررسی و صفحه را دوباره بارگذاری کنید.';
-    return;
-  }
+      toolCount.textContent =
+        visibleCount.toLocaleString('fa-IR') + ' ابزار نمایش داده می‌شود.';
 
-  const canvas=document.createElement('canvas');
-  result.appendChild(canvas);
-
-  QRCode.toCanvas(canvas,value,{width:240,margin:2},error=>{
-    if(error){
-      result.textContent='ساخت QR Code ناموفق بود.';
-      return;
+      emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
     }
-    const download=document.createElement('a');
-    download.textContent='دانلود تصویر QR Code';
-    download.href=canvas.toDataURL('image/png');
-    download.download='abzarak-qr.png';
-    download.style.display='block';
-    download.style.textAlign='center';
-    download.style.marginTop='12px';
-    result.appendChild(download);
-  });
-});
 
-$('text-input').addEventListener('input',()=>{
-  const text=$('text-input').value;
-  const words=text.trim()?text.trim().split(/\s+/u).length:0;
-  $('text-result').textContent=
-    `کلمات: ${fa(words)} | نویسه‌ها: ${fa(text.length)}`;
-});
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+    searchInput.addEventListener('input', updateToolSearch);
+  </script>
 </body>
 </html>

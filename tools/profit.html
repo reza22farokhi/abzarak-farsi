@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="description"
+    content="محاسبه آنلاین سود، زیان و حاشیه سود بر اساس مبلغ فروش و هزینه‌ها؛ رایگان با ابزارک فارسی."
+  >
+
+  <meta name="theme-color" content="#0b1020">
+
+  <title>محاسبه سود و زیان آنلاین | ابزارک فارسی</title>
+
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>ابزارک فارسی</h1>
+      <div class="subtitle">محاسبه‌گر آنلاین سود و زیان</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>محاسبه سود و زیان</h2>
+      <p class="muted">
+        مبلغ فروش و مجموع هزینه‌های خود را وارد کنید.
+      </p>
+    </section>
+
+    <section class="card" aria-labelledby="profit-title">
+      <h2 id="profit-title">محاسبه‌گر سود و زیان</h2>
+
+      <form id="profit-form" novalidate>
+        <label for="sales-amount">مبلغ فروش</label>
+
+        <input
+          id="sales-amount"
+          type="number"
+          min="0"
+          step="any"
+          inputmode="decimal"
+          placeholder="مثلاً ۱۰۰۰۰۰۰"
+          required
+        >
+
+        <label for="total-cost">مجموع هزینه‌ها</label>
+
+        <input
+          id="total-cost"
+          type="number"
+          min="0"
+          step="any"
+          inputmode="decimal"
+          placeholder="مثلاً ۷۰۰۰۰۰"
+          required
+        >
+
+        <button id="calculate-profit" type="submit">
+          محاسبه سود و زیان
+        </button>
+      </form>
+
+      <div
+        class="result"
+        id="profit-result"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        نتیجه محاسبه اینجا نمایش داده می‌شود.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>روش محاسبه</h2>
+
+      <p><strong>سود یا زیان = مبلغ فروش − مجموع هزینه‌ها</strong></p>
+
+      <p>
+        اگر نتیجه مثبت باشد، سود دارید. اگر منفی باشد، زیان کرده‌اید.
+        اگر نتیجه صفر باشد، فروش و هزینه‌ها برابرند.
+      </p>
+
+      <p>
+        <strong>حاشیه سود = سود یا زیان ÷ مبلغ فروش × ۱۰۰</strong>
+      </p>
+
+      <p class="muted">
+        حاشیه سود فقط زمانی محاسبه می‌شود که مبلغ فروش بیشتر از صفر باشد.
+        این ابزار سایر هزینه‌ها یا مالیات ثبت‌نشده را به‌طور خودکار محاسبه نمی‌کند.
+      </p>
+    </section>
+
+    <p>
+      <a href="../index.html">بازگشت به صفحه اصلی ابزارک فارسی</a>
+    </p>
+  </main>
+
+  <footer>ابزارک فارسی | ابزارهای رایگان آنلاین</footer>
+
+  <script src="../assets/js/common.js"></script>
+  <script src="../assets/js/profit.js"></script>
+</body>
+</html>
