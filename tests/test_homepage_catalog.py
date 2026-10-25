@@ -36,7 +36,8 @@ class HomepageCatalogTests(unittest.TestCase):
     def test_search_controls_and_live_count_exist(self):
         self.assertIn('id="tool-search"', self.html)
         self.assertIn('id="tool-count"', self.html)
-        self.assertIn("addEventListener('input', updateToolSearch)", self.html)
+        catalog_js = Path("assets/js/catalog.js").read_text(encoding="utf-8")
+        self.assertIn("addEventListener('input', updateToolSearch)", catalog_js)
 
     def test_empty_search_state_exists(self):
         self.assertIn('id="empty-state"', self.html)

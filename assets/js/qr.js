@@ -62,8 +62,7 @@ function generateQrCode() {
         download.download = 'abzarak-qr.png';
         download.textContent = 'دانلود تصویر QR Code (PNG)';
         download.className = 'tool-link';
-        download.style.display = 'block';
-        download.style.marginTop = '16px';
+        download.classList.add('qr-download-link');
 
         qrResult.replaceChildren(canvas, download);
         qrResult.hidden = false;
