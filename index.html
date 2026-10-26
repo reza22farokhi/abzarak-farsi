@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self';script-src 'self' https://cdn.yektanet.com https://super-script-cdn.yektanet.com 'sha256-kZCQKMCTdQQawTc81PPvK8aqYxNgLxQqT1a47OYnU8A='; style-src 'self'; img-src 'self' data: https://cdn.yektanet.com; font-src 'self' data:; connect-src 'self' https://cdn.yektanet.com https://jamssp.yektanet.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src https://cdn.yektanet.com">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="ابزارک فارسی؛ مجموعه ابزارهای آنلاین رایگان برای محاسبه درصد و تخفیف، سود و زیان، شمارش و پاک‌سازی متن، تولید رمز عبور و ساخت QR Code.">
   <meta name="theme-color" content="#0b1020">
@@ -10,6 +10,26 @@
   <title>ابزارک فارسی | مجموعه ابزارهای آنلاین رایگان</title>
   <link rel="stylesheet" href="assets/css/styles.css">
 
+  <script>
+        !function(e,t,n){
+            e.yektanetAnalyticsObject=n,
+            e[n]=e[n]||function(){e[n].q.push(arguments)},
+            e[n].q=e[n].q||[];
+            var a=t.getElementsByTagName("head")[0],
+                r=new Date,
+                c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="
+                    +r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),
+                s=t.createElement("link");
+            s.rel="preload",
+            s.as="script",
+            s.href=c,
+            a.appendChild(s);
+            var l=t.createElement("script");
+            l.async=!0,
+            l.src=c,
+            a.appendChild(l);
+        }(window,document,"yektanet");
+  </script>
 </head>
 
 <body>
@@ -111,6 +131,10 @@
       <p class="empty-state" id="empty-state" hidden>
         ابزاری با این عبارت پیدا نشد. عبارت دیگری را جست‌وجو کن.
       </p>
+    </section>
+
+    <section class="yektanet-placement" aria-label="جایگاه تبلیغاتی">
+      <div class="yn-bnr" id="ynpos-21226"></div>
     </section>
 
     <aside class="privacy-note">
