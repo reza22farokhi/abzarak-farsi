@@ -18,7 +18,7 @@ class HomepageCatalogTests(unittest.TestCase):
     def test_shared_stylesheet_is_linked(self):
         self.assertIn('href="assets/css/styles.css"', self.html)
 
-    def test_all_seven_tool_pages_are_linked(self):
+    def test_all_tool_pages_are_linked(self):
         expected = [
             "tools/percentage.html",
             "tools/discount.html",
@@ -27,6 +27,7 @@ class HomepageCatalogTests(unittest.TestCase):
             "tools/persian-cleaner.html",
             "tools/password.html",
             "tools/qr.html",
+            "tools/seo-audit.html",
         ]
         for relative_path in expected:
             with self.subTest(path=relative_path):
@@ -43,8 +44,8 @@ class HomepageCatalogTests(unittest.TestCase):
         self.assertIn('id="empty-state"', self.html)
 
     def test_all_cards_have_search_terms(self):
-        self.assertEqual(self.html.count('class="tool-card"'), 7)
-        self.assertEqual(self.html.count("data-search="), 7)
+        self.assertEqual(self.html.count('class="tool-card"'), 8)
+        self.assertEqual(self.html.count("data-search="), 8)
 
     def test_accessibility_and_mobile_viewport(self):
         self.assertIn('name="viewport"', self.html)

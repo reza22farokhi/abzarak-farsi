@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ابزار رایگان بررسی سئو HTML؛ بررسی عنوان، توضیحات متا، تیترها، تصاویر، لینک‌ها، Canonical و Open Graph به زبان فارسی.">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="robots" content="index, follow">
+  <title>بررسی سئو HTML | ابزارک فارسی</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/seo-audit.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>ابزارک فارسی</h1>
+      <div class="subtitle">ابزار بررسی سئو صفحات وب</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>بررسی سئو HTML</h2>
+      <p class="muted">
+        کد HTML صفحه را وارد کنید تا خطاها، هشدارها و پیشنهادهای
+        بهبود سئو بررسی شوند.
+      </p>
+    </section>
+
+    <section class="card" aria-labelledby="input-title">
+      <h2 id="input-title">کد HTML صفحه</h2>
+      <label for="seo-html">کد HTML</label>
+      <textarea
+        id="seo-html"
+        rows="12"
+        maxlength="1000000"
+        spellcheck="false"
+        placeholder="کد HTML صفحه را اینجا جای‌گذاری کنید..."
+      ></textarea>
+
+      <div class="tools">
+        <button id="seo-analyze" type="button">شروع بررسی</button>
+        <button id="seo-clear" type="button">پاک کردن</button>
+      </div>
+
+      <p id="seo-message" class="muted" aria-live="polite">
+        بررسی فقط در مرورگر انجام می‌شود؛ کد به سرور ارسال نمی‌شود.
+      </p>
+    </section>
+
+    <section class="card" id="seo-results" aria-labelledby="results-title" hidden>
+      <h2 id="results-title">گزارش بررسی</h2>
+
+      <div class="grid">
+        <div class="result">
+          <strong>خطاها</strong>
+          <div id="seo-errors">۰</div>
+        </div>
+        <div class="result">
+          <strong>هشدارها</strong>
+          <div id="seo-warnings">۰</div>
+        </div>
+        <div class="result">
+          <strong>موارد قابل قبول</strong>
+          <div id="seo-passes">۰</div>
+        </div>
+      </div>
+
+      <h3>جزئیات و پیشنهادها</h3>
+      <ul id="seo-report"></ul>
+
+      <button id="seo-copy" type="button">کپی گزارش</button>
+      <p id="seo-copy-message" class="muted" aria-live="polite"></p>
+    </section>
+
+    <section class="card">
+      <h2>محدودیت‌های ابزار</h2>
+      <ul>
+        <li>ورودی باید کد HTML باشد؛ نشانی سایت به‌تنهایی کافی نیست.</li>
+        <li>ابزار به سایت خارجی درخواست ارسال نمی‌کند.</li>
+        <li>امتیاز رتبه‌بندی گوگل یا عملکرد واقعی سایت محاسبه نمی‌شود.</li>
+        <li>نتایج، بررسی اولیه ساختار HTML هستند و جای ممیزی کامل سئو را نمی‌گیرند.</li>
+      </ul>
+    </section>
+
+    <p><a href="../index.html">بازگشت به صفحه اصلی ابزارک فارسی</a></p>
+  </main>
+
+  <footer>ابزارک فارسی | ابزارهای آنلاین رایگان</footer>
+</body>
+</html>
