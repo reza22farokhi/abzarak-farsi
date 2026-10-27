@@ -221,6 +221,60 @@ function seoAnalyze() {
       doc.querySelectorAll('h1,h2,h3,h4,h5,h6').length);
   }
 
+  // Heuristic HTML score: an internal checklist, not a Google ranking score.
+  let score = 0;
+
+  // Title: 15 points.
+  score += !title ? 0 : (
+    title.length >= 15 && title.length <= 60 ? 15 : 8
+  );
+
+  // Meta description: 15 points.
+  score += !description ? 0 : (
+    description.length >= 50 && description.length <= 170 ? 15 : 8
+  );
+
+  // H1 structure: 10 points.
+  score += h1Elements.length === 1 ? 10 :
+    h1Elements.length > 1 ? 5 : 0;
+
+  // Language and writing direction: 5 points each.
+  score += lang ? 5 : 0;
+  score += dir ? 5 : 0;
+
+  // Viewport: 10 points.
+  score += doc.querySelector('meta[name="viewport"]') ? 10 : 0;
+
+  // Canonical URL: 10 points when a non-empty href exists.
+  score += canonical && canonical.getAttribute('href')?.trim() ? 10 : 0;
+
+  // Open Graph title and description: 5 points each.
+  score += ogTitle ? 5 : 0;
+  score += ogDescription ? 5 : 0;
+
+  // Image alt attributes: 10 points if no image lacks the attribute.
+  score += missingAlt.length === 0 ? 10 : 0;
+
+  // Heading hierarchy: 5 points if there are no detected skipped levels.
+  score += skippedLevels === 0 ? 5 : 0;
+
+  // Links: 5 points if no anchor is missing a non-empty href.
+  score += emptyLinks.length === 0 ? 5 : 0;
+
+  const scoreLabels = score >= 90
+    ? 'عالی'
+    : score >= 75
+      ? 'خوب'
+      : score >= 60
+        ? 'متوسط'
+        : 'نیازمند بهبود';
+
+  document.getElementById('seo-score').textContent =
+    score.toLocaleString('fa-IR');
+  document.getElementById('seo-score-label').textContent =
+    'وضعیت: ' + scoreLabels +
+    ' — این امتیاز داخلی و تقریبی است، نه امتیاز رسمی گوگل.';
+
   const errors = items.filter(item => item.level === 'error').length;
   const warnings = items.filter(item => item.level === 'warning').length;
   const passes = items.filter(item => item.level === 'pass').length;

@@ -44,6 +44,29 @@ class SeoAuditTests(unittest.TestCase):
         self.assertNotIn('heading.innerHTML', js)
         self.assertNotIn('detail.innerHTML', js)
 
+    def test_score_display_exists_in_html(self):
+        html = (ROOT / "tools/seo-audit.html").read_text(encoding="utf-8")
+        self.assertIn('id="seo-score"', html)
+        self.assertIn('id="seo-score-label"', html)
+        self.assertIn("امتیاز رسمی گوگل", html)
+
+    def test_score_uses_expected_criteria_and_weights(self):
+        js = (ROOT / "assets/js/seo-audit.js").read_text(encoding="utf-8")
+        for term in (
+            "let score = 0",
+            "title.length >= 15 && title.length <= 60 ? 15 : 8",
+            "description.length >= 50 && description.length <= 170 ? 15 : 8",
+            "h1Elements.length === 1 ? 10",
+            "score += lang ? 5 : 0",
+            "score += dir ? 5 : 0",
+            "score += doc.querySelector('meta[name=\"viewport\"]') ? 10 : 0",
+            "score += ogTitle ? 5 : 0",
+            "score += ogDescription ? 5 : 0",
+            "score.toLocaleString('fa-IR')",
+        ):
+            with self.subTest(term=term):
+                self.assertIn(term, js)
+
     def test_homepage_links_to_seo_tool(self):
         html = (ROOT / "index.html").read_text(encoding="utf-8")
         self.assertIn('href="tools/seo-audit.html"', html)
