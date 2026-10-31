@@ -1,0 +1,6 @@
+# Python cache and local test artifacts
+__pycache__/
+*.py[cod]
+
+# Local snapshots and manual backups (keep them on device; do not commit)
+*.backup*

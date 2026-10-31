@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="تبدیل Unix Timestamp به تاریخ و ساعت و تبدیل تاریخ محلی به Timestamp.">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="robots" content="index, follow">
+  <title>مبدل Unix Timestamp | ابزارک فارسی</title>
+  <link rel="canonical" href="https://reza22farokhi.github.io/abzarak-farsi/tools/timestamp.html">
+  <meta property="og:title" content="مبدل Unix Timestamp | ابزارک فارسی">
+  <meta property="og:description" content="تبدیل Unix Timestamp به تاریخ و ساعت و تبدیل تاریخ محلی به Timestamp.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://reza22farokhi.github.io/abzarak-farsi/tools/timestamp.html">
+  <meta property="og:site_name" content="ابزارک فارسی">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/common.js" defer></script>
+  <script src="../assets/js/timestamp.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="../index.html" class="site-title-link">ابزارک فارسی</a></h1>
+      <div class="subtitle">ابزارهای آنلاین رایگان و کاربردی</div>
+    </div>
+  </header>
+  <main class="container tool-page">
+    <section class="hero">
+      <p class="tool-kicker">ابزارهای توسعه‌دهندگان</p>
+      <h2>مبدل Unix Timestamp</h2>
+      <p class="muted">تبدیل Unix Timestamp به تاریخ و ساعت و تبدیل تاریخ محلی به Timestamp.</p>
+    </section>
+    <section class="card">
+  <h2>تبدیل Timestamp به تاریخ</h2>
+  <label for="timestamp-input">Unix Timestamp</label>
+  <input id="timestamp-input" class="tool-code" type="text" inputmode="decimal" placeholder="مثلاً 1735689600">
+  <label for="timestamp-unit">واحد ورودی</label>
+  <select id="timestamp-unit"><option value="seconds">ثانیه</option><option value="milliseconds">میلی‌ثانیه</option></select>
+  <button id="timestamp-convert" type="button">تبدیل به تاریخ</button>
+  <p id="timestamp-status" class="tool-status" role="status" aria-live="polite"></p>
+  <div class="tool-result-list">
+    <p><strong>تاریخ محلی:</strong> <output id="timestamp-local">—</output></p>
+    <p><strong>زمان UTC:</strong> <output id="timestamp-utc">—</output></p>
+    <p><strong>Unix ثانیه:</strong> <output id="timestamp-seconds">—</output></p>
+    <p><strong>Unix میلی‌ثانیه:</strong> <output id="timestamp-milliseconds">—</output></p>
+  </div>
+</section>
+<section class="card">
+  <h2>تبدیل تاریخ محلی به Timestamp</h2>
+  <label for="timestamp-date">تاریخ و ساعت دستگاه</label>
+  <input id="timestamp-date" type="datetime-local" step="0.001">
+  <button id="timestamp-from-date" type="button">تبدیل تاریخ</button>
+  <p id="timestamp-date-status" class="tool-status" role="status" aria-live="polite"></p>
+  <div class="tool-result-list">
+    <p><strong>Unix ثانیه:</strong> <output id="date-seconds">—</output></p>
+    <p><strong>Unix میلی‌ثانیه:</strong> <output id="date-milliseconds">—</output></p>
+  </div>
+  <p class="tool-help">تاریخ ورودی بر اساس منطقه زمانی محلی دستگاه تفسیر می‌شود؛ مقدار UTC جداگانه نمایش داده می‌شود.</p>
+</section>
+    <section class="card tool-privacy">
+      <h2>حریم خصوصی و نحوه پردازش</h2>
+      <p>تمام پردازش این ابزار در مرورگر انجام می‌شود. ورودی شما به سرور ارسال یا ذخیره نمی‌شود. خروجی را پیش از استفاده در محیط عملیاتی بررسی کنید.</p>
+    </section>
+    <p><a href="../index.html">بازگشت به صفحه اصلی ابزارک فارسی</a></p>
+  </main>
+  <footer><div class="container">ابزارک فارسی | ابزارهای آنلاین رایگان</div></footer>
+</body>
+</html>
