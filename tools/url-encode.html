@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="کدگذاری و رمزگشایی متن و نشانی اینترنتی با پشتیبانی کامل از حروف فارسی.">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="robots" content="index, follow">
+  <title>تبدیل URL و متن | ابزارک فارسی</title>
+  <link rel="canonical" href="https://reza22farokhi.github.io/abzarak-farsi/tools/url-encode.html">
+  <meta property="og:title" content="تبدیل URL و متن | ابزارک فارسی">
+  <meta property="og:description" content="کدگذاری و رمزگشایی متن و نشانی اینترنتی با پشتیبانی کامل از حروف فارسی.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://reza22farokhi.github.io/abzarak-farsi/tools/url-encode.html">
+  <meta property="og:site_name" content="ابزارک فارسی">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/common.js" defer></script>
+  <script src="../assets/js/url-encode.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="../index.html" class="site-title-link">ابزارک فارسی</a></h1>
+      <div class="subtitle">ابزارهای آنلاین رایگان و کاربردی</div>
+    </div>
+  </header>
+  <main class="container tool-page">
+    <section class="hero">
+      <p class="tool-kicker">ابزارهای توسعه‌دهندگان</p>
+      <h2>تبدیل URL و متن</h2>
+      <p class="muted">کدگذاری و رمزگشایی متن و نشانی اینترنتی با پشتیبانی کامل از حروف فارسی.</p>
+    </section>
+    <section class="card">
+  <h2>کدگذاری و رمزگشایی URL</h2>
+  <label for="url-mode">نوع تبدیل</label>
+  <select id="url-mode"><option value="component">بخش مستقل URL (مناسب متن و پارامتر)</option><option value="uri">نشانی کامل URL</option></select>
+  <label for="url-input">متن یا URL</label>
+  <textarea id="url-input" class="tool-code" rows="7" maxlength="200000" spellcheck="false" placeholder="متن فارسی یا نشانی اینترنتی را وارد کنید..."></textarea>
+  <div class="tool-toolbar">
+    <button id="url-encode" type="button">Encode</button>
+    <button id="url-decode" type="button">Decode</button>
+    <button id="url-clear" type="button" class="secondary-button">پاک کردن</button>
+  </div>
+  <p class="tool-help">برای یک مقدار یا پارامتر از «بخش مستقل URL» استفاده کنید. برای URL کامل، گزینه دوم را انتخاب کنید.</p>
+  <p id="url-status" class="tool-status" role="status" aria-live="polite"></p>
+</section>
+<section class="card">
+  <h2>نتیجه</h2>
+  <label for="url-output">خروجی</label>
+  <textarea id="url-output" class="tool-code" rows="7" readonly spellcheck="false"></textarea>
+  <button id="url-copy" type="button">کپی خروجی</button>
+</section>
+    <section class="card tool-privacy">
+      <h2>حریم خصوصی و نحوه پردازش</h2>
+      <p>تمام پردازش این ابزار در مرورگر انجام می‌شود. ورودی شما به سرور ارسال یا ذخیره نمی‌شود. خروجی را پیش از استفاده در محیط عملیاتی بررسی کنید.</p>
+    </section>
+    <p><a href="../index.html">بازگشت به صفحه اصلی ابزارک فارسی</a></p>
+  </main>
+  <footer><div class="container">ابزارک فارسی | ابزارهای آنلاین رایگان</div></footer>
+</body>
+</html>

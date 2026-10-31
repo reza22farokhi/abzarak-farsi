@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.yektanet.com https://super-script-cdn.yektanet.com https://native-scripts.yektanet.com 'sha256-kZCQKMCTdQQawTc81PPvK8aqYxNgLxQqT1a47OYnU8A='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.yektanet.com https://panel-cdn.yektanet.com https://prod.yektanet.com https://core-cdn.yektanet.com; font-src 'self' data:; connect-src 'self' https://cdn.yektanet.com https://jamssp.yektanet.com https://event.yektanet.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src https://cdn.yektanet.com">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ابزارک فارسی؛ ابزارهای آنلاین رایگان محاسبه درصد و تخفیف، سود و زیان، کار با متن، تولید رمز عبور، ساخت QR Code و بررسی سئو HTML.">
+  <meta name="description" content="ابزارک فارسی؛ ابزارهای آنلاین رایگان محاسبه، کار با متن، بررسی سئو HTML و ابزارهای برنامه‌نویسی شامل JSON، Base64، URL، UUID، Timestamp و Regex.">
   <meta name="theme-color" content="#0b1020">
   <meta name="robots" content="index, follow">
   <title>ابزارک فارسی | مجموعه ابزارهای آنلاین رایگان</title>
@@ -33,7 +33,7 @@
 
     <link rel="canonical" href="https://reza22farokhi.github.io/abzarak-farsi/">
     <meta property="og:title" content="ابزارک فارسی | مجموعه ابزارهای آنلاین رایگان">
-    <meta property="og:description" content="ابزارک فارسی؛ ابزارهای آنلاین رایگان محاسبه درصد و تخفیف، سود و زیان، کار با متن، تولید رمز عبور، ساخت QR Code و بررسی سئو HTML.">
+    <meta property="og:description" content="ابزارک فارسی؛ ابزارهای آنلاین رایگان محاسبه، کار با متن، بررسی سئو HTML و ابزارهای برنامه‌نویسی شامل JSON، Base64، URL، UUID، Timestamp و Regex.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://reza22farokhi.github.io/abzarak-farsi/">
     <meta property="og:site_name" content="ابزارک فارسی">
@@ -53,8 +53,7 @@
     <section class="catalog-hero">
       <h2>ابزار موردنیازت را سریع پیدا کن</h2>
       <p class="hero-description">
-        مجموعه‌ای از ابزارهای ساده و کاربردی برای محاسبات روزمره،
-        کار با متن، امنیت رمز عبور و ساخت QR Code؛ بدون نیاز به ثبت‌نام.
+        از محاسبات روزمره و کار با متن تا ابزارهای برنامه‌نویسی؛ سریع، رایگان و بدون نیاز به ثبت‌نام.
       </p>
 
       <div class="search-box">
@@ -68,17 +67,22 @@
         >
         <small id="search-help">نام ابزار یا کاربرد آن را وارد کنید.</small>
       </div>
+      <nav class="catalog-filters" aria-label="دسته‌بندی ابزارها">
+        <button class="catalog-filter" type="button" data-filter="all" aria-pressed="true">همه ابزارها</button>
+        <button class="catalog-filter" type="button" data-filter="core" aria-pressed="false">ابزارهای عمومی</button>
+        <button class="catalog-filter" type="button" data-filter="developer" aria-pressed="false">ابزارهای برنامه‌نویسی</button>
+      </nav>
     </section>
 
     <p class="catalog-meta" id="tool-count" aria-live="polite">
-      ۸ ابزار در دسترس است.
+      ۱۴ ابزار در دسترس است.
     </p>
 
     <section class="catalog-section" id="tool-catalog" aria-labelledby="catalog-title">
       <h2 id="catalog-title">فهرست ابزارها</h2>
 
       <div class="grid" id="tool-grid">
-        <a class="tool-card" href="tools/percentage.html"
+        <a class="tool-card" data-category="core" href="tools/percentage.html"
            data-search="درصد درصدگیری محاسبه درصد عدد ریاضی">
           <span class="tool-icon" aria-hidden="true">٪</span>
           <h3>محاسبه درصد</h3>
@@ -86,7 +90,7 @@
           <span class="tool-action">ورود به ابزار ←</span>
         </a>
 
-        <a class="tool-card" href="tools/discount.html"
+        <a class="tool-card" data-category="core" href="tools/discount.html"
            data-search="تخفیف قیمت فروش قیمت نهایی درصد تخفیف">
           <span class="tool-icon" aria-hidden="true">٪</span>
           <h3>محاسبه تخفیف</h3>
@@ -94,7 +98,7 @@
           <span class="tool-action">ورود به ابزار ←</span>
         </a>
 
-        <a class="tool-card" href="tools/profit.html"
+        <a class="tool-card" data-category="core" href="tools/profit.html"
            data-search="سود زیان سود و زیان درآمد هزینه فروش حاشیه سود">
           <span class="tool-icon" aria-hidden="true">+</span>
           <h3>محاسبه سود و زیان</h3>
@@ -102,7 +106,7 @@
           <span class="tool-action">ورود به ابزار ←</span>
         </a>
 
-        <a class="tool-card" href="tools/text-counter.html"
+        <a class="tool-card" data-category="core" href="tools/text-counter.html"
            data-search="شمارش متن کلمه کلمات حروف نویسه کاراکتر تعداد متن">
           <span class="tool-icon" aria-hidden="true">Aa</span>
           <h3>شمارش متن</h3>
@@ -110,7 +114,7 @@
           <span class="tool-action">ورود به ابزار ←</span>
         </a>
 
-        <a class="tool-card" href="tools/persian-cleaner.html"
+        <a class="tool-card" data-category="core" href="tools/persian-cleaner.html"
            data-search="پاکسازی پاک سازی پاک‌کننده تمیز کردن متن فارسی فاصله نیم فاصله نویسه">
           <span class="tool-icon" aria-hidden="true">فا</span>
           <h3>پاک‌سازی متن فارسی</h3>
@@ -118,7 +122,7 @@
           <span class="tool-action">ورود به ابزار ←</span>
         </a>
 
-        <a class="tool-card" href="tools/password.html"
+        <a class="tool-card" data-category="core" href="tools/password.html"
            data-search="رمز عبور پسورد گذرواژه امنیت رمز تصادفی">
           <span class="tool-icon" aria-hidden="true">*</span>
           <h3>تولید رمز عبور</h3>
@@ -126,14 +130,14 @@
           <span class="tool-action">ورود به ابزار ←</span>
         </a>
 
-        <a class="tool-card" href="tools/qr.html"
+        <a class="tool-card" data-category="core" href="tools/qr.html"
            data-search="qr code کیو آر بارکد کد دوبعدی لینک نشانی اینترنتی">
           <span class="tool-icon" aria-hidden="true">QR</span>
           <h3>ساخت QR Code</h3>
           <p>متن یا لینک خود را به کد QR تبدیل و تصویر آن را دریافت کن.</p>
           <span class="tool-action">ورود به ابزار ←</span>
         </a>
-        <a class="tool-card" href="tools/seo-audit.html"
+        <a class="tool-card" data-category="core" href="tools/seo-audit.html"
            data-search="سئو seo audit بررسی سئو تحلیل HTML عنوان متا توضیحات canonical open graph robots تیتر">
           <span class="tool-icon" aria-hidden="true">SEO</span>
           <h3>بررسی سئو HTML</h3>
@@ -141,6 +145,31 @@
           <span class="tool-action">ورود به ابزار ←</span>
         </a>
 
+
+        <a class="tool-card" data-category="developer" href="tools/json.html" data-search="json جیسان فرمت قالب بندی formatter validator اعتبارسنجی">
+          <span class="tool-icon" aria-hidden="true">{ }</span><h3>فرمت و اعتبارسنجی JSON</h3>
+          <p>JSON را قالب‌بندی، فشرده و از نظر ساختار معتبرسنجی کن.</p><span class="tool-action">ورود به ابزار ←</span>
+        </a>
+        <a class="tool-card" data-category="developer" href="tools/base64.html" data-search="base64 بیس ۶۴ رمزگذاری رمزگشایی utf8 فارسی">
+          <span class="tool-icon" aria-hidden="true">B64</span><h3>تبدیل Base64 فارسی</h3>
+          <p>متن فارسی و انگلیسی را با پشتیبانی UTF-8 تبدیل کن.</p><span class="tool-action">ورود به ابزار ←</span>
+        </a>
+        <a class="tool-card" data-category="developer" href="tools/url-encode.html" data-search="url encode decode آدرس لینک کدگذاری رمزگشایی درصدی فارسی">
+          <span class="tool-icon" aria-hidden="true">URL</span><h3>تبدیل URL و متن</h3>
+          <p>متن، پارامتر و نشانی اینترنتی را کدگذاری یا رمزگشایی کن.</p><span class="tool-action">ورود به ابزار ←</span>
+        </a>
+        <a class="tool-card" data-category="developer" href="tools/uuid.html" data-search="uuid شناسه یکتا نسخه ۴ v4 id تولید generator">
+          <span class="tool-icon" aria-hidden="true">ID</span><h3>تولید UUID نسخه ۴</h3>
+          <p>شناسه‌های یکتا و تصادفی رمزنگارانه تولید کن.</p><span class="tool-action">ورود به ابزار ←</span>
+        </a>
+        <a class="tool-card" data-category="developer" href="tools/timestamp.html" data-search="unix timestamp تایم استمپ زمان تاریخ ثانیه میلی ثانیه تبدیل">
+          <span class="tool-icon" aria-hidden="true">TS</span><h3>مبدل Unix Timestamp</h3>
+          <p>تاریخ و زمان را به Timestamp و برعکس تبدیل کن.</p><span class="tool-action">ورود به ابزار ←</span>
+        </a>
+        <a class="tool-card" data-category="developer" href="tools/regex.html" data-search="regex regexp regular expression عبارت منظم تستر آزمایش الگو">
+          <span class="tool-icon" aria-hidden="true">.*</span><h3>آزمایشگر Regex</h3>
+          <p>الگوی عبارت منظم را آزمایش و گروه‌های تطبیق را مشاهده کن.</p><span class="tool-action">ورود به ابزار ←</span>
+        </a>
       </div>
 
       <p class="empty-state" id="empty-state" hidden>
