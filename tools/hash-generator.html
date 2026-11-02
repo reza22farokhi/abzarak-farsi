@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سازنده هش SHA-1، SHA-256، SHA-512 | ابزارک فارسی</title>
+<meta name="description" content="محاسبه آنلاین هش SHA-1، SHA-256 و SHA-512 از متن به صورت امن در مرورگر">
+<meta name="theme-color" content="#6366f1">
+<meta property="og:title" content="سازنده هش SHA">
+<meta property="og:description" content="محاسبه آنلاین SHA-1، SHA-256، SHA-512">
+<meta property="og:type" content="website">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"سازنده هش","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0"}}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">خانه</a></nav>
+</div></header>
+<main class="container tool-page">
+  <h1>سازنده هش</h1>
+  <p class="tool-desc">متن خود را وارد کنید تا هش‌های SHA-1، SHA-256 و SHA-512 همزمان محاسبه شوند.</p>
+  <div class="tool-box">
+    <div class="field"><label>متن ورودی</label>
+      <textarea id="input" rows="4" placeholder="متن خود را وارد کنید..." oninput="computeAll()"></textarea>
+    </div>
+    <div class="hash-output" id="output">
+      <div class="hash-row"><div class="label">SHA-1</div><code id="hash-sha1">-</code></div>
+      <div class="hash-row"><div class="label">SHA-256</div><code id="hash-sha256">-</code></div>
+      <div class="hash-row"><div class="label">SHA-512</div><code id="hash-sha512">-</code></div>
+    </div>
+    <p style="margin-top:20px;font-size:.85rem;color:#64748b">ℹ️ تمام محاسبات به صورت محلی در مرورگر شما انجام می‌شود و هیچ داده‌ای ارسال نمی‌شود. MD5 به دلیل ضعف امنیتی پشتیبانی نمی‌شود.</p>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<script>
+async function computeAll() {
+  const text = document.getElementById('input').value;
+  const enc = new TextEncoder().encode(text);
+  const algos = ['SHA-1', 'SHA-256', 'SHA-512'];
+  const keys = ['hash-sha1', 'hash-sha256', 'hash-sha512'];
+  for (let i = 0; i < algos.length; i++) {
+    const el = document.getElementById(keys[i]);
+    if (!text) { el.textContent = '-'; continue; }
+    try {
+      const hash = await crypto.subtle.digest(algos[i], enc);
+      const hex = Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+      el.textContent = hex;
+    } catch(e) { el.textContent = 'خطا: ' + e.message; }
+  }
+}
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => { navigator.serviceWorker.register("../sw.js").catch(() => {}); });
+}
+</script>
+</body>
+</html>

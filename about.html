@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>درباره ابزارک فارسی</title>
+<meta name="description" content="ابزارک فارسی مجموعه‌ای از ابزارهای آنلاین رایگان فارسی است که بدون نیاز به ثبت‌نام کار می‌کند">
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="index.html">خانه</a></nav>
+</div></header>
+<main class="container tool-page" style="max-width:800px">
+  <h1>درباره ابزارک فارسی</h1>
+  <p class="tool-desc">ابزارهای آنلاین رایگان برای کاربران فارسی‌زبان</p>
+  <div class="tool-box" style="line-height:2">
+    <p><strong>ابزارک فارسی</strong> مجموعه‌ای از ابزارهای ساده و کاربردی است که برای راحتی کارهای روزمره دیجیتال ساخته شده است.</p>
+    <h3 style="margin-top:24px">چرا ابزارک؟</h3>
+    <ul style="padding-right:20px;margin-top:12px">
+      <li>✅ کاملاً رایگان</li>
+      <li>✅ بدون نیاز به ثبت‌نام</li>
+      <li>✅ تمام پردازش‌ها در مرورگر شما انجام می‌شود (حریم خصوصی کامل)</li>
+      <li>✅ قابل نصب روی گوشی مثل اپلیکیشن (PWA)</li>
+      <li>✅ کارکرد آفلاین برای ابزارهای اصلی</li>
+    </ul>
+    <h3 style="margin-top:24px">حریم خصوصی</h3>
+    <p style="margin-top:12px">بیشتر ابزارهای ما کاملاً در سمت کاربر (مرورگر) کار می‌کنند. این یعنی متن، رمز عبور و اطلاعات شما هیچ‌وقت به سرور ما فرستاده نمی‌شود. تنها دو ابزار (QR Code و کوتاه‌کننده لینک) از API خارجی استفاده می‌کنند که این موضوع در خود ابزار ذکر شده است.</p>
+    <h3 style="margin-top:24px">تماس</h3>
+    <p style="margin-top:12px">برای پیشنهاد، گزارش مشکل یا همکاری به صفحه <a href="contact.html" style="color:var(--accent)">تماس با ما</a> مراجعه کنید.</p>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی — <a href="about.html" style="color:inherit">درباره</a> · <a href="contact.html" style="color:inherit">تماس</a></div></footer>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+}
+</script>
+</body>
+</html>

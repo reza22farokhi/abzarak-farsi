@@ -22,6 +22,9 @@
   <meta property="og:site_name" content="ابزارک فارسی">
 
   <link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#6366f1">
 </head>
 
 <body>
@@ -111,5 +114,10 @@
 
   <script src="../assets/js/common.js"></script>
   <script src="../assets/js/text-counter.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => { navigator.serviceWorker.register("../sw.js").catch(() => {}); });
+}
+</script>
 </body>
 </html>

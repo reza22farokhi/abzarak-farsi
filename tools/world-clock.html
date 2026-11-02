@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ساعت جهانی - زمان شهرهای جهان | ابزارک فارسی</title>
+<meta name="description" content="مشاهده زمان آنی شهرهای مهم جهان به وقت محلی هر شهر با ساعت زنده">
+<meta name="theme-color" content="#6366f1">
+<meta property="og:title" content="ساعت جهانی - زمان شهرهای جهان">
+<meta property="og:description" content="زمان آنی شهرهای مهم جهان">
+<meta property="og:type" content="website">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"ساعت جهانی","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0"}}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">خانه</a></nav>
+</div></header>
+<main class="container tool-page">
+  <h1>ساعت جهانی</h1>
+  <p class="tool-desc">زمان آنی شهرهای مهم جهان به وقت محلی هر شهر</p>
+  <div class="tool-box">
+    <div class="clocks-grid" id="clocks"></div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<script>
+const cities = [
+  { name: 'تهران 🇮🇷', tz: 'Asia/Tehran' },
+  { name: 'لندن 🇬🇧', tz: 'Europe/London' },
+  { name: 'نیویورک 🇺🇸', tz: 'America/New_York' },
+  { name: 'لس‌آنجلس 🇺🇸', tz: 'America/Los_Angeles' },
+  { name: 'توکیو 🇯🇵', tz: 'Asia/Tokyo' },
+  { name: 'دبی 🇦🇪', tz: 'Asia/Dubai' },
+  { name: 'استانبول 🇹🇷', tz: 'Europe/Istanbul' },
+  { name: 'سیدنی 🇦🇺', tz: 'Australia/Sydney' }
+];
+function update() {
+  const now = new Date();
+  const html = cities.map(c => {
+    const time = new Intl.DateTimeFormat('fa-IR', {
+      timeZone: c.tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+    }).format(now);
+    const date = new Intl.DateTimeFormat('fa-IR', {
+      timeZone: c.tz, weekday: 'long', month: 'long', day: 'numeric'
+    }).format(now);
+    return '<div class="clock-card"><h3>' + c.name + '</h3><div class="time">' + time + '</div><div class="date">' + date + '</div></div>';
+  }).join('');
+  document.getElementById('clocks').innerHTML = html;
+}
+update();
+setInterval(update, 1000);
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => { navigator.serviceWorker.register("../sw.js").catch(() => {}); });
+}
+</script>
+</body>
+</html>

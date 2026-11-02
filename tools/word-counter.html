@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شمارشگر کلمات و کاراکتر آنلاین | ابزارک فارسی</title>
+<meta name="description" content="شمارش آنی تعداد کلمات، کاراکترها و خطوط متن فارسی و انگلیسی به صورت رایگان و آفلاین">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#6366f1">
+<meta property="og:title" content="شمارشگر کلمات و کاراکتر آنلاین | ابزارک فارسی">
+<meta property="og:description" content="شمارش آنی تعداد کلمات، کاراکترها و خطوط متن فارسی و انگلیسی به صورت رایگان و آفلاین">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fa_IR">
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">خانه</a></nav>
+</div></header>
+<main class="container tool-page">
+  <h1>شمارشگر کلمات و کاراکتر</h1>
+  <p class="tool-desc">متن خود را وارد کنید تا تعداد کلمات، کاراکترها و خطوط به صورت لحظه‌ای شمارش شود.</p>
+  <div class="tool-box">
+    <textarea id="input" placeholder="متن خود را اینجا وارد یا بچسبانید..." rows="10"></textarea>
+    <div class="stats">
+      <div><span id="words">0</span><small>کلمه</small></div>
+      <div><span id="chars">0</span><small>کاراکتر</small></div>
+      <div><span id="charsNoSpace">0</span><small>بدون فاصله</small></div>
+      <div><span id="lines">0</span><small>خط</small></div>
+    </div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<script>
+const input = document.getElementById('input');
+function update(){
+  const t = input.value;
+  document.getElementById('words').textContent = t.trim() ? t.trim().split(/\s+/).length : 0;
+  document.getElementById('chars').textContent = t.length;
+  document.getElementById('charsNoSpace').textContent = t.replace(/\s/g,'').length;
+  document.getElementById('lines').textContent = t ? t.split('\n').length : 0;
+}
+input.addEventListener('input', update);
+update();
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => { navigator.serviceWorker.register("../sw.js").catch(() => {}); });
+}
+</script>
+</body>
+</html>
