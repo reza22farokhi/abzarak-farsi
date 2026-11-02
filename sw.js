@@ -1,5 +1,5 @@
 // Cache version - bump this when making major changes
-const CACHE = 'abzarak-v101';
+const CACHE = 'abzarak-v102';
 const PRECACHE = [
   './',
   './index.html',
@@ -12,6 +12,7 @@ self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE).then(c => c.addAll(PRECACHE)).catch(() => {})
   );
+  // ⚡ مهم: SW جدید بلافاصله فعال شود
   self.skipWaiting();
 });
 
@@ -21,6 +22,7 @@ self.addEventListener('activate', e => {
       Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
     )
   );
+  // ⚡ مهم: کنترل فوری همه صفحات باز
   self.clients.claim();
 });
 
@@ -29,7 +31,6 @@ self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (url.origin !== self.location.origin) return;
 
-  // تشخیص اینکه درخواست HTML است یا فایل استاتیک
   const acceptHeader = e.request.headers.get('accept') || '';
   const isHtml = acceptHeader.includes('text/html') 
                  || e.request.url.endsWith('.html')
@@ -37,8 +38,7 @@ self.addEventListener('fetch', e => {
                  || !e.request.url.split('/').pop().includes('.');
 
   if (isHtml) {
-    // === Network-First برای صفحات HTML ===
-    // همیشه اول از شبکه بگیر، اگر آفلاین بود از کش
+    // Network-First برای HTML
     e.respondWith(
       fetch(e.request).then(resp => {
         if (resp && resp.status === 200) {
@@ -51,7 +51,7 @@ self.addEventListener('fetch', e => {
       )
     );
   } else {
-    // === Cache-First برای فایل‌های استاتیک (CSS، تصاویر، فونت) ===
+    // Cache-First برای استاتیک
     e.respondWith(
       caches.match(e.request).then(cached => {
         if (cached) return cached;
