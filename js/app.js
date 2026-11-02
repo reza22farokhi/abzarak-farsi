@@ -266,6 +266,9 @@ const catalog = [
   { title: "70 درصد تخفیف", url: "tools/70-percent-discount.html", type: "tool", icon: "🏷️", keywords: "70 درصد تخفیف حراج" },
   { title: "75 درصد تخفیف", url: "tools/75-percent-discount.html", type: "tool", icon: "🏷️", keywords: "75 درصد تخفیف حراج" },
   { title: "80 درصد تخفیف", url: "tools/80-percent-discount.html", type: "tool", icon: "🏷️", keywords: "80 درصد تخفیف حراج" }
+{ title: "همه تبدیل‌های واحد", url: "tools/all-unit-conversions.html", type: "tool", icon: "📏", keywords: "تبدیل واحد طول وزن دما" },
+{ title: "BMI بر اساس قد", url: "tools/all-bmi-pages.html", type: "tool", icon: "⚖️", keywords: "وزن ایده‌آل قد" },
+{ title: "محاسبات درصد آماده", url: "tools/all-percentage-pages.html", type: "tool", icon: "％", keywords: "درصد تخفیف محاسبه" }
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
