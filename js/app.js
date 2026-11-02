@@ -271,6 +271,7 @@ const catalog = [
 { title: "محاسبات درصد آماده", url: "tools/all-percentage-pages.html", type: "tool", icon: "％", keywords: "درصد تخفیف محاسبه" }
   { title: "مقاله: محاسبه وام و اقساط", url: "blog/loan-calculation-guide.html", type: "article", icon: "📄", keywords: "وام قسط جدول بازپرداخت بانک" },
   { title: "مقاله: خرید دامنه و اتصال به گیت‌هاب", url: "blog/buy-domain-github-pages.html", type: "article", icon: "📄", keywords: "دامنه ir com DNS github pages" },
+  { title: "مقاله: چطور در گوگل رتبه یک شویم", url: "blog/rank-1-on-google.html", type: "article", icon: "📄", keywords: "سئو SEO رتبه گوگل کلمه کلیدی" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
