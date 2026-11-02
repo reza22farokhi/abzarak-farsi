@@ -1,4 +1,4 @@
-const CACHE = 'abzarak-v1';
+const CACHE = 'abzarak-v3';
 const PRECACHE = [
   './',
   './index.html',
@@ -6,7 +6,11 @@ const PRECACHE = [
   './contact.html',
   './css/style.css',
   './manifest.json',
-  './favicon.svg'
+  './favicon.svg',
+  './fonts/Vazirmatn-Regular.woff2',
+  './fonts/Vazirmatn-Medium.woff2',
+  './fonts/Vazirmatn-SemiBold.woff2',
+  './fonts/Vazirmatn-Bold.woff2'
 ];
 
 self.addEventListener('install', e => {
