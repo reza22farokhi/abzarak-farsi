@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>راهنمای کامل عبارات منظم (Regex) به زبان ساده + جدول کاراکترها | ابزارک</title>
+<meta name="description" content="آموزش Regex (عبارات منظم) از صفر. یادگیری الگوهای پرکاربرد، جدول علائم، و نحوه تست آنلاین عبارات منظم برای اعتبارسنجی ایمیل، شماره تماس و...">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav>
+    <a href="../index.html">ابزارها</a>
+    <a href="index.html" style="color:var(--accent);font-weight:600">وبلاگ</a>
+    <a href="../about.html">درباره</a>
+    <button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button>
+  </nav>
+</div></header>
+
+<main class="container article-main">
+  <h1>راهنمای کامل عبارات منظم (Regex) به زبان ساده</h1>
+  <div class="article-meta">دسته: برنامه‌نویسی و توسعه وب | زمان مطالعه: ۷ دقیقه</div>
+  
+  <div class="article-body">
+    <p>اگر شما یک برنامه‌نویس، تحلیلگر داده یا حتی یک کاربر پیشرفته اکسل باشید، حتماً نام <strong>Regex</strong> (مخفف Regular Expressions یا عبارات منظم) به گوشتان خورده است. Regex یک زبان کوچک و بسیار قدرتمند برای جستجو و دستکاری الگوهای متنی است که یادگیری آن در ابتدا کمی ترسناک به نظر می‌رسد، اما در عمل فوق‌العاده کاربردی است.</p>
+    
+    <div class="article-cta">
+      <h3>می‌خواهید الگوی خود را همین الان تست کنید؟</h3>
+      <p>با ابزار رایگان ما می‌توانید Regex بنویسید و نتیجه را به صورت زنده روی متن تست کنید.</p>
+      <a href="../tools/regex.html" class="btn" style="text-decoration:none;display:inline-block;margin-top:10px">تست آنلاین Regex</a>
+    </div>
+
+    <h2>Regex دقیقاً چه کاری انجام می‌دهد؟</h2>
+    <p>تصور کنید می‌خواهید در یک فایل متنی بزرگ، تمام شماره تلفن‌های همراهی که با ۰۹ شروع می‌شوند را پیدا کنید. یا در یک فرم ثبت‌نام، بررسی کنید که آیا کاربر ایمیل را به درستی وارد کرده است یا خیر. با توابع معمولی باید ده‌ها خط کد بنویسید، اما با Regex فقط با یک خط کد (یک الگو) می‌توانید این کار را انجام دهید.</p>
+    <p>Regex در تمام زبان‌های برنامه‌نویسی (جاوااسکریپت، پایتون، PHP و...) و حتی در ویرایشگرهای متن مثل VS Code پشتیبانی می‌شود.</p>
+
+    <div id="pos-article-text-123879" style="margin: 30px 0; text-align: center; min-height: 100px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px;"></div>
+
+    <h2>مهم‌ترین کاراکترهای Regex (چیت شیت)</h2>
+    <p>برای نوشتن الگو، از علائم خاصی استفاده می‌کنیم. این‌ها پرکاربردترین آن‌ها هستند:</p>
+    <ul>
+      <li><code>^</code> : ابتدای رشته (String).</li>
+      <li><code>$</code> : انتهای رشته.</li>
+      <li><code>\d</code> : هر رقم (۰ تا ۹).</li>
+      <li><code>\w</code> : هر حرف یا رقم یا آندرلاین.</li>
+      <li><code>\s</code> : هر فضای خالی (Space, Tab).</li>
+      <li><code>.</code> : هر کاراکتری (به جز خط جدید).</li>
+      <li><code>*</code> : صفر یا چند بار تکرار کاراکتر قبلی.</li>
+      <li><code>+</code> : یک یا چند بار تکرار کاراکتر قبلی.</li>
+      <li><code>?</code> : صفر یا یک بار (اختیاری بودن).</li>
+      <li><code>{n,m}</code> : حداقل n بار و حداکثر m بار تکرار.</li>
+    </ul>
+
+    <h2>یک مثال عملی: اعتبارسنجی ایمیل</h2>
+    <p>فرض کنید می‌خواهید بررسی کنید که آیا کاربر یک ایمیل معتبر وارد کرده است. الگوی زیر تقریباً تمام ایمیل‌های استاندارد را تشخیص می‌دهد:</p>
+    <blockquote>
+      <code>^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$</code>
+    </blockquote>
+    <p>این الگو به کامپیوتر می‌گوید: «از ابتدای رشته شروع کن، حروف و اعداد و نقطه را بخوان تا به @ برسی، بعد دامنه را بخوان و در نهایت با ۲ تا ۴ حرف (مثل .com یا .ir) تمام کن.»</p>
+
+    <h2>مثال دوم: پیدا کردن شماره موبایل ایران</h2>
+    <p>الگوی زیر برای پیدا کردن شماره‌های موبایل ایران (شروع با ۰۹ و ۱۱ رقم) استفاده می‌شود:</p>
+    <blockquote>
+      <code>^09\d{9}$</code>
+    </blockquote>
+
+    <h2>چگونه Regex را تست کنیم؟</h2>
+    <p>نوشتن Regex بدون تست کردن، کار بسیار خطرناکی است؛ چون یک علامت اشتباه کل الگو را خراب می‌کند. بهترین روش این است که الگوی خود را در یک ابزار آنلاین بنویسید و روی متن‌های تست، نتیجه را ببینید. ابزار رایگان ما این امکان را به شما می‌دهد که همزمان با نوشتن، ببینید کدام بخش از متن شما با الگو مطابقت دارد (Highlight).</p>
+
+    <div class="article-cta" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(99, 102, 241, 0.1));">
+      <h3>کد خود را همین الان تست کنید</h3>
+      <p>دیگر نیازی به حدس و گمان نیست. الگوی خود را وارد کنید و نتیجه دقیق را در ابزار ما ببینید.</p>
+      <a href="../tools/regex.html" class="btn" style="text-decoration:none;display:inline-block;margin-top:10px">ورود به تستر Regex</a>
+    </div>
+
+    <div class="ad-container" style="margin: 30px auto; text-align: center; padding: 10px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
+      <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+      <div id="pos-article-text-card-123872"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="container">© ابزارک فارسی — <a href="../about.html" style="color:inherit">درباره</a> · <a href="../contact.html" style="color:inherit">تماس</a></div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script src="../js/theme.js"></script>
+<!-- Yektanet Publisher Script -->
+<script>
+    !function(e,t,n){
+        e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];
+        var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");
+        s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l);
+    }(window,document,"yektanet");
+</script>
+</body>
+</html>
