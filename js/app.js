@@ -273,6 +273,7 @@ const catalog = [
   { title: "مقاله: خرید دامنه و اتصال به گیت‌هاب", url: "blog/buy-domain-github-pages.html", type: "article", icon: "📄", keywords: "دامنه ir com DNS github pages" },
   { title: "مقاله: چطور در گوگل رتبه یک شویم", url: "blog/rank-1-on-google.html", type: "article", icon: "📄", keywords: "سئو SEO رتبه گوگل کلمه کلیدی" },
   { title: "مقاله: UUID چیست و چه کاربردی دارد", url: "blog/what-is-uuid.html", type: "article", icon: "📄", keywords: "UUID GUID شناسه یکتا برنامه نویسی" },
+  { title: "مقاله: Timestamp (یونیکس تایم)", url: "blog/timestamp-guide.html", type: "article", icon: "📄", keywords: "Timestamp یونیکس تایم تاریخ زمان" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
