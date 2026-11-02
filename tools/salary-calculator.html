@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محاسبه حقوق و دستمزد ۱۴۰۳ | ابزارک فارسی</title>
+<meta name="description" content="محاسبه تقریبی حقوق، حق بیمه و مالیات بر اساس پایه حقوق سال ۱۴۰۳">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a></nav>
+</div></header>
+<main class="container tool-page">
+  <h1>محاسبه‌گر حقوق و دستمزد (تقریبی)</h1>
+  <p class="tool-desc">محاسبه بیمه و مالیات بر اساس قانون کار (سال ۱۴۰۳)</p>
+  <div class="tool-box">
+    <div class="field"><label>حقوق پایه (تومان)</label>
+      <input type="number" id="base" value="10000000" oninput="calc()"></div>
+    <div class="field"><label>حق مسکن (تومان)</label>
+      <input type="number" id="house" value="900000" oninput="calc()"></div>
+    <div class="field"><label>بن کارگری (تومان)</label>
+      <input type="number" id="food" value="1100000" oninput="calc()"></div>
+    <div class="field"><label>حق اولاد (تومان)</label>
+      <input type="number" id="child" value="0" oninput="calc()"></div>
+    
+    <div id="result" style="margin-top:20px;"></div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script>
+function calc() {
+  const base = Number(document.getElementById('base').value) || 0;
+  const house = Number(document.getElementById('house').value) || 0;
+  const food = Number(document.getElementById('food').value) || 0;
+  const child = Number(document.getElementById('child').value) || 0;
+  
+  const total = base + house + food + child;
+  const insurance = total * 0.07;
+  // فرمول ساده شده مالیات (معافیت ۱۴۰۳)
+  const taxExempt = 120000000;
+  let taxable = total - insurance - (taxExempt / 12);
+  if (taxable < 0) taxable = 0;
+  const tax = taxable * 0.10; // نرخ تقریبی ۱۰ درصد
+  
+  const net = total - insurance - tax;
+  
+  const fmt = (n) => n.toLocaleString('fa-IR') + ' تومان';
+  
+  document.getElementById('result').innerHTML = `
+    <div style="background:#f1f5f9;padding:15px;border-radius:8px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;justify-content:space-between"><span>جمع کل (ناخالص):</span><strong>${fmt(total)}</strong></div>
+      <div style="display:flex;justify-content:space-between;color:red"><span>بیمه سهم کارمند (۷٪):</span><strong>${fmt(insurance)}</strong></div>
+      <div style="display:flex;justify-content:space-between;color:red"><span>مالیات بر درآمد:</span><strong>${fmt(tax)}</strong></div>
+      <hr style="border:0;border-top:1px solid #cbd5e1">
+      <div style="display:flex;justify-content:space-between;font-size:1.2rem;color:green"><span>حقوق خالص (دریافتی):</span><strong>${fmt(net)}</strong></div>
+    </div>
+  `;
+}
+calc();
+if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("../sw.js").catch(()=>{}));
+</script>
+</body></html>
