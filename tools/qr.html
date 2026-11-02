@@ -1,86 +1,34 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ساخت رایگان QR Code از متن و لینک، مشاهده تصویر و دانلود فایل PNG با ابزارک فارسی.">
-  <meta name="theme-color" content="#0b1020">
-  <title>ساخت QR Code رایگان | ابزارک فارسی</title>
-
-  <link rel="canonical" href="https://reza22farokhi.github.io/abzarak-farsi/tools/qr.html">
-  <meta property="og:title" content="ساخت QR Code رایگان | ابزارک فارسی">
-  <meta property="og:description" content="ساخت رایگان QR Code از متن و لینک، مشاهده تصویر و دانلود فایل PNG با ابزارک فارسی.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://reza22farokhi.github.io/abzarak-farsi/tools/qr.html">
-  <meta property="og:site_name" content="ابزارک فارسی">
-  <link rel="stylesheet" href="../assets/css/styles.css">
-  <script src="../assets/js/common.js" defer></script>
-  <script src="../assets/js/vendor/qrcode.min.js" defer></script>
-  <script src="../assets/js/qr.js" defer></script>
-<link rel="manifest" href="../manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>در حال انتقال... | ابزارک فارسی</title>
+<meta name="description" content="این صفحه به سازنده QR Code جدید منتقل شده است">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://reza22farokhi.github.io/abzarak-farsi/tools/qr-generator.html">
+<meta http-equiv="refresh" content="0; url=qr-generator.html">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#6366f1">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  body{display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:20px}
+  .redirect-box{max-width:500px}
+  .redirect-box h1{font-size:1.5rem;margin-bottom:12px}
+  .redirect-box p{color:#64748b;margin-bottom:24px}
+  .redirect-box .spinner{display:inline-block;width:40px;height:40px;border:4px solid #e2e8f0;border-top-color:#6366f1;border-radius:50%;animation:spin .8s linear infinite;margin-bottom:16px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+</style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1><a href="../index.html" class="site-title-link">ابزارک فارسی</a></h1>
-      <p class="subtitle">ابزارهای آنلاین رایگان و کاربردی</p>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <h2>ساخت QR Code رایگان</h2>
-      <p class="muted">متن یا لینک خود را به کد QR تبدیل کنید و تصویر آن را دانلود کنید.</p>
-    </section>
-
-    <section class="card" aria-labelledby="qr-heading">
-      <h2 id="qr-heading">اطلاعات QR Code</h2>
-
-      <label for="qr-text">متن یا نشانی اینترنتی</label>
-      <textarea
-        id="qr-text"
-        rows="5"
-        maxlength="2000"
-        placeholder="متن یا لینک خود را اینجا وارد کنید..."
-        aria-describedby="qr-help"
-      ></textarea>
-
-      <small id="qr-help">حداکثر ۲۰۰۰ نویسه. برای ساخت QR ممکن است اتصال اینترنت لازم باشد.</small>
-
-      <div class="grid">
-        <button id="generate-qr" type="button">ساخت QR Code</button>
-        <button id="copy-qr-text" type="button">کپی متن ورودی</button>
-        <button id="clear-qr" type="button">پاک کردن</button>
-      </div>
-
-      <div id="qr-message" class="result" role="status" aria-live="polite" hidden></div>
-      <div id="qr-result" class="result" aria-label="نتیجه QR Code" hidden></div>
-    </section>
-
-    <section class="card">
-      <h2>راهنمای استفاده</h2>
-      <ol>
-        <li>متن یا لینک موردنظر را وارد کنید.</li>
-        <li>روی «ساخت QR Code» بزنید.</li>
-        <li>پس از نمایش تصویر، از گزینه دانلود برای ذخیره PNG استفاده کنید.</li>
-      </ol>
-      <p class="muted">برای ساخت QR از کتابخانه‌ای خارجی استفاده می‌شود. اگر کتابخانه بارگذاری نشود، پیام خطا نمایش داده خواهد شد.</p>
-      <p><a href="../index.html">بازگشت به صفحه اصلی ابزارک فارسی</a></p>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>ابزارک فارسی — ابزارهای رایگان آنلاین</p>
-    </div>
-  </footer>
+<div class="redirect-box">
+  <div class="spinner"></div>
+  <h1>این صفحه منتقل شده است</h1>
+  <p>در حال انتقال به نسخه جدید...</p>
+  <a href="qr-generator.html" class="btn">اگر منتقل نشدید، اینجا کلیک کنید</a>
+</div>
 <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => { navigator.serviceWorker.register("../sw.js").catch(() => {}); });
-}
+  // انتقال فوری
+  window.location.replace('qr-generator.html');
 </script>
 </body>
 </html>
