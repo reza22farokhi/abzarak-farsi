@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>راهنمای کامل محاسبه وام، اقساط و جدول بازپرداخت | ابزارک</title>
+<meta name="description" content="آموزش محاسبه دقیق قسط وام، سود کل و جدول بازپرداخت. فرمول PMT، تفاوت وام با سود ثابت و کاهشی، و نکات مهم قبل از گرفتن وام بانکی.">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav>
+    <a href="../index.html">ابزارها</a>
+    <a href="index.html" style="color:var(--accent);font-weight:600">وبلاگ</a>
+    <a href="../about.html">درباره</a>
+    <button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button>
+  </nav>
+</div></header>
+
+<main class="container article-main">
+  <h1>راهنمای کامل محاسبه وام، اقساط و جدول بازپرداخت</h1>
+  <div class="article-meta">دسته: مالی و بانکی | زمان مطالعه: ۶ دقیقه</div>
+  
+  <div class="article-body">
+    <p>گرفتن وام یکی از رایج‌ترین معاملات مالی هر ایرانی است. اما یکی از بزرگ‌ترین اشتباهات کاربران این است که قبل از امضای قرارداد، دقیقاً نمی‌دانند در نهایت چقدر باید پرداخت کنند. در این مقاله، فرمول‌های دقیق محاسبه قسط و جدول بازپرداخت را به شما آموزش می‌دهیم تا با دید بازتری تصمیم بگیرید.</p>
+    
+    <div class="article-cta">
+      <h3>می‌خواهید سریع محاسبه کنید؟</h3>
+      <p>لازم نیست با فرمول‌های پیچیده درگیر شوید. ماشین‌حساب ما در کسری از ثانیه مبلغ قسط، سود کل و جدول بازپرداخت کامل را نشان می‌دهد.</p>
+      <a href="../tools/loan-calculator.html" class="btn" style="text-decoration:none;display:inline-block;margin-top:10px">محاسبه‌گر آنلاین وام</a>
+    </div>
+
+    <h2>۱. اجزای اصلی یک وام</h2>
+    <p>هر وام بانکی از سه بخش اصلی تشکیل می‌شود:</p>
+    <ul>
+      <li><strong>اصل وام:</strong> مبلغی که شما از بانک می‌گیرید (مثلاً ۱۰۰ میلیون تومان).</li>
+      <li><strong>نرخ سود:</strong> درصدی که بانک برای مدت وام از شما می‌گیرد (مثلاً ۲۳٪ سالانه).</li>
+      <li><strong>مدت بازپرداخت:</strong> چند ماه یا چند سال باید وام را پس دهید (مثلاً ۳۶ ماه).</li>
+    </ul>
+
+    <div id="pos-article-text-123879" style="margin: 30px 0; text-align: center; min-height: 100px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px;"></div>
+
+    <h2>۲. فرمول محاسبه قسط وام (روش PMT)</h2>
+    <p>برای وام‌هایی که اقساط مساوی دارند (که رایج‌ترین نوع وام بانکی است)، از فرمول ریاضی زیر استفاده می‌شود که به «فرمول PMT» معروف است:</p>
+    <blockquote style="direction: ltr; text-align: left; font-family: monospace; font-size: 1rem;">
+      قسط ماهانه = اصل وام × [ r × (1 + r)^n ] ÷ [ (1 + r)^n - 1 ]
+    </blockquote>
+    <p>که در آن:</p>
+    <ul>
+      <li><strong>r</strong> = نرخ سود ماهانه (نرخ سالانه ÷ ۱۲ ÷ ۱۰۰)</li>
+      <li><strong>n</strong> = تعداد ماه‌های بازپرداخت</li>
+    </ul>
+
+    <h3>مثال عملی</h3>
+    <p>فرض کنید وامی به مبلغ <strong>۱۰۰ میلیون تومان</strong> با نرخ سود <strong>۲۳ درصد سالانه</strong> و مدت <strong>۳۶ ماه</strong> گرفته‌اید:</p>
+    <blockquote>
+      r = ۲۳ ÷ ۱۲ ÷ ۱۰۰ = ۰.۰۱۹۱۶<br>
+      n = ۳۶ ماه<br>
+      قسط ماهانه = ۱۰۰,۰۰۰,۰۰۰ × (۰.۰۱۹۱۶ × ۱.۹۸) ÷ (۱.۹۸ - ۱) ≈ <strong>۳,۸۷۲,۰۰۰ تومان</strong>
+    </blockquote>
+    <p>یعنی هر ماه باید حدود ۳ میلیون و ۸۷۲ هزار تومان بپردازید. کل بازپرداخت شما: ۳,۸۷۲,۰۰۰ × ۳۶ = <strong>۱۳۹,۳۹۲,۰۰۰ تومان</strong>. یعنی فقط ۳۹ میلیون تومان سود پرداخت می‌کنید!</p>
+
+    <h2>۳. تفاوت سود ثابت و سود کاهشی</h2>
+    <p>یکی از مهم‌ترین نکاتی که باید بدانید این است که سود وام می‌تواند به دو روش محاسبه شود:</p>
+    <ul>
+      <li><strong>سود ثابت (Flat):</strong> سود روی مبلغ اولیه محاسبه می‌شود. مثلاً وام ۱۰۰ میلیونی با سود ۲۰٪ و مدت ۱ سال = ۲۰ میلیون سود. (قسط = ۱۰ میلیون + ۱.۶۶ میلیون سود = ۱۱.۶۶ میلیون).</li>
+      <li><strong>سود کاهشی (Declining):</strong> سود روی مانده بدهی محاسبه می‌شود. در ماه‌های اول، سود بیشتر است و در ماه‌های آخر کمتر می‌شود.</li>
+    </ul>
+    <p><strong>نکته مهم:</strong> در سیستم بانکداری ایران، اکثر وام‌ها با روش کاهشی محاسبه می‌شوند. یعنی در ابتدا سود بیشتری پرداخت می‌کنید و در انتها اصل بیشتر. به همین دلیل، اگر وام را زودتر از موعد تسویه کنید، سود کمتری می‌پردازید.</p>
+
+    <div class="article-cta" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(99, 102, 241, 0.1));">
+      <h3>جدول کامل بازپرداخت را ببینید</h3>
+      <p>ماشین‌حساب ما به شما نشان می‌دهد در هر ماه چقدر از قسط شما صرف اصل و چقدر صرف سود می‌شود. این جدول برای برنامه‌ریزی مالی حیاتی است.</p>
+      <a href="../tools/loan-calculator.html" class="btn" style="text-decoration:none;display:inline-block;margin-top:10px">دیدن جدول بازپرداخت</a>
+    </div>
+
+    <h2>۴. قبل از گرفتن وام، این ۵ نکته را بدانید</h2>
+    <ol>
+      <li><strong>نرخ سود واقعی را بپرسید:</strong> هر بانکی که به شما «وام با سود ۴٪» پیشنهاد داد، احتمالاً دارای کارمزد و هزینه‌های پنهان است. همیشه نرخ مؤثر سالانه (APR) را بپرسید.</li>
+      <li><strong>جریمه دیرکرد را چک کنید:</strong> اگر یک ماه قسط را پرداخت نکنید، چه اتفاقی می‌افتد؟ برخی بانک‌ها ۶٪ جریمه اضافی می‌گیرند.</li>
+      <li><strong>امکان تسویه زودتر:</strong> آیا می‌توانید وام را قبل از پایان دوره تسویه کنید؟ اگر بله، آیا سود باقیمانده بخشیده می‌شود؟</li>
+      <li><strong>نسبت قسط به درآمد:</strong> به عنوان یک قاعده کلی، مجموع اقساط ماهانه شما نباید بیش از ۳۰٪ حقوق ماهانه‌تان باشد.</li>
+      <li><strong>وثیقه و ضامن:</strong> چه چیزی به عنوان وثیقه لازم است؟ آیا نیاز به ضامن دارید؟ این‌ها را از قبل بپرسید.</li>
+    </ol>
+
+    <h2>۵. سود مرکب: چرا زودتر پرداخت کنید؟</h2>
+    <p>یکی از مهم‌ترین مفاهیم در وام، سود مرکب است. اگر شما بتوانید حتی ۱۰٪ از اصل وام را در ماه اول پرداخت کنید، نه تنها سود آن ماه کمتر می‌شود، بلکه سود تمام ماه‌های بعدی هم کاهش می‌یابد. به همین دلیل است که پرداخت زودتر، صرفه‌جویی فوق‌العاده‌ای می‌کند.</p>
+    <p>مثلاً اگر در وام ۱۰۰ میلیون تومانی بالا، بعد از ۶ ماه ۲۰ میلیون تومان پرداخت اضافه کنید، ممکن است در طول ۳۰ ماه باقیمانده، حدود ۱۰ تا ۱۵ میلیون تومان کمتر سود بدهید!</p>
+
+    <div class="article-cta">
+      <h3>قبل از امضا، محاسبه کنید</h3>
+      <p>هرگز بدون محاسبه دقیق، قرارداد وام امضا نکنید. با ابزار رایگان ما، سناریوهای مختلف را امتحان کنید.</p>
+      <a href="../tools/loan-calculator.html" class="btn" style="text-decoration:none;display:inline-block;margin-top:10px">ورود به ماشین‌حساب وام</a>
+    </div>
+
+    <div class="ad-container" style="margin: 30px auto; text-align: center; padding: 10px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
+      <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+      <div id="pos-article-text-card-123872"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="container">© ابزارک فارسی — <a href="../about.html" style="color:inherit">درباره</a> · <a href="../contact.html" style="color:inherit">تماس</a></div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script src="../js/theme.js"></script>
+<script src="../js/app.js"></script>
+<!-- Yektanet Publisher Script -->
+<script>
+    !function(e,t,n){
+        e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];
+        var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");
+        s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l);
+    }(window,document,"yektanet");
+</script>
+</body>
+</html>

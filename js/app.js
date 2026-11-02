@@ -269,6 +269,7 @@ const catalog = [
 { title: "همه تبدیل‌های واحد", url: "tools/all-unit-conversions.html", type: "tool", icon: "📏", keywords: "تبدیل واحد طول وزن دما" },
 { title: "BMI بر اساس قد", url: "tools/all-bmi-pages.html", type: "tool", icon: "⚖️", keywords: "وزن ایده‌آل قد" },
 { title: "محاسبات درصد آماده", url: "tools/all-percentage-pages.html", type: "tool", icon: "％", keywords: "درصد تخفیف محاسبه" }
+  { title: "مقاله: محاسبه وام و اقساط", url: "blog/loan-calculation-guide.html", type: "article", icon: "📄", keywords: "وام قسط جدول بازپرداخت بانک" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
