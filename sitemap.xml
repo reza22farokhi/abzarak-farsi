@@ -7,6 +7,9 @@
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/date-converter-guide.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/what-is-bmi.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/qr-code-guide.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/strong-password.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/base64-guide.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/unit-conversion.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/word-counter.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/digit-converter.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/persian-cleaner.html</loc><priority>0.9</priority></url>
@@ -16,11 +19,13 @@
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/date-converter.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/timestamp.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/world-clock.html</loc><priority>0.9</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/prayer-times.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/bmi-calculator.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/unit-converter.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/percentage.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/discount.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/profit.html</loc><priority>0.9</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/salary-calculator.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/password-generator.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/hash-generator.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/uuid.html</loc><priority>0.9</priority></url>
@@ -28,4 +33,5 @@
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/short-link.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/regex.html</loc><priority>0.9</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/seo-audit.html</loc><priority>0.9</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/color-converter.html</loc><priority>0.9</priority></url>
 </urlset>
