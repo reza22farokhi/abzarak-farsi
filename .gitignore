@@ -1,6 +1,14 @@
-# Python cache and local test artifacts
-__pycache__/
-*.py[cod]
+# بکاپ‌ها
+backup-*/
+.backup-*/
+*.bak.*
+*.pre-finalize.*
+*.backup
+*.backup-*
 
-# Local snapshots and manual backups (keep them on device; do not commit)
-*.backup*
+# سیستمی
+.DS_Store
+Thumbs.db
+*.log
+__pycache__/
+*.pyc
