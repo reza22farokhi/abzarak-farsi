@@ -1,16 +1,11 @@
-const CACHE = 'abzarak-v99';
+// Cache version - bump this when making major changes
+const CACHE = 'abzarak-v101';
 const PRECACHE = [
   './',
   './index.html',
-  './about.html',
-  './contact.html',
   './css/style.css',
   './manifest.json',
-  './favicon.svg',
-  './fonts/Vazirmatn-Regular.woff2',
-  './fonts/Vazirmatn-Medium.woff2',
-  './fonts/Vazirmatn-SemiBold.woff2',
-  './fonts/Vazirmatn-Bold.woff2'
+  './favicon.svg'
 ];
 
 self.addEventListener('install', e => {
@@ -34,16 +29,40 @@ self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (url.origin !== self.location.origin) return;
 
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      if (cached) return cached;
-      return fetch(e.request).then(resp => {
-        if (resp && resp.status === 200 && resp.type === 'basic') {
+  // تشخیص اینکه درخواست HTML است یا فایل استاتیک
+  const acceptHeader = e.request.headers.get('accept') || '';
+  const isHtml = acceptHeader.includes('text/html') 
+                 || e.request.url.endsWith('.html')
+                 || e.request.url.endsWith('/')
+                 || !e.request.url.split('/').pop().includes('.');
+
+  if (isHtml) {
+    // === Network-First برای صفحات HTML ===
+    // همیشه اول از شبکه بگیر، اگر آفلاین بود از کش
+    e.respondWith(
+      fetch(e.request).then(resp => {
+        if (resp && resp.status === 200) {
           const clone = resp.clone();
           caches.open(CACHE).then(c => c.put(e.request, clone)).catch(() => {});
         }
         return resp;
-      }).catch(() => caches.match('./index.html'));
-    })
-  );
+      }).catch(() => 
+        caches.match(e.request).then(cached => cached || caches.match('./index.html'))
+      )
+    );
+  } else {
+    // === Cache-First برای فایل‌های استاتیک (CSS، تصاویر، فونت) ===
+    e.respondWith(
+      caches.match(e.request).then(cached => {
+        if (cached) return cached;
+        return fetch(e.request).then(resp => {
+          if (resp && resp.status === 200 && resp.type === 'basic') {
+            const clone = resp.clone();
+            caches.open(CACHE).then(c => c.put(e.request, clone)).catch(() => {});
+          }
+          return resp;
+        });
+      })
+    );
+  }
 });
