@@ -53,7 +53,8 @@
 <body>
 <header class="site-header"><div class="container header-inner">
   <a href="../index.html" class="brand">ابزارک فارسی</a>
-  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a></nav>
+  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a> <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغییر تم"><span id="theme-icon">🌙</span></button>
+    </nav>
 </div></header>
 <main class="container tool-page">
   <h1>کوتاه‌کننده لینک</h1>
@@ -143,5 +144,6 @@ if ("serviceWorker" in navigator) {
 }
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script src="../js/theme.js"></script>
 </body>
 </html>
