@@ -35,7 +35,8 @@
 <body>
 <header class="site-header"><div class="container header-inner">
   <a href="../index.html" class="brand">ابزارک فارسی</a>
-  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a></nav>
+  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a> <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغییر تم"><span id="theme-icon">🌙</span></button>
+    </nav>
 </div></header>
 <main class="container tool-page">
   <h1>محاسبه‌گر حقوق و دستمزد (تقریبی)</h1>
@@ -111,4 +112,5 @@ function calc() {
 calc();
 if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("../sw.js").catch(()=>{}));
 </script>
+<script src="../js/theme.js"></script>
 </body></html>
