@@ -1,123 +1,34 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta
-    name="description"
-    content="شمارش آنلاین کلمات، نویسه‌ها، فاصله‌ها، خطوط و پاراگراف‌های متن فارسی و انگلیسی؛ رایگان با ابزارک فارسی."
-  >
-
-  <meta name="theme-color" content="#0b1020">
-
-  <title>شمارشگر کلمات و حروف آنلاین | ابزارک فارسی</title>
-
-  <link rel="canonical" href="https://reza22farokhi.github.io/abzarak-farsi/tools/text-counter.html">
-  <meta property="og:title" content="شمارشگر کلمات و حروف آنلاین | ابزارک فارسی">
-  <meta property="og:description" content="شمارش آنلاین کلمات، نویسه‌ها، فاصله‌ها، خطوط و پاراگراف‌های متن فارسی و انگلیسی؛ رایگان با ابزارک فارسی.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://reza22farokhi.github.io/abzarak-farsi/tools/text-counter.html">
-  <meta property="og:site_name" content="ابزارک فارسی">
-
-  <link rel="stylesheet" href="../assets/css/styles.css">
-<link rel="manifest" href="../manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>در حال انتقال... | ابزارک فارسی</title>
+<meta name="description" content="این صفحه به شمارشگر کلمات جدید منتقل شده است">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://reza22farokhi.github.io/abzarak-farsi/tools/word-counter.html">
+<meta http-equiv="refresh" content="0; url=word-counter.html">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#6366f1">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  body{display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:20px}
+  .redirect-box{max-width:500px}
+  .redirect-box h1{font-size:1.5rem;margin-bottom:12px}
+  .redirect-box p{color:#64748b;margin-bottom:24px}
+  .redirect-box .spinner{display:inline-block;width:40px;height:40px;border:4px solid #e2e8f0;border-top-color:#6366f1;border-radius:50%;animation:spin .8s linear infinite;margin-bottom:16px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+</style>
 </head>
-
 <body>
-  <header>
-    <div class="container">
-      <h1>ابزارک فارسی</h1>
-      <div class="subtitle">شمارشگر آنلاین متن</div>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <h2>شمارش کلمات و حروف</h2>
-      <p class="muted">
-        متن خود را وارد کنید تا آمار آن به‌صورت لحظه‌ای نمایش داده شود.
-      </p>
-    </section>
-
-    <section class="card" aria-labelledby="counter-title">
-      <h2 id="counter-title">متن شما</h2>
-
-      <label for="counter-text">متن برای شمارش</label>
-
-      <textarea
-        id="counter-text"
-        rows="10"
-        placeholder="متن فارسی یا انگلیسی خود را اینجا بنویسید یا جای‌گذاری کنید..."
-        spellcheck="false"
-      ></textarea>
-
-      <div class="tools" aria-label="عملیات متن">
-        <button id="clear-text" type="button">پاک کردن متن</button>
-        <button id="copy-text" type="button">کپی متن</button>
-      </div>
-
-      <p id="counter-message" class="muted" aria-live="polite"></p>
-    </section>
-
-    <section class="card" aria-labelledby="stats-title">
-      <h2 id="stats-title">آمار متن</h2>
-
-      <div class="grid">
-        <div class="result">
-          <strong>تعداد کلمات</strong>
-          <div id="word-count" aria-live="polite">۰</div>
-        </div>
-
-        <div class="result">
-          <strong>نویسه‌ها با فاصله</strong>
-          <div id="char-count">۰</div>
-        </div>
-
-        <div class="result">
-          <strong>نویسه‌ها بدون فاصله</strong>
-          <div id="char-no-space-count">۰</div>
-        </div>
-
-        <div class="result">
-          <strong>تعداد خطوط</strong>
-          <div id="line-count">۰</div>
-        </div>
-
-        <div class="result">
-          <strong>تعداد پاراگراف‌ها</strong>
-          <div id="paragraph-count">۰</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>روش شمارش</h2>
-      <ul>
-        <li>کلمات با جداکننده‌های فاصله و خط جدید شمارش می‌شوند.</li>
-        <li>نویسه‌های با فاصله شامل فاصله‌ها و خط‌های جدید هستند.</li>
-        <li>در شمارش بدون فاصله، تمام نویسه‌های سفید حذف می‌شوند.</li>
-        <li>خطوط خالی ابتدا و انتهای متن در آمار خطوط لحاظ می‌شوند.</li>
-        <li>پاراگراف‌ها با یک یا چند خط خالی از یکدیگر جدا می‌شوند.</li>
-      </ul>
-    </section>
-
-    <p>
-      <a href="../index.html">بازگشت به صفحه اصلی ابزارک فارسی</a>
-    </p>
-  </main>
-
-  <footer>ابزارک فارسی | ابزارهای رایگان آنلاین</footer>
-
-  <script src="../assets/js/common.js"></script>
-  <script src="../assets/js/text-counter.js"></script>
+<div class="redirect-box">
+  <div class="spinner"></div>
+  <h1>این صفحه منتقل شده است</h1>
+  <p>در حال انتقال به نسخه جدید...</p>
+  <a href="word-counter.html" class="btn">اگر منتقل نشدید، اینجا کلیک کنید</a>
+</div>
 <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => { navigator.serviceWorker.register("../sw.js").catch(() => {}); });
-}
+  // انتقال فوری
+  window.location.replace('word-counter.html');
 </script>
 </body>
 </html>
