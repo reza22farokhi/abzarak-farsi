@@ -271,3 +271,15 @@ textarea { resize: vertical; min-height: 160px; }
   .header-inner { padding: 12px 16px; }
   nav a { font-size: 0.85rem; }
 }
+
+/* Fix for Yektanet Ads breaking grid */
+.ad-container {
+  display: block !important;
+  clear: both !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+/* Ensure grid is robust */
+.tools-grid, .blog-grid {
+  grid-auto-rows: 1fr;
+}
