@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محاسبه BMI - شاخص توده بدنی | ابزارک فارسی</title>
+<meta name="description" content="محاسبه آنلاین شاخص توده بدنی (BMI) بر اساس قد و وزن و نمایش وضعیت سلامت وزنی">
+<meta name="theme-color" content="#6366f1">
+<meta property="og:title" content="محاسبه BMI - شاخص توده بدنی">
+<meta property="og:description" content="محاسبه آنلاین BMI بر اساس قد و وزن">
+<meta property="og:type" content="website">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"محاسبه BMI","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0"}}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">خانه</a></nav>
+</div></header>
+<main class="container tool-page">
+  <h1>محاسبه BMI (شاخص توده بدنی)</h1>
+  <p class="tool-desc">قد و وزن خود را وارد کنید تا شاخص توده بدنی و وضعیت وزن‌تان مشخص شود.</p>
+  <div class="tool-box">
+    <div class="field"><label>وزن (کیلوگرم)</label>
+      <input type="number" id="weight" placeholder="مثلاً 70" step="0.1" min="1">
+    </div>
+    <div class="field"><label>قد (سانتی‌متر)</label>
+      <input type="number" id="height" placeholder="مثلاً 175" step="0.1" min="50">
+    </div>
+    <button class="btn" onclick="calcBMI()">محاسبه</button>
+    <div id="result"></div>
+  </div>
+  <div class="tool-box" style="margin-top:20px">
+    <h3 style="margin-bottom:12px">راهنمای تفسیر BMI</h3>
+    <ul style="padding-right:20px;line-height:2">
+      <li>کمتر از ۱۸.۵: کمبود وزن</li>
+      <li>۱۸.۵ تا ۲۴.۹: وزن نرمال</li>
+      <li>۲۵ تا ۲۹.۹: اضافه وزن</li>
+      <li>۳۰ و بالاتر: چاقی</li>
+    </ul>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<script>
+function calcBMI() {
+  const w = parseFloat(document.getElementById('weight').value);
+  const h = parseFloat(document.getElementById('height').value) / 100;
+  const el = document.getElementById('result');
+  if (!w || !h || w <= 0 || h <= 0) {
+    el.innerHTML = '<div class="result" style="background:#fef2f2;border-color:#fecaca;color:#991b1b">لطفاً وزن و قد معتبر وارد کنید.</div>';
+    return;
+  }
+  const bmi = w / (h * h);
+  let cls = '', cat = '';
+  if (bmi < 18.5) { cls = 'bmi-underweight'; cat = 'کمبود وزن'; }
+  else if (bmi < 25) { cls = 'bmi-normal'; cat = 'وزن نرمال ✓'; }
+  else if (bmi < 30) { cls = 'bmi-overweight'; cat = 'اضافه وزن'; }
+  else { cls = 'bmi-obese'; cat = 'چاقی'; }
+  el.innerHTML = '<div class="bmi-result ' + cls + '"><div class="bmi-value">' + bmi.toFixed(1) + '</div><div class="bmi-category">' + cat + '</div></div>';
+}
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => { navigator.serviceWorker.register("../sw.js").catch(() => {}); });
+}
+</script>
+</body>
+</html>

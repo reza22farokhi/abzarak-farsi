@@ -6,6 +6,13 @@
 <title>تبدیل ارقام فارسی به انگلیسی و برعکس | ابزارک فارسی</title>
 <meta name="description" content="تبدیل آنی اعداد و ارقام فارسی، عربی و انگلیسی به یکدیگر">
 <link rel="stylesheet" href="../css/style.css">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#6366f1">
+<meta property="og:title" content="تبدیل ارقام فارسی به انگلیسی و برعکس | ابزارک فارسی">
+<meta property="og:description" content="تبدیل آنی اعداد و ارقام فارسی، عربی و انگلیسی به یکدیگر">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fa_IR">
 </head>
 <body>
 <header class="site-header"><div class="container header-inner">
@@ -39,6 +46,11 @@ function toPersian(){
   let t=input.value;
   for(let i=0;i<10;i++){t=t.split(english[i]).join(persian[i]);}
   result.style.display='block'; result.textContent=t;
+}
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => { navigator.serviceWorker.register("../sw.js").catch(() => {}); });
 }
 </script>
 </body>

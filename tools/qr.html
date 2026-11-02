@@ -18,6 +18,9 @@
   <script src="../assets/js/common.js" defer></script>
   <script src="../assets/js/vendor/qrcode.min.js" defer></script>
   <script src="../assets/js/qr.js" defer></script>
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#6366f1">
 </head>
 <body>
   <header>
@@ -74,5 +77,10 @@
       <p>ابزارک فارسی — ابزارهای رایگان آنلاین</p>
     </div>
   </footer>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => { navigator.serviceWorker.register("../sw.js").catch(() => {}); });
+}
+</script>
 </body>
 </html>

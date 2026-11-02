@@ -6,6 +6,13 @@
 <title>مبدل تاریخ شمسی به میلادی و برعکس | ابزارک فارسی</title>
 <meta name="description" content="تبدیل سریع تاریخ شمسی (جلالی) به میلادی و میلادی به شمسی به صورت آنلاین">
 <link rel="stylesheet" href="../css/style.css">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#6366f1">
+<meta property="og:title" content="مبدل تاریخ شمسی به میلادی و برعکس | ابزارک فارسی">
+<meta property="og:description" content="تبدیل سریع تاریخ شمسی (جلالی) به میلادی و میلادی به شمسی به صورت آنلاین">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fa_IR">
 </head>
 <body>
 <header class="site-header"><div class="container header-inner">
@@ -70,6 +77,11 @@ function j2g(jy,jm,jd){
   let gm=1;
   for(gm=1;gm<=12;gm++){if(gd<=sal_a[gm])break;gd-=sal_a[gm];}
   return [gy,gm,gd];
+}
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => { navigator.serviceWorker.register("../sw.js").catch(() => {}); });
 }
 </script>
 </body>

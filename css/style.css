@@ -51,3 +51,38 @@ textarea{resize:vertical;min-height:160px}
 #qr-result img{max-width:100%;border-radius:8px;background:#fff}
 .site-footer{background:#fff;border-top:1px solid var(--border);padding:20px 0;text-align:center;color:var(--muted);font-size:.9rem;margin-top:auto}
 @media(max-width:640px){.hero h1{font-size:1.8rem}.stats{grid-template-columns:repeat(2,1fr)}.tool-page h1{font-size:1.5rem}}
+
+/* === ابزارهای جدید === */
+/* BMI */
+.bmi-result{padding:24px;border-radius:12px;margin-top:20px;text-align:center}
+.bmi-underweight{background:#fef3c7;color:#92400e}
+.bmi-normal{background:#d1fae5;color:#065f46}
+.bmi-overweight{background:#fed7aa;color:#9a3412}
+.bmi-obese{background:#fecaca;color:#991b1b}
+.bmi-value{font-size:2.8rem;font-weight:700;line-height:1}
+.bmi-category{font-size:1.1rem;margin-top:6px;font-weight:600}
+
+/* مبدل واحد */
+.unit-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
+@media(max-width:640px){.unit-grid{grid-template-columns:1fr}}
+.unit-result{padding:16px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;margin-top:16px;text-align:center;font-size:1.1rem}
+.unit-result strong{font-size:1.4rem;color:var(--accent);direction:ltr;display:inline-block;margin:0 4px}
+
+/* ساعت جهانی */
+.clocks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;margin-top:20px}
+.clock-card{background:#f1f5f9;border-radius:12px;padding:20px 12px;text-align:center;border:1px solid var(--border)}
+.clock-card h3{font-size:.95rem;color:var(--muted);margin-bottom:10px;font-weight:600}
+.clock-card .time{font-size:1.9rem;font-weight:700;color:var(--accent);direction:ltr;font-family:'Courier New',monospace;line-height:1}
+.clock-card .date{font-size:.8rem;color:var(--muted);margin-top:8px}
+
+/* سازنده هش */
+.hash-output{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.hash-row{background:#f1f5f9;border-radius:8px;padding:12px}
+.hash-row .label{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;margin-bottom:6px;color:var(--muted)}
+.hash-row .copy-sm{background:var(--accent);color:#fff;border:none;padding:4px 10px;border-radius:4px;font-family:inherit;font-size:.75rem;cursor:pointer}
+.hash-row code{display:block;font-family:monospace;font-size:.82rem;word-break:break-all;background:#fff;padding:8px 10px;border-radius:4px;border:1px solid var(--border);direction:ltr;text-align:left;line-height:1.5}
+
+/* کوتاه‌کننده لینک */
+.short-url-box{padding:20px;background:#f0f9ff;border:2px solid #bae6fd;border-radius:12px;margin-top:16px;text-align:center}
+.short-url-box a{color:var(--accent);font-weight:600;font-size:1.15rem;word-break:break-all;text-decoration:none}
+.short-url-box a:hover{text-decoration:underline}

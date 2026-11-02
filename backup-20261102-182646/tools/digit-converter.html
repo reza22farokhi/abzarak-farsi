@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تبدیل ارقام فارسی به انگلیسی و برعکس | ابزارک فارسی</title>
+<meta name="description" content="تبدیل آنی اعداد و ارقام فارسی، عربی و انگلیسی به یکدیگر">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">خانه</a></nav>
+</div></header>
+<main class="container tool-page">
+  <h1>تبدیل ارقام فارسی و انگلیسی</h1>
+  <p class="tool-desc">اعداد فارسی، عربی و انگلیسی را به هم تبدیل کنید.</p>
+  <div class="tool-box">
+    <div class="field"><label>متن ورودی</label>
+      <textarea id="input" rows="4" placeholder="مثلاً: ۱۲۳۴۵ یا 12345"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn" onclick="toEnglish()">به انگلیسی (1234)</button>
+      <button class="btn" onclick="toPersian()">به فارسی (۱۲۳۴)</button>
+    </div>
+    <div class="result" id="result" style="display:none"></div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<script>
+const input=document.getElementById('input'), result=document.getElementById('result');
+const persian='۰۱۲۳۴۵۶۷۸۹', arabic='٠١٢٣٤٥٦٧٨٩', english='0123456789';
+function toEnglish(){
+  let t=input.value;
+  for(let i=0;i<10;i++){t=t.split(persian[i]).join(english[i]);t=t.split(arabic[i]).join(english[i]);}
+  result.style.display='block'; result.textContent=t;
+}
+function toPersian(){
+  let t=input.value;
+  for(let i=0;i<10;i++){t=t.split(english[i]).join(persian[i]);}
+  result.style.display='block'; result.textContent=t;
+}
+</script>
+</body>
+</html>

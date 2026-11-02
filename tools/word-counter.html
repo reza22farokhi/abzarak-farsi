@@ -6,6 +6,13 @@
 <title>شمارشگر کلمات و کاراکتر آنلاین | ابزارک فارسی</title>
 <meta name="description" content="شمارش آنی تعداد کلمات، کاراکترها و خطوط متن فارسی و انگلیسی به صورت رایگان و آفلاین">
 <link rel="stylesheet" href="../css/style.css">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#6366f1">
+<meta property="og:title" content="شمارشگر کلمات و کاراکتر آنلاین | ابزارک فارسی">
+<meta property="og:description" content="شمارش آنی تعداد کلمات، کاراکترها و خطوط متن فارسی و انگلیسی به صورت رایگان و آفلاین">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fa_IR">
 </head>
 <body>
 <header class="site-header"><div class="container header-inner">
@@ -37,6 +44,11 @@ function update(){
 }
 input.addEventListener('input', update);
 update();
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => { navigator.serviceWorker.register("../sw.js").catch(() => {}); });
+}
 </script>
 </body>
 </html>

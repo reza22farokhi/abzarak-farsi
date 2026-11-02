@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>کوتاه‌کننده لینک آنلاین | ابزارک فارسی</title>
+<meta name="description" content="تبدیل لینک‌های بلند به لینک‌های کوتاه و قابل اشتراک‌گذاری به صورت رایگان">
+<meta name="theme-color" content="#6366f1">
+<meta property="og:title" content="کوتاه‌کننده لینک آنلاین">
+<meta property="og:description" content="تبدیل لینک‌های بلند به لینک‌های کوتاه">
+<meta property="og:type" content="website">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"کوتاه‌کننده لینک","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0"}}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">خانه</a></nav>
+</div></header>
+<main class="container tool-page">
+  <h1>کوتاه‌کننده لینک</h1>
+  <p class="tool-desc">لینک بلند خود را وارد کنید تا به لینک کوتاه تبدیل شود.</p>
+  <div class="tool-box">
+    <div class="field"><label>لینک بلند</label>
+      <input type="url" id="url" placeholder="https://example.com/very/long/path" style="direction:ltr;text-align:left">
+    </div>
+    <button class="btn" id="btn" onclick="shorten()">کوتاه کن</button>
+    <div id="result"></div>
+    <p style="margin-top:20px;font-size:.85rem;color:#64748b">⚠️ این ابزار از سرویس‌های خارجی (cleanuri.com و is.gd) استفاده می‌کند. لینک شما به این سرویس‌ها ارسال می‌شود.</p>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<script>
+async function shorten() {
+  const url = document.getElementById('url').value.trim();
+  const el = document.getElementById('result');
+  const btn = document.getElementById('btn');
+  if (!url) { el.innerHTML = '<div class="result" style="background:#fef2f2;border-color:#fecaca;color:#991b1b">لطفاً لینک را وارد کنید.</div>'; return; }
+  try { new URL(url); } catch(e) { el.innerHTML = '<div class="result" style="background:#fef2f2;border-color:#fecaca;color:#991b1b">لینک معتبر نیست. باید با http:// یا https:// شروع شود.</div>'; return; }
+
+  btn.disabled = true; btn.textContent = 'در حال پردازش...';
+  el.innerHTML = '<div class="result">⏳ در حال ارتباط با سرویس...</div>';
+
+  // تلاش اول: cleanuri
+  try {
+    const res = await fetch('https://cleanuri.com/api/v1/shorten', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'url=' + encodeURIComponent(url)
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.result_url) { showShort(data.result_url); return; }
+    }
+  } catch(e) {}
+
+  // تلاش دوم: is.gd
+  try {
+    const res = await fetch('https://is.gd/create.php?format=json&url=' + encodeURIComponent(url));
+    const data = await res.json();
+    if (data.shorturl) { showShort(data.shorturl); return; }
+  } catch(e) {}
+
+  el.innerHTML = '<div class="result" style="background:#fef2f2;border-color:#fecaca;color:#991b1b">متأسفانه سرویس کوتاه‌کننده در دسترس نیست. لطفاً بعداً تلاش کنید یا از tinyurl.com استفاده کنید.</div>';
+  btn.disabled = false; btn.textContent = 'کوتاه کن';
+}
+function showShort(shortUrl) {
+  const el = document.getElementById('result');
+  el.innerHTML = '<div class="short-url-box"><a href="' + shortUrl + '" target="_blank" rel="noopener">' + shortUrl + '</a><br><button class="btn" style="margin-top:14px" onclick="copyUrl(\'' + shortUrl + '\')">📋 کپی</button></div>';
+  document.getElementById('btn').disabled = false;
+  document.getElementById('btn').textContent = 'کوتاه کن';
+}
+function copyUrl(u) {
+  navigator.clipboard.writeText(u).then(() => {
+    const b = event.target; const o = b.textContent;
+    b.textContent = '✓ کپی شد'; setTimeout(() => b.textContent = o, 1500);
+  });
+}
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => { navigator.serviceWorker.register("../sw.js").catch(() => {}); });
+}
+</script>
+</body>
+</html>
