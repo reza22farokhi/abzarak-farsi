@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تولید متن تستی فارسی (Lorem Ipsum) | ابزارک فارسی</title>
+<meta name="description" content="تولید متن ساختگی و تصادفی فارسی برای تست طراحی سایت و اپلیکیشن">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),t=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a> · <a href="../about.html">درباره</a><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button></nav>
+</div></header>
+<main class="container tool-page">
+  <h1>تولید متن تستی (فارسی)</h1>
+  <p class="tool-desc">تعداد پاراگراف مورد نیاز خود را انتخاب کنید تا متن ساختگی تولید شود.</p>
+  <div class="tool-box">
+    <div class="field"><label>تعداد پاراگراف</label><input type="number" id="count" value="3" min="1" max="20"></div>
+    <button class="btn" onclick="generate()">تولید متن</button>
+    <textarea id="result" rows="10" readonly style="margin-top:20px; font-size:1rem; line-height:2; background:var(--bg); border-color:var(--border);"></textarea>
+  </div>
+  <div class="ad-container" style="margin: 30px auto; text-align: center; max-width: 800px; padding: 15px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1; display:block; clear:both; width:100%;">
+      <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+      <div id="pos-article-text-card-123872"></div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script>
+const words = "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.".split(" ");
+
+function generate() {
+  const count = parseInt(document.getElementById('count').value) || 3;
+  let result = [];
+  for (let i = 0; i < count; i++) {
+    let p = [];
+    let len = Math.floor(Math.random() * 40) + 40; // 40 to 80 words
+    for (let j = 0; j < len; j++) {
+      p.push(words[Math.floor(Math.random() * words.length)]);
+    }
+    result.push(p.join(" ") + ".");
+  }
+  document.getElementById('result').value = result.join("\n\n");
+}
+generate();
+if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("../sw.js").catch(()=>{}));
+</script>
+<script src="../js/theme.js"></script>
+</body></html>

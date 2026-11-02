@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تبدیل عدد به حروف فارسی | ابزارک فارسی</title>
+<meta name="description" content="تبدیل خودکار اعداد به متن و حروف فارسی (مناسب برای چک و فاکتور)">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a> · <a href="../about.html">درباره</a><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button></nav>
+</div></header>
+<main class="container tool-page">
+  <h1>تبدیل عدد به حروف</h1>
+  <p class="tool-desc">عدد خود را وارد کنید تا به صورت متن فارسی نوشته شود (مناسب چک و قرارداد).</p>
+  <div class="tool-box">
+    <div class="field"><label>عدد (بدون جداکننده)</label><input type="text" id="num" placeholder="مثلاً 1250000" oninput="convert()" style="direction:ltr; text-align:center; font-size:1.2rem;"></div>
+    <div id="result" class="result" style="min-height:80px; font-size:1.2rem; font-weight:bold; line-height:1.8;">...</div>
+  </div>
+  <div class="ad-container" style="margin: 30px auto; text-align: center; max-width: 800px; padding: 15px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1; display:block; clear:both; width:100%;">
+      <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+      <div id="pos-article-text-card-123872"></div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script>
+const yekan = ['', 'یک', 'دو', 'سه', 'چهار', 'پنج', 'شش', 'هفت', 'هشت', 'نه'];
+const dahgan = ['', '', 'بیست', 'سی', 'چهل', 'پنجاه', 'شصت', 'هفتاد', 'هشتاد', 'نود'];
+const dahgan10 = ['ده', 'یازده', 'دوازده', 'سیزده', 'چهارده', 'پانزده', 'شانزده', 'هفده', 'هجده', 'نوزده'];
+const sadgan = ['', 'صد', 'دویست', 'سیصد', 'چهارصد', 'پانصد', 'ششصد', 'هفتصد', 'هشتصد', 'نهصد'];
+const scales = ['', ' هزار', ' میلیون', ' میلیارد', ' تریلیون'];
+
+function numToWords(n) {
+  if (n === 0) return 'صفر';
+  let str = n.toString();
+  let words = [];
+  let scaleIndex = 0;
+  while (str.length > 0) {
+    let chunk = parseInt(str.slice(-3)) || 0;
+    str = str.slice(0, -3);
+    if (chunk > 0) {
+      let chunkStr = threeDigitToWords(chunk);
+      words.unshift(chunkStr + scales[scaleIndex]);
+    }
+    scaleIndex++;
+  }
+  return words.join(' و ');
+}
+
+function threeDigitToWords(n) {
+  let parts = [];
+  let s = Math.floor(n / 100);
+  let rem = n % 100;
+  let d = Math.floor(rem / 10);
+  let y = rem % 10;
+  
+  if (s > 0) parts.push(sadgan[s]);
+  if (rem >= 10 && rem <= 19) {
+    parts.push(dahgan10[rem - 10]);
+  } else {
+    if (d > 0) parts.push(dahgan[d]);
+    if (y > 0) parts.push(yekan[y]);
+  }
+  return parts.join(' و ');
+}
+
+function convert() {
+  const val = document.getElementById('num').value.replace(/,/g, '');
+  const el = document.getElementById('result');
+  if (!val) { el.innerHTML = '...'; return; }
+  if (isNaN(val)) { el.innerHTML = '<span style="color:red">لطفاً یک عدد معتبر وارد کنید.</span>'; return; }
+  if (val.length > 15) { el.innerHTML = '<span style="color:red">عدد وارد شده بسیار بزرگ است.</span>'; return; }
+  
+  const words = numToWords(parseInt(val));
+  el.innerHTML = words;
+}
+if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("../sw.js").catch(()=>{}));
+</script>
+<script src="../js/theme.js"></script>
+</body></html>
