@@ -1,4 +1,4 @@
-const CACHE = 'abzarak-v3';
+const CACHE = 'abzarak-v99';
 const PRECACHE = [
   './',
   './index.html',
