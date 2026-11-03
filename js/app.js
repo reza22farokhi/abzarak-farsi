@@ -276,6 +276,7 @@ const catalog = [
   { title: "مقاله: Timestamp (یونیکس تایم)", url: "blog/timestamp-guide.html", type: "article", icon: "📄", keywords: "Timestamp یونیکس تایم تاریخ زمان" },
   { title: "سازنده کارت گرافیکی متن", url: "tools/social-card.html", type: "tool", icon: "🖼️", keywords: "کارت عکس اینستاگرام پست متن به عکس" },
   { title: "فال حافظ", url: "tools/fal-hafez.html", type: "tool", icon: "🔮", keywords: "فال حافظ دیوان شعر تفأل" },
+  { title: "فال تاروت", url: "tools/tarot.html", type: "tool", icon: "🔮", keywords: "فال تاروت پیشگویی کارت" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
