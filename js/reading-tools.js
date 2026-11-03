@@ -53,146 +53,152 @@
   }
 
   // ========================================
-  // ۳. Text-to-Speech (خواندن با صدا)
+  // ۳. Text-to-Speech با Google Translate (بدون نیاز به نصب)
   // ========================================
   const ttsBtn = document.getElementById('tts-btn');
   const ttsStopBtn = document.getElementById('tts-stop');
   const ttsIcon = ttsBtn.querySelector('.tts-icon');
   const ttsText = ttsBtn.querySelector('.tts-text');
-  let isSpeaking = false;
-  let isPaused = false;
-  let currentUtterance = null;
 
-  // چک پشتیبانی مرورگر
-  const ttsSupported = 'speechSynthesis' in window;
-  if (!ttsSupported) {
-    ttsBtn.style.display = 'none';
-  }
-
-  // پیدا کردن بهترین صدای فارسی
-  let persianVoice = null;
-  let voiceAttempts = 0;
-  function loadVoices() {
-    const voices = speechSynthesis.getVoices();
-    persianVoice = voices.find(v => v.lang === 'fa-IR' || v.lang === 'fa_IR') 
-                || voices.find(v => v.lang.startsWith('fa'))
-                || voices.find(v => v.name.toLowerCase().includes('persian'));
+  const TTS = {
+    audio: null,
+    queue: [],
+    currentIndex: 0,
+    isPlaying: false,
+    isPaused: false,
+    isStopped: false,
     
-    // تلاش مجدد اگر صداها هنوز لود نشده‌اند
-    if (!persianVoice && voiceAttempts < 5) {
-      voiceAttempts++;
-      setTimeout(loadVoices, 200);
-    }
-  }
-  if (ttsSupported) {
-    loadVoices();
-    speechSynthesis.onvoiceschanged = loadVoices;
-  }
-
-  // استخراج متن مقاله
-  function getArticleText() {
-    let text = '';
-    if (titleEl) text += titleEl.textContent + '. ';
-    const paragraphs = articleBody.querySelectorAll('p, li, h2, h3, blockquote');
-    paragraphs.forEach(el => {
-      const t = el.textContent.trim();
-      if (t) text += t + ' ';
-    });
-    return text.trim();
-  }
-
-  // شروع خواندن
-  function startSpeaking() {
-    if (!persianVoice) {
-      const proceed = confirm('⚠️ مرورگر یا گوشی شما به بسته صدای فارسی (Persian TTS) مجهز نیست.\n\nاگر می‌خواهید با صدای پیش‌فرض خوانده شود دکمه تایید را بزنید.\nبرای نصب صدای فارسی، به تنظیمات گوشی > زبان و ورودی > تبدیل متن به گفتار بروید و بسته زبان فارسی را نصب کنید.');
-      if (!proceed) return;
-    }
+    // تقسیم متن به تکه‌های ~۱۸۰ کاراکتری (محدودیت Google TTS)
+    splitText(text) {
+      const chunks = [];
+      const sentences = text.split(/(?<=[.!?؟،\n])\s+/);
+      let current = '';
+      
+      for (const s of sentences) {
+        if (s.length > 180) {
+          if (current) { chunks.push(current.trim()); current = ''; }
+          // جمله خیلی بلند را هم به قطعات کوچک‌تر بشکن
+          let remaining = s;
+          while (remaining.length > 180) {
+            let cut = remaining.lastIndexOf(' ', 180);
+            if (cut === -1) cut = 180;
+            chunks.push(remaining.substring(0, cut).trim());
+            remaining = remaining.substring(cut).trim();
+          }
+          if (remaining) current = remaining;
+        } else if ((current + ' ' + s).length > 180) {
+          if (current) chunks.push(current.trim());
+          current = s;
+        } else {
+          current += (current ? ' ' : '') + s;
+        }
+      }
+      if (current) chunks.push(current.trim());
+      return chunks.filter(c => c.length > 0);
+    },
     
-    if (isPaused) {
-      speechSynthesis.resume();
-      isPaused = false;
-      ttsIcon.textContent = '⏸';
-      ttsText.textContent = 'توقف موقت';
-      return;
-    }
+    playChunk(text) {
+      return new Promise((resolve, reject) => {
+        // استفاده از Google Translate TTS - رایگان و فارسی روان
+        const url = 'https://translate.googleapis.com/translate_tts?ie=UTF-8&client=gtx&tl=fa&q=' + encodeURIComponent(text);
+        this.audio = new Audio(url);
+        this.audio.playbackRate = 1.0;
+        this.audio.onended = () => resolve();
+        this.audio.onerror = (e) => {
+          // fallback به سرور دوم
+          const url2 = 'https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=fa&q=' + encodeURIComponent(text);
+          this.audio = new Audio(url2);
+          this.audio.playbackRate = 1.0;
+          this.audio.onended = () => resolve();
+          this.audio.onerror = () => reject(new Error('TTS failed'));
+          this.audio.play().catch(reject);
+        };
+        this.audio.play().catch(reject);
+      });
+    },
     
-    speechSynthesis.cancel();
-    const text = getArticleText();
-    if (!text) return;
-
-    // تقسیم متن به تکه‌های کوتاه (بعضی مرورگرها محدودیت طول دارن)
-    const chunks = text.match(/[^.!?؟،\n]+[.!?؟،\n]?/g) || [text];
-    let chunkIndex = 0;
-
-    function speakNext() {
-      if (chunkIndex >= chunks.length) {
-        isSpeaking = false;
+    async speak(text) {
+      this.queue = this.splitText(text);
+      this.currentIndex = 0;
+      this.isPlaying = true;
+      this.isStopped = false;
+      
+      for (let i = 0; i < this.queue.length; i++) {
+        if (this.isStopped) break;
+        this.currentIndex = i;
+        try {
+          await this.playChunk(this.queue[i]);
+        } catch(e) {
+          console.warn('TTS chunk error:', e);
+          // ادامه بده به تکه بعدی حتی اگر یکی خطا داد
+        }
+      }
+      
+      this.isPlaying = false;
+      if (!this.isStopped) {
         ttsIcon.textContent = '🔉';
         ttsText.textContent = 'خواندن مقاله';
         ttsStopBtn.style.display = 'none';
-        return;
       }
-      
-      const chunk = chunks[chunkIndex].trim();
-      if (!chunk) { chunkIndex++; speakNext(); return; }
-      
-      currentUtterance = new SpeechSynthesisUtterance(chunk);
-      currentUtterance.lang = 'fa-IR';
-      currentUtterance.rate = 1.0;
-      currentUtterance.pitch = 1.0;
-      if (persianVoice) currentUtterance.voice = persianVoice;
-      
-      currentUtterance.onend = () => {
-        chunkIndex++;
-        speakNext();
-      };
-      currentUtterance.onerror = (e) => {
-        if (e.error !== 'interrupted') {
-          chunkIndex++;
-          speakNext();
-        }
-      };
-      
-      speechSynthesis.speak(currentUtterance);
+    },
+    
+    pause() {
+      if (this.audio && !this.audio.paused) {
+        this.audio.pause();
+        this.isPaused = true;
+      }
+    },
+    
+    resume() {
+      if (this.audio && this.isPaused) {
+        this.audio.play();
+        this.isPaused = false;
+      }
+    },
+    
+    stop() {
+      this.isStopped = true;
+      this.isPlaying = false;
+      this.isPaused = false;
+      if (this.audio) {
+        this.audio.pause();
+        this.audio.currentTime = 0;
+        this.audio = null;
+      }
     }
+  };
 
-    isSpeaking = true;
-    isPaused = false;
-    ttsIcon.textContent = '⏸';
-    ttsText.textContent = 'توقف موقت';
-    ttsStopBtn.style.display = 'inline-flex';
-    speakNext();
-  }
-
-  ttsBtn.addEventListener('click', () => {
-    if (!isSpeaking) {
-      startSpeaking();
-    } else if (!isPaused) {
-      speechSynthesis.pause();
-      isPaused = true;
-      ttsIcon.textContent = '▶️';
-      ttsText.textContent = 'ادامه';
-    } else {
-      speechSynthesis.resume();
-      isPaused = false;
+  ttsBtn.addEventListener('click', async () => {
+    if (!TTS.isPlaying) {
+      // شروع خواندن
+      const text = getArticleText();
+      if (!text) return;
       ttsIcon.textContent = '⏸';
       ttsText.textContent = 'توقف موقت';
+      ttsStopBtn.style.display = 'inline-flex';
+      TTS.speak(text);
+    } else if (TTS.isPaused) {
+      // ادامه
+      TTS.resume();
+      ttsIcon.textContent = '⏸';
+      ttsText.textContent = 'توقف موقت';
+    } else {
+      // مکث
+      TTS.pause();
+      ttsIcon.textContent = '▶️';
+      ttsText.textContent = 'ادامه';
     }
   });
 
   ttsStopBtn.addEventListener('click', () => {
-    speechSynthesis.cancel();
-    isSpeaking = false;
-    isPaused = false;
+    TTS.stop();
     ttsIcon.textContent = '🔉';
     ttsText.textContent = 'خواندن مقاله';
     ttsStopBtn.style.display = 'none';
   });
 
-  // توقف هنگام خروج از صفحه
-  window.addEventListener('beforeunload', () => {
-    if (ttsSupported) speechSynthesis.cancel();
-  });
+  // توقف هنگام خروج
+  window.addEventListener('beforeunload', () => TTS.stop());
 
   // ========================================
   // ۴. Share Buttons
