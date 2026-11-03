@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شمارشگر کلمات و کاراکتر آنلاین | ابزارک فارسی</title>
+<meta name="description" content="شمارش آنی تعداد کلمات، کاراکترها و خطوط متن فارسی و انگلیسی به صورت رایگان و آفلاین">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#6366f1">
+<meta property="og:title" content="شمارشگر کلمات و کاراکتر آنلاین | ابزارک فارسی">
+<meta property="og:description" content="شمارش آنی تعداد کلمات، کاراکترها و خطوط متن فارسی و انگلیسی به صورت رایگان و آفلاین">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fa_IR">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');
+
+    ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<!-- /Yandex.Metrika counter -->
+<!-- Yektanet Publisher Script -->
+<script>
+    !function(e,t,n){
+        e.yektanetAnalyticsObject=n,
+        e[n]=e[n]||function(){e[n].q.push(arguments)},
+        e[n].q=e[n].q||[];
+        var a=t.getElementsByTagName("head")[0],
+            r=new Date,
+            c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="
+                +r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),
+            s=t.createElement("link");
+        s.rel="preload",
+        s.as="script",
+        s.href=c,
+        a.appendChild(s);
+        var l=t.createElement("script");
+        l.async=!0,
+        l.src=c,
+        a.appendChild(l);
+    }(window,document,"yektanet");
+</script>
+<!-- End Yektanet Publisher Script -->
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a> <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغییر تم"><span id="theme-icon">🌙</span></button>
+    </nav>
+</div></header>
+<main class="container tool-page">
+  <h1>شمارشگر کلمات و کاراکتر</h1>
+  <p class="tool-desc">متن خود را وارد کنید تا تعداد کلمات، کاراکترها و خطوط به صورت لحظه‌ای شمارش شود.</p>
+
+  
+  
+
+  
+  <div class="related-section">
+    <h3 class="related-title">🔗 ابزارهای مرتبط</h3>
+    <div class="related-grid">
+      <a href="digit-converter.html" class="related-card">
+        <span class="related-icon">🔢</span>
+        <span class="related-name">تبدیل ارقام</span>
+      </a>
+      <a href="persian-cleaner.html" class="related-card">
+        <span class="related-icon">🧹</span>
+        <span class="related-name">پاک‌سازی متن</span>
+      </a>
+      <a href="base64.html" class="related-card">
+        <span class="related-icon">🔤</span>
+        <span class="related-name">Base64</span>
+      </a>
+      <a href="json.html" class="related-card">
+        <span class="related-icon">{ }</span>
+        <span class="related-name">JSON Formatter</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="ad-container" style="margin: 20px auto 30px; text-align: center; padding: 10px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
+    <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+    <div id="pos-article-display-123878"></div>
+  </div>
+
+  <div class="tool-box">
+    <textarea id="input" placeholder="متن خود را اینجا وارد یا بچسبانید..." rows="10"></textarea>
+    <div class="stats">
+      <div><span id="words">0</span><small>کلمه</small></div>
+      <div><span id="chars">0</span><small>کاراکتر</small></div>
+      <div><span id="charsNoSpace">0</span><small>بدون فاصله</small></div>
+      <div><span id="lines">0</span><small>خط</small></div>
+    </div>
+  </div>
+
+  <div class="ad-container" style="margin: 30px auto; text-align: center; max-width: 800px; padding: 10px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
+    <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+    <div id="pos-article-text-card-123872"></div>
+  </div>
+
+
+  <div class="ad-container" style="margin: 30px auto; text-align: center; padding: 10px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
+    <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+    <div id="pos-article-text-123879"></div>
+  </div>
+
+</main>
+
+  <div class="ad-container" style="margin: 40px auto; text-align: center; max-width: 800px; padding: 15px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
+    <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+    <div id="pos-article-display-123780"></div>
+  </div>
+
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<script>
+const input = document.getElementById('input');
+function update(){
+  const t = input.value;
+  document.getElementById('words').textContent = t.trim() ? t.trim().split(/\s+/).length : 0;
+  document.getElementById('chars').textContent = t.length;
+  document.getElementById('charsNoSpace').textContent = t.replace(/\s/g,'').length;
+  document.getElementById('lines').textContent = t ? t.split('\n').length : 0;
+}
+input.addEventListener('input', update);
+update();
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => { navigator.serviceWorker.register("../sw.js").catch(() => {}); });
+}
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script src="../js/theme.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>
