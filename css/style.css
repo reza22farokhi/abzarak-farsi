@@ -572,3 +572,14 @@ textarea { resize: vertical; min-height: 160px; }
     font-size: 0.85rem;
   }
 }
+
+/* Fix Related Section Text Overflow */
+.related-name {
+  line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  display: block;
+}
+.related-card {
+  min-width: 0; /* مهم برای جلوگیری از سرریز در گرید */
+}
