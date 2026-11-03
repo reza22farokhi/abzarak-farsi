@@ -52,6 +52,8 @@
     }(window,document,"yektanet");
 </script>
 <!-- End Yektanet Publisher Script -->
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
 </head>
 <body>
 <div class="redirect-box">
@@ -67,5 +69,12 @@
 <noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <script src="../js/theme.js"></script>
 <script src="../js/app.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("../sw.js").catch(() => {});
+  });
+}
+</script>
 </body>
 </html>
