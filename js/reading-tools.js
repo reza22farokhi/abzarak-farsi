@@ -71,11 +71,18 @@
 
   // پیدا کردن بهترین صدای فارسی
   let persianVoice = null;
+  let voiceAttempts = 0;
   function loadVoices() {
     const voices = speechSynthesis.getVoices();
-    persianVoice = voices.find(v => v.lang === 'fa-IR') 
+    persianVoice = voices.find(v => v.lang === 'fa-IR' || v.lang === 'fa_IR') 
                 || voices.find(v => v.lang.startsWith('fa'))
                 || voices.find(v => v.name.toLowerCase().includes('persian'));
+    
+    // تلاش مجدد اگر صداها هنوز لود نشده‌اند
+    if (!persianVoice && voiceAttempts < 5) {
+      voiceAttempts++;
+      setTimeout(loadVoices, 200);
+    }
   }
   if (ttsSupported) {
     loadVoices();
@@ -96,6 +103,11 @@
 
   // شروع خواندن
   function startSpeaking() {
+    if (!persianVoice) {
+      const proceed = confirm('⚠️ مرورگر یا گوشی شما به بسته صدای فارسی (Persian TTS) مجهز نیست.\n\nاگر می‌خواهید با صدای پیش‌فرض خوانده شود دکمه تایید را بزنید.\nبرای نصب صدای فارسی، به تنظیمات گوشی > زبان و ورودی > تبدیل متن به گفتار بروید و بسته زبان فارسی را نصب کنید.');
+      if (!proceed) return;
+    }
+    
     if (isPaused) {
       speechSynthesis.resume();
       isPaused = false;
