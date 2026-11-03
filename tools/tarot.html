@@ -259,27 +259,36 @@
         </div>
       `;
     } else {
-      // فال سه‌کارتی (ppp یا career)
+      // فال سه‌کارتی (ppp یا career) - نمایش کامل
       for (let i = 0; i < currentSpread.count; i++) {
         const c = drawnCards[i];
-        let interpretation = '';
+        let positionInterpretation = '';
         if (currentSpread.title === "گذشته، حال، آینده") {
-          if (i === 0) interpretation = c.past;
-          else if (i === 1) interpretation = c.present;
-          else interpretation = c.future;
+          if (i === 0) positionInterpretation = c.past_full || c.past;
+          else if (i === 1) positionInterpretation = c.present_full || c.present;
+          else positionInterpretation = c.future_full || c.future;
         } else if (currentSpread.title === "فال شغل") {
-          if (i === 0) interpretation = c.career;
-          else if (i === 1) interpretation = "چالش: " + c.reversed;
-          else interpretation = "نتیجه: " + c.career;
+          if (i === 0) positionInterpretation = c.career_full || c.career;
+          else if (i === 1) positionInterpretation = c.reversed_full || c.reversed;
+          else positionInterpretation = c.career_full || c.career;
         }
         
         html += `
-          <div class="result-card-detail">
-            <h4>${labels[i]}: ${c.icon} ${c.name}</h4>
-            <div class="meta">عنصر: ${c.element} | کلیدواژه: ${c.keywords}</div>
-            <div class="interpretation">${interpretation}</div>
-            <div class="interpretation"><strong>معنی کلی کارت:</strong> ${c.upright}</div>
-            <div class="advice-box"><strong>💡 توصیه:</strong> ${c.advice}</div>
+          <div class="result-card-detail" style="margin-bottom:30px; padding:25px;">
+            <h4 style="font-size:1.3rem; margin-bottom:15px; color:var(--accent);">${labels[i]}: ${c.name}</h4>
+            <div class="meta" style="margin-bottom:15px; padding-bottom:10px; border-bottom:1px solid var(--border);">عنصر: ${c.element} | کلیدواژه: ${c.keywords}</div>
+            
+            <div style="margin-bottom:12px;"><strong style="color:#8b5cf6;">👁️ توصیف تصویر:</strong> ${c.visual || '-'}</div>
+            <div style="margin-bottom:12px;"><strong style="color:#8b5cf6;">🔍 نمادشناسی:</strong> ${c.symbolism || '-'}</div>
+            <div style="margin-bottom:12px;"><strong style="color:#8b5cf6;">☀️ معنی مستقیم:</strong> ${c.upright_full || c.upright}</div>
+            <div style="margin-bottom:12px;"><strong style="color:#8b5cf6;">🌑 معنی معکوس:</strong> ${c.reversed_full || c.reversed}</div>
+            <div style="margin-bottom:12px; padding:12px; background:rgba(139,92,246,0.1); border-radius:8px;"><strong style="color:#8b5cf6;">🎯 تفسیر در این جایگاه:</strong> ${positionInterpretation}</div>
+            <div style="margin-bottom:12px;"><strong style="color:#8b5cf6;">❤️ در عشق:</strong> ${c.love_full || c.love}</div>
+            <div style="margin-bottom:12px;"><strong style="color:#8b5cf6;">💼 در شغل:</strong> ${c.career_full || c.career}</div>
+            <div class="advice-box" style="background:rgba(251,191,36,0.1); padding:15px; border-radius:8px; border-right:3px solid #fbbf24;">
+              <strong style="color:#fbbf24;">💡 توصیه:</strong> ${c.advice_full || c.advice}
+            </div>
+            <div style="margin-top:12px; font-size:0.9rem; color:var(--muted);"><strong>پاسخ بله/خیر:</strong> ${c.yesNo_exp || c.yesNo}</div>
           </div>
         `;
       }
