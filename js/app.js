@@ -274,6 +274,7 @@ const catalog = [
   { title: "مقاله: چطور در گوگل رتبه یک شویم", url: "blog/rank-1-on-google.html", type: "article", icon: "📄", keywords: "سئو SEO رتبه گوگل کلمه کلیدی" },
   { title: "مقاله: UUID چیست و چه کاربردی دارد", url: "blog/what-is-uuid.html", type: "article", icon: "📄", keywords: "UUID GUID شناسه یکتا برنامه نویسی" },
   { title: "مقاله: Timestamp (یونیکس تایم)", url: "blog/timestamp-guide.html", type: "article", icon: "📄", keywords: "Timestamp یونیکس تایم تاریخ زمان" },
+  { title: "سازنده کارت گرافیکی متن", url: "tools/social-card.html", type: "tool", icon: "🖼️", keywords: "کارت عکس اینستاگرام پست متن به عکس" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
