@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/</loc><priority>1.0</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/about.html</loc><priority>0.5</priority></url>
-  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/age-calculation-guide.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/base64-guide.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/buy-domain-github-pages.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/color-codes-guide.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/date-converter-guide.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/json-guide.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/loan-calculation-guide.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/national-id-algorithm.html</loc><priority>0.8</priority></url>
@@ -28,6 +27,7 @@
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/blog/what-is-uuid.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/contact.html</loc><priority>0.5</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/googleb290e995704cdfdf.html</loc><priority>0.5</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/</loc><priority>1.0</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/10-percent-discount.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/10-percent-of-100000.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/10-percent-of-1000000.html</loc><priority>0.8</priority></url>
