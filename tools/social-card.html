@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سازنده کارت گرافیکی متن برای شبکه‌های اجتماعی | ابزارک</title>
+<meta name="description" content="تبدیل متن به عکس زیبا برای اینستاگرام، توییتر و لینکدین. با قالب‌های گرادیانت مدرن و دانلود باکیفیت بالا.">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+<style>
+  .card-tool-grid { display: grid; grid-template-columns: 350px 1fr; gap: 30px; margin-top: 20px; }
+  @media(max-width: 768px) { .card-tool-grid { grid-template-columns: 1fr; } }
+  
+  .controls-panel { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); }
+  .controls-panel textarea { min-height: 120px; margin-bottom: 16px; }
+  
+  .theme-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+  .theme-btn { height: 40px; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; }
+  .theme-btn:hover { transform: scale(1.05); }
+  .theme-btn.active { border-color: #0f172a; box-shadow: 0 0 0 2px #fff inset; }
+  
+  /* پیش‌نمایش کارت */
+  .preview-area { display: flex; justify-content: center; align-items: flex-start; }
+  .social-card {
+    width: 100%; max-width: 500px; aspect-ratio: 1/1;
+    border-radius: 24px; padding: 40px; display: flex; flex-direction: column;
+    justify-content: center; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: background 0.3s ease;
+  }
+  .social-card::before {
+    content: '”'; position: absolute; top: 20px; right: 30px;
+    font-size: 8rem; color: rgba(255,255,255,0.15); font-family: serif; line-height: 1;
+  }
+  .social-card-text {
+    color: white; font-size: 1.6rem; font-weight: 700; line-height: 1.6;
+    text-align: center; z-index: 1; word-wrap: break-word; overflow-wrap: break-word;
+  }
+  .social-card-brand {
+    position: absolute; bottom: 30px; left: 0; right: 0;
+    text-align: center; color: rgba(255,255,255,0.8); font-size: 0.9rem; font-weight: 500;
+  }
+  .social-card-brand span { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; backdrop-filter: blur(5px); }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a> · <a href="../about.html">درباره</a><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button></nav>
+</div></header>
+<main class="container tool-page" style="max-width:1100px;">
+  <h1>سازنده کارت گرافیکی متن</h1>
+  <p class="tool-desc">متن خود را بنویسید و یک عکس فوق‌العاده برای پست‌های اینستاگرام یا توییتر دانلود کنید.</p>
+  
+  <div class="card-tool-grid">
+    <div class="controls-panel">
+      <label style="font-weight:bold; margin-bottom:8px; display:block;">متن شما</label>
+      <textarea id="card-text" placeholder="متن زیبای خود را اینجا بنویسید...">دانش، قدرت است.</textarea>
+      
+      <label style="font-weight:bold; margin-bottom:8px; display:block;">پس‌زمینه</label>
+      <div class="theme-options">
+        <div class="theme-btn active" style="background: linear-gradient(135deg, #6366f1, #a855f7);" onclick="setTheme(this, 'linear-gradient(135deg, #6366f1, #a855f7)')"></div>
+        <div class="theme-btn" style="background: linear-gradient(135deg, #0ea5e9, #2dd4bf);" onclick="setTheme(this, 'linear-gradient(135deg, #0ea5e9, #2dd4bf)')"></div>
+        <div class="theme-btn" style="background: linear-gradient(135deg, #f59e0b, #ef4444);" onclick="setTheme(this, 'linear-gradient(135deg, #f59e0b, #ef4444)')"></div>
+        <div class="theme-btn" style="background: linear-gradient(135deg, #10b981, #059669);" onclick="setTheme(this, 'linear-gradient(135deg, #10b981, #059669)')"></div>
+        <div class="theme-btn" style="background: linear-gradient(135deg, #1e293b, #0f172a);" onclick="setTheme(this, 'linear-gradient(135deg, #1e293b, #0f172a)')"></div>
+        <div class="theme-btn" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);" onclick="setTheme(this, 'linear-gradient(135deg, #ec4899, #8b5cf6)')"></div>
+      </div>
+
+      <label style="font-weight:bold; margin-bottom:8px; display:block;">اندازه فونت</label>
+      <input type="range" id="font-size" min="16" max="32" value="24" oninput="document.querySelector('.social-card-text').style.fontSize = this.value + 'px';" style="width:100%; margin-bottom:20px;">
+
+      <button class="btn" id="download-btn" style="width:100%;">📥 دانلود عکس با کیفیت</button>
+    </div>
+
+    <div class="preview-area">
+      <div class="social-card" id="capture-area" style="background: linear-gradient(135deg, #6366f1, #a855f7);">
+        <div class="social-card-text" style="font-size:24px;">دانش، قدرت است.</div>
+        <div class="social-card-brand"><span>abzarak.github.io</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-container" style="margin: 30px auto; text-align: center; max-width: 800px; padding: 15px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1; display:block; clear:both; width:100%;">
+      <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+      <div id="pos-article-text-card-123872"></div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script>
+  const textArea = document.getElementById('card-text');
+  const cardText = document.querySelector('.social-card-text');
+  const captureArea = document.getElementById('capture-area');
+  const downloadBtn = document.getElementById('download-btn');
+
+  // آپدیت زنده متن
+  textArea.addEventListener('input', () => {
+    cardText.textContent = textArea.value || '...';
+  });
+
+  // تغییر تم
+  function setTheme(el, gradient) {
+    document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    captureArea.style.background = gradient;
+  }
+
+  // دانلود با html2canvas
+  downloadBtn.addEventListener('click', () => {
+    const originalText = downloadBtn.textContent;
+    downloadBtn.textContent = '⏳ در حال ساخت...';
+    downloadBtn.disabled = true;
+
+    // تنظیمات برای کیفیت بالا
+    html2canvas(captureArea, {
+      scale: 2, 
+      useCORS: true,
+      backgroundColor: null
+    }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'abzarak-card.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      
+      downloadBtn.textContent = '✅ دانلود شد!';
+      setTimeout(() => {
+        downloadBtn.textContent = originalText;
+        downloadBtn.disabled = false;
+      }, 2000);
+    }).catch(err => {
+      console.error(err);
+      alert('خطا در ساخت عکس. لطفا دوباره تلاش کنید.');
+      downloadBtn.textContent = originalText;
+      downloadBtn.disabled = false;
+    });
+  });
+
+  if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("../sw.js").catch(()=>{}));
+</script>
+<script src="../js/theme.js"></script>
+<script src="../js/app.js"></script>
+<!-- Yektanet Publisher Script -->
+<script>
+    !function(e,t,n){
+        e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];
+        var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");
+        s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l);
+    }(window,document,"yektanet");
+</script>
+</body></html>
