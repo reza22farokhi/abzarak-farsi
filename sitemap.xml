@@ -152,6 +152,12 @@
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/bmi-calculator.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/celsius-to-fahrenheit.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/celsius-to-kelvin.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/cm-to-foot.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/cm-to-inch.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/cm-to-km.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/cm-to-m.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/cm-to-mile.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/cm-to-yard.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/color-converter.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/date-converter.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/digit-converter.html</loc><priority>0.8</priority></url>
@@ -159,13 +165,45 @@
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/fahrenheit-to-celsius.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/fahrenheit-to-kelvin.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/fal-hafez.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/foot-to-cm.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/foot-to-inch.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/foot-to-km.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/foot-to-m.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/foot-to-mile.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/foot-to-yard.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/g-to-kg.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/g-to-ounce.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/g-to-pound.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/g-to-ton.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/hash-generator.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/image-compressor.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/inch-to-cm.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/inch-to-foot.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/inch-to-km.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/inch-to-m.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/inch-to-mile.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/inch-to-yard.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/json.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/kelvin-to-celsius.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/kelvin-to-fahrenheit.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/kg-to-g.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/kg-to-ounce.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/kg-to-pound.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/kg-to-ton.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/km-to-cm.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/km-to-foot.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/km-to-inch.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/km-to-m.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/km-to-mile.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/km-to-yard.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/loan-calculator.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/lorem-ipsum.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/m-to-cm.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/m-to-foot.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/m-to-inch.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/m-to-km.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/m-to-mile.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/m-to-yard.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/miladi-2016.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/miladi-2017.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/miladi-2018.html</loc><priority>0.8</priority></url>
@@ -192,12 +230,26 @@
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/miladi-2039.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/miladi-2040.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/miladi-2041.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/mile-to-cm.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/mile-to-foot.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/mile-to-inch.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/mile-to-km.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/mile-to-m.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/mile-to-yard.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/national-id.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/number-to-words.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/ounce-to-g.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/ounce-to-kg.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/ounce-to-pound.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/ounce-to-ton.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/password-generator.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/password.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/percentage.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/persian-cleaner.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/pound-to-g.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/pound-to-kg.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/pound-to-ounce.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/pound-to-ton.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/prayer-times.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/profit.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/qr-generator.html</loc><priority>0.8</priority></url>
@@ -236,9 +288,19 @@
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/tarot.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/text-counter.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/timestamp.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/ton-to-g.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/ton-to-kg.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/ton-to-ounce.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/ton-to-pound.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/unit-converter.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/url-encode.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/uuid.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/word-counter.html</loc><priority>0.8</priority></url>
   <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/world-clock.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/yard-to-cm.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/yard-to-foot.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/yard-to-inch.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/yard-to-km.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/yard-to-m.html</loc><priority>0.8</priority></url>
+  <url><loc>https://reza22farokhi.github.io/abzarak-farsi/tools/yard-to-mile.html</loc><priority>0.8</priority></url>
 </urlset>
