@@ -275,6 +275,7 @@ const catalog = [
   { title: "مقاله: UUID چیست و چه کاربردی دارد", url: "blog/what-is-uuid.html", type: "article", icon: "📄", keywords: "UUID GUID شناسه یکتا برنامه نویسی" },
   { title: "مقاله: Timestamp (یونیکس تایم)", url: "blog/timestamp-guide.html", type: "article", icon: "📄", keywords: "Timestamp یونیکس تایم تاریخ زمان" },
   { title: "سازنده کارت گرافیکی متن", url: "tools/social-card.html", type: "tool", icon: "🖼️", keywords: "کارت عکس اینستاگرام پست متن به عکس" },
+  { title: "فال حافظ", url: "tools/fal-hafez.html", type: "tool", icon: "🔮", keywords: "فال حافظ دیوان شعر تفأل" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
