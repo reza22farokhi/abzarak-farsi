@@ -1,68 +1,32 @@
-// Cache version - bump this when making major changes
-const CACHE = 'abzarak-v151';
-const PRECACHE = [
-  './',
-  './index.html',
-  './css/style.css',
-  './manifest.json',
-  './favicon.svg'
-];
+// ═══════════════════════════════════════
+// NETWORK-FIRST Service Worker
+// با پاک کردن کامل کش و بارگذاری مستقیم از شبکه
+// ═══════════════════════════════════════
+const CACHE_VERSION = 'abzarak-network-v1';
 
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE).then(c => c.addAll(PRECACHE)).catch(() => {})
-  );
-  // ⚡ مهم: SW جدید بلافاصله فعال شود
+self.addEventListener('install', (e) => {
   self.skipWaiting();
 });
 
-self.addEventListener('activate', e => {
+self.addEventListener('activate', (e) => {
   e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-    )
+    caches.keys()
+      .then(keys => Promise.all(keys.map(k => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
-  // ⚡ مهم: کنترل فوری همه صفحات باز
-  self.clients.claim();
 });
 
-self.addEventListener('fetch', e => {
+self.addEventListener('fetch', (e) => {
+  // فقط GET
   if (e.request.method !== 'GET') return;
+  
+  // فایل‌های خارجی رو دست نزن
   const url = new URL(e.request.url);
   if (url.origin !== self.location.origin) return;
-
-  const acceptHeader = e.request.headers.get('accept') || '';
-  const isHtml = acceptHeader.includes('text/html') 
-                 || e.request.url.endsWith('.html')
-                 || e.request.url.endsWith('/')
-                 || !e.request.url.split('/').pop().includes('.');
-
-  if (isHtml) {
-    // Network-First برای HTML
-    e.respondWith(
-      fetch(e.request).then(resp => {
-        if (resp && resp.status === 200) {
-          const clone = resp.clone();
-          caches.open(CACHE).then(c => c.put(e.request, clone)).catch(() => {});
-        }
-        return resp;
-      }).catch(() => 
-        caches.match(e.request).then(cached => cached || caches.match('./index.html'))
-      )
-    );
-  } else {
-    // Cache-First برای استاتیک
-    e.respondWith(
-      caches.match(e.request).then(cached => {
-        if (cached) return cached;
-        return fetch(e.request).then(resp => {
-          if (resp && resp.status === 200 && resp.type === 'basic') {
-            const clone = resp.clone();
-            caches.open(CACHE).then(c => c.put(e.request, clone)).catch(() => {});
-          }
-          return resp;
-        });
-      })
-    );
-  }
+  
+  // همه چیز از شبکه، bypass کامل کش مرورگر
+  e.respondWith(
+    fetch(e.request, { cache: 'no-store' })
+      .catch(() => caches.match(e.request))
+  );
 });
