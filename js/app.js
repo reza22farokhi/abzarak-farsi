@@ -282,6 +282,7 @@ const catalog = [
   { title: "دستورات Termux", url: "tools/termux-commands.html", type: "tool", icon: "💻", keywords: "ترموکس دستور لینوکس terminal" },
   { title: "مقاله: آموزش کامل Termux", url: "blog/termux-complete-guide.html", type: "article", icon: "📄", keywords: "ترموکس آموزش لینوکس اندروید" },
   { title: "مقاله: تبدیل سایت به اپلیکیشن", url: "blog/website-to-app-guide.html", type: "article", icon: "📄", keywords: "PWA PWABuilder اپلیکیشن اندروید" },
+  { title: "آنالیزور PWA", url: "tools/pwa-checker.html", type: "tool", icon: "🔍", keywords: "PWA آنالیز اپلیکیشن سایت به اپ" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
