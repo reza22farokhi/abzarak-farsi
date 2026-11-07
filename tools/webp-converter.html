@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مبدل فرمت عکس (JPG, PNG, WebP) | ابزارک</title>
+<meta name="description" content="تبدیل آنلاین فرمت عکس به WebP، JPG و PNG با بالاترین کیفیت و کاهش حجم. بدون ارسال به سرور و کاملاً امن.">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+<style>
+  .upload-area { border: 2px dashed var(--accent); background: rgba(99,102,241,0.05); border-radius: 12px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.3s; margin-bottom: 20px; }
+  .upload-area:hover { background: rgba(99,102,241,0.1); }
+  .upload-area input { display: none; }
+  
+  .preview-box { display: none; background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 20px; text-align: center; }
+  .preview-box img { max-width: 100%; max-height: 300px; border-radius: 8px; }
+  
+  .format-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+  @media(max-width: 640px) { .format-options { grid-template-columns: 1fr; } }
+  
+  .format-btn { padding: 15px; border-radius: 10px; border: 2px solid var(--border); background: var(--card); cursor: pointer; text-align: center; font-weight: bold; color: var(--muted); transition: all 0.2s; }
+  .format-btn.active { border-color: var(--accent); background: rgba(99,102,241,0.1); color: var(--accent); }
+  
+  .result-box { display: none; background: #d1fae5; border: 1px solid #10b981; border-radius: 12px; padding: 20px; text-align: center; margin-top: 20px; }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a> · <a href="../about.html">درباره</a><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button></nav>
+</div></header>
+<main class="container tool-page" style="max-width:800px;">
+  <h1>مبدل فرمت عکس</h1>
+  <p class="tool-desc">تبدیل JPG به WebP، PNG به JPG و برعکس، همراه با کاهش حجم.</p>
+
+  <div class="upload-area" id="drop-zone" onclick="document.getElementById('file-input').click()">
+    <div style="font-size: 3rem; margin-bottom: 10px;">🖼️</div>
+    <h3>برای انتخاب عکس کلیک کنید</h3>
+    <p style="color: var(--muted); font-size: 0.9rem;">فرمت‌های ورودی: JPG, PNG, WebP</p>
+    <input type="file" id="file-input" accept="image/*">
+  </div>
+
+  <div class="preview-box" id="preview-box">
+    <img id="img-preview" src="" alt="Preview">
+    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--muted);">حجم اصلی: <span id="orig-size" style="font-weight: bold;">0 KB</span></p>
+  </div>
+
+  <div class="tool-box" id="settings-box" style="display:none;">
+    <div class="field">
+      <label>فرمت خروجی</label>
+      <div class="format-options">
+        <div class="format-btn active" id="btn-webp" onclick="setFormat('image/webp', 'webp')">WebP (پیشنهاد)</div>
+        <div class="format-btn" id="btn-jpg" onclick="setFormat('image/jpeg', 'jpg')">JPG</div>
+        <div class="format-btn" id="btn-png" onclick="setFormat('image/png', 'png')">PNG</div>
+      </div>
+    </div>
+    
+    <div class="field" id="quality-field">
+      <label>کیفیت: <span id="quality-val">80</span>%</label>
+      <input type="range" id="quality" min="10" max="100" value="80" oninput="document.getElementById('quality-val').textContent = this.value">
+    </div>
+
+    <button class="btn" style="width:100%; margin-top: 10px;" onclick="convertImage()">🔄 تبدیل فرمت و بهینه‌سازی</button>
+
+    <div class="result-box" id="result-box">
+      <h3 style="color: #065f46; margin-bottom: 10px;">✅ تبدیل با موفقیت انجام شد!</h3>
+      <p style="margin-bottom: 15px;">حجم جدید: <strong id="new-size" style="font-size: 1.2rem;"></strong></p>
+      <a href="#" id="download-link" class="btn" style="background:#10b981; text-decoration:none; display:inline-block;">⬇️ دانلود عکس جدید</a>
+    </div>
+  </div>
+
+  <div class="ad-container" style="margin: 40px auto; text-align: center; padding: 15px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
+    <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+    <div id="pos-article-text-card-123872"></div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script>
+let originalFile = null;
+let originalImg = new Image();
+let currentMime = 'image/webp';
+let currentExt = 'webp';
+
+const fileInput = document.getElementById('file-input');
+const dropZone = document.getElementById('drop-zone');
+const previewBox = document.getElementById('preview-box');
+const imgPreview = document.getElementById('img-preview');
+const origSize = document.getElementById('orig-size');
+const settingsBox = document.getElementById('settings-box');
+const qualityField = document.getElementById('quality-field');
+const resultBox = document.getElementById('result-box');
+
+fileInput.addEventListener('change', handleFile);
+
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = '#4f46e5'; });
+dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = 'var(--accent)'; });
+dropZone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dropZone.style.borderColor = 'var(--accent)';
+  if(e.dataTransfer.files.length) {
+    fileInput.files = e.dataTransfer.files;
+    handleFile({ target: { files: e.dataTransfer.files } });
+  }
+});
+
+function handleFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  originalFile = file;
+  
+  if (!file.type.startsWith('image/')) {
+    alert('لطفاً یک فایل تصویری انتخاب کنید.');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    imgPreview.src = event.target.result;
+    originalImg.src = event.target.result;
+    origSize.textContent = formatBytes(file.size);
+    
+    dropZone.style.display = 'none';
+    previewBox.style.display = 'block';
+    settingsBox.style.display = 'block';
+    resultBox.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+function setFormat(mime, ext) {
+  currentMime = mime;
+  currentExt = ext;
+  document.querySelectorAll('.format-btn').forEach(b => b.classList.remove('active'));
+  
+  if (mime === 'image/webp') document.getElementById('btn-webp').classList.add('active');
+  else if (mime === 'image/jpeg') document.getElementById('btn-jpg').classList.add('active');
+  else document.getElementById('btn-png').classList.add('active');
+
+  // PNG از فشرده‌سازی با کیفیت پشتیبانی نمی‌کند
+  if (mime === 'image/png') {
+    qualityField.style.display = 'none';
+  } else {
+    qualityField.style.display = 'block';
+  }
+}
+
+function convertImage() {
+  if (!originalImg.src) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = originalImg.width;
+  canvas.height = originalImg.height;
+  
+  const ctx = canvas.getContext('2d');
+  
+  // برای فرمت JPG، پس‌زمینه سفید لازم است تا شفافیت سیاه نشود
+  if (currentMime === 'image/jpeg') {
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+  
+  ctx.drawImage(originalImg, 0, 0);
+  
+  const quality = parseInt(document.getElementById('quality').value) / 100;
+  
+  canvas.toBlob((blob) => {
+    if(!blob) {
+      alert('خطا در تبدیل فرمت.');
+      return;
+    }
+    
+    const newSizeEl = document.getElementById('new-size');
+    const downloadLink = document.getElementById('download-link');
+    const url = URL.createObjectURL(blob);
+    
+    let percent = ((1 - (blob.size / originalFile.size)) * 100).toFixed(1);
+    let percentText = percent > 0 ? `(${percent}٪ کاهش حجم)` : `(${Math.abs(percent)}٪ افزایش حجم)`;
+    
+    newSizeEl.innerHTML = `${formatBytes(blob.size)} <span style="font-size:0.9rem; font-weight:normal; color:#059669;">${percentText}</span>`;
+    
+    downloadLink.href = url;
+    downloadLink.download = `abzarak-converted.${currentExt}`;
+    
+    resultBox.style.display = 'block';
+  }, currentMime, quality);
+}
+
+function formatBytes(bytes, decimals = 2) {
+  if (!+bytes) return '0 Bytes';
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+}
+
+if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("../sw.js").catch(()=>{}));
+</script>
+<script src="../js/theme.js"></script>
+<script src="../js/app.js"></script>
+<script>
+    !function(e,t,n){
+        e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];
+        var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");
+        s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l);
+    }(window,document,"yektanet");
+</script>
+</body>
+</html>

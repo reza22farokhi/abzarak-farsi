@@ -288,6 +288,7 @@ const catalog = [
   { title: "مقاله: راهنمای تبدیل واحدها", url: "blog/unit-conversion-guide.html", type: "article", icon: "📄", keywords: "تبدیل واحد طول وزن دما فرمول" },
   { title: "مبدل واحد پیشرفته", url: "tools/advanced-unit-converter.html", type: "tool", icon: "📊", keywords: "مبدل واحد پیشرفته طول وزن دما همزمان" },
   { title: "مقاله: کاهش حجم عکس و بهینه‌سازی", url: "blog/image-optimization-guide.html", type: "article", icon: "📄", keywords: "فشرده سازی عکس کاهش حجم تصویر WebP" },
+  { title: "مبدل فرمت عکس (WebP)", url: "tools/webp-converter.html", type: "tool", icon: "🔄", keywords: "مبدل فرمت عکس webp jpg png تبدیل" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
