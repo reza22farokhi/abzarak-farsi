@@ -296,6 +296,7 @@ const catalog = [
   { title: "مقاله: سئوی محتوای فارسی", url: "blog/persian-content-seo.html", type: "article", icon: "📄", keywords: "سئو محتوا فارسی نوشتن مقاله کلمه کلیدی" },
   { title: "آنالیزور سئوی متن", url: "tools/content-seo-analyzer.html", type: "tool", icon: "📈", keywords: "آنالیز سئو محتوا متن کلمه کلیدی چگالی" },
   { title: "مقاله: راهنمای ورود به بورس", url: "blog/stock-market-guide.html", type: "article", icon: "📄", keywords: "بورس سرمایه گذاری سهام تحلیل مالی" },
+  { title: "محاسبه‌گر جامع بورس", url: "tools/stock-calculator.html", type: "tool", icon: "📈", keywords: "بورس سهام سود کارمزد میانگین حد ضرر" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
