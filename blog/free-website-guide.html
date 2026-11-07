@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>راهنمای جامع ساخت وب‌سایت شخصی رایگان (بدون هاست و دامنه) | ابزارک</title>
+<meta name="description" content="آموزش گام به گام ساخت وب‌سایت شخصی، پورتفولیو یا وبلاگ به صورت کاملاً رایگان با GitHub Pages. از انتخاب قالب تا اتصال دامنه و تبدیل به اپلیکیشن.">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "راهنمای جامع ساخت وب‌سایت شخصی رایگان",
+  "description": "آموزش ساخت سایت رایگان با GitHub Pages",
+  "author": {"@type": "Organization", "name": "ابزارک فارسی"},
+  "datePublished": "2026-11-08",
+  "inLanguage": "fa-IR"
+}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav>
+    <a href="../index.html">ابزارها</a>
+    <a href="index.html" style="color:var(--accent);font-weight:600">وبلاگ</a>
+    <a href="../about.html">درباره</a>
+    <button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button>
+  </nav>
+</div></header>
+
+<main class="container article-main">
+  <h1>راهنمای جامع ساخت وب‌سایت شخصی رایگان (بدون هاست و دامنه)</h1>
+  <div class="article-meta">دسته: توسعه وب | زمان مطالعه: ۱۰ دقیقه | به‌روزرسانی: آبان ۱۴۰۵</div>
+  
+  <div class="article-body">
+    <p>سال‌ها پیش، اگر می‌خواستید یک وب‌سایت شخصی داشته باشید، باید هزینه‌های سنگینی برای خرید هاست و دامنه می‌پرداختید و یا با پیچیدگی‌های راه‌اندازی سرور دست و پنجه نرم می‌کردید. اما امروزه با ظهور سرویس‌هایی مثل <strong>GitHub Pages</strong>، شما می‌توانید یک وب‌سایت کاملاً حرفه‌ای، سریع و امن را به صورت <strong>۱۰۰٪ رایگان</strong> راه‌اندازی کنید.</p>
+    
+    <p>در این مقاله، دقیقاً همان مسیری را به شما آموزش می‌دهم که خودم برای ساخت سایت «ابزارک فارسی» طی کردم. سایتی که امروز بیش از ۳۸ ابزار و ۲۵ مقاله دارد و حتی به یک اپلیکیشن اندروید تبدیل شده است.</p>
+
+    <div class="article-cta">
+      <h3>می‌خواهید سایت خود را به اپلیکیشن تبدیل کنید؟</h3>
+      <p>پس از ساخت سایت، با ابزار رایگان ما بررسی کنید که آیا سایت شما آماده تبدیل به اپلیکیشن اندروید است یا نه.</p>
+      <a href="../tools/pwa-checker.html" class="btn" style="text-decoration:none;display:inline-block;margin-top:10px">🔍 آنالیزور PWA</a>
+    </div>
+
+    <h2>چرا GitHub Pages بهترین انتخاب برای شروع است؟</h2>
+    <ul style="padding-right:24px; line-height:2;">
+      <li><strong>کاملاً رایگان:</strong> برای همیشه، بدون نیاز به کارت اعتباری.</li>
+      <li><strong>سرعت بالا:</strong> سایت‌ها روی سرورهای قدرتمند CDN گیت‌هاب (Fastly) میزبانی می‌شوند.</li>
+      <li><strong>امنیت کامل (HTTPS):</strong> گواهی SSL به صورت خودکار برای شما صادر می‌شود.</li>
+      <li><strong>کنترل نسخه (Git):</strong> تمام تغییرات سایت شما ذخیره می‌شوند و در صورت اشتباه می‌توانید به عقب برگردید.</li>
+    </ul>
+
+    <div id="pos-article-text-123879" style="margin: 30px 0; text-align: center; min-height: 100px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px;"></div>
+
+    <h2>مرحله ۱: ساخت حساب کاربری در GitHub</h2>
+    <p>اولین قدم، ساخت یک اکانت رایگان در <a href="https://github.com" target="_blank" rel="noopener">GitHub.com</a> است. پس از ثبت‌نام، شما یک پروفایل خواهید داشت که می‌تواند به عنوان سایت شخصی شما هم عمل کند.</p>
+
+    <h2>مرحله ۲: ساخت مخزن (Repository) مناسب</h2>
+    <p>برای اینکه سایت شما در ریشه دامنه‌ی گیت‌هاب قرار بگیرد (مثلاً `username.github.io`)، باید یک مخزن با نام کاربری خودتان بسازید:</p>
+    <ol style="padding-right:24px; line-height:2;">
+      <li>روی دکمه <strong>New repository</strong> کلیک کنید.</li>
+      <li>در قسمت <strong>Repository name</strong>، دقیقاً نام کاربری خود را بنویسید و در انتها <code>.github.io</code> اضافه کنید. (مثلاً اگر نام کاربری شما `ali` است، نام مخزن باید `ali.github.io` باشد).</li>
+      <li>گزینه <strong>Public</strong> را انتخاب کنید.</li>
+      <li>تیک <strong>Add a README file</strong> را بزنید و روی Create repository کلیک کنید.</li>
+    </ol>
+
+    <h2>مرحله ۳: ساخت فایل‌های سایت</h2>
+    <p>حالا که مخزن ساخته شد، باید فایل‌های سایت خود را بسازید. ساده‌ترین راه، استفاده از یک فایل <code>index.html</code> است.</p>
+    <p>در مخزن خود، روی دکمه <strong>Add file > Create new file</strong> کلیک کنید. نام فایل را <code>index.html</code> بگذارید و کد زیر را در آن قرار دهید:</p>
+    
+    <pre style="background:#0f172a; color:#a5f3fc; padding:14px; border-radius:8px; direction:ltr; text-align:left; overflow-x:auto; font-size:0.85rem;"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fa" dir="rtl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;سایت شخصی من&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;سلام دنیا! به سایت من خوش آمدید.&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h2>مرحله ۴: فعال‌سازی GitHub Pages</h2>
+    <p>تنها کاری که برای آنلاین شدن سایت باقی مانده، فعال کردن GitHub Pages است:</p>
+    <ol style="padding-right:24px; line-height:2;">
+      <li>در صفحه مخزن، به تب <strong>Settings</strong> بروید.</li>
+      <li>از منوی سمت چپ، روی <strong>Pages</strong> کلیک کنید.</li>
+      <li>در بخش <strong>Build and deployment</strong>، در قسمت Source، گزینه <strong>Deploy from a branch</strong> را انتخاب کنید.</li>
+      <li>در قسمت Branch، شاخه <strong>main</strong> و پوشه <strong>/ (root)</strong> را انتخاب و روی <strong>Save</strong> کلیک کنید.</li>
+    </ol>
+    <p>پس از ۱ تا ۲ دقیقه، آدرسی مثل <code>https://username.github.io</code> بالا می‌آید و سایت شما آنلاین می‌شود!</p>
+
+    <h2>مرحله ۵: استفاده از قالب‌های آماده (بدون کدنویسی)</h2>
+    <p>اگر با HTML و CSS آشنا نیستید، نگران نباشید. می‌توانید از قالب‌های آماده Jekyll استفاده کنید یا از سایت‌هایی مثل <a href="https://pages.github.com/themes/" target="_blank" rel="noopener">GitHub Pages Themes</a> یک قالب انتخاب کنید و تنظیمات آن را در فایل <code>_config.yml</code> وارد کنید.</p>
+
+    <h2>مرحله ۶: توسعه سایت با موبایل (اختیاری)</h2>
+    <p>شاید باورتان نشود، اما من کل سایت «ابزارک» را با موبایل و برنامه <strong>Termux</strong> ساختم. Termux یک محیط لینوکس کامل روی اندروید است که به شما اجازه می‌دهد کد بزنید و با گیت (Git) فایل‌ها را آپلود کنید. اگر به این کار علاقه‌مند شدید، حتماً سری به <a href="../tools/termux-commands.html">مرجع دستورات Termux</a> ما بزنید.</p>
+
+    <div class="article-cta">
+      <h3>می‌خواهید یک دامنه اختصاصی داشته باشید؟</h3>
+      <p>وقتی سایتتان آماده شد، می‌توانید یک دامنه مثل .ir یا .com بخرید و به آن متصل کنید.</p>
+      <a href="buy-domain-github-pages.html" class="btn" style="text-decoration:none;display:inline-block;margin-top:10px">راهنمای خرید و اتصال دامنه</a>
+    </div>
+
+    <h2>مرحله ۷: قدم‌های بعدی (حرفه‌ای شدن)</h2>
+    <p>ساخت سایت فقط شروع ماجراست. برای اینکه سایتتان دیده شود، باید این مراحل را انجام دهید:</p>
+    <ul style="padding-right:24px; line-height:2;">
+      <li><strong>سئو (SEO):</strong> با مطالعه مقاله <a href="rank-1-on-google.html">چطور در گوگل رتبه یک شویم</a>، سایت خود را برای موتورهای جستجو بهینه کنید.</li>
+      <li><strong>تبدیل به اپلیکیشن:</strong> با استفاده از مقاله <a href="website-to-app-guide.html">تبدیل سایت به اپلیکیشن</a>، یک اپ اندروید از سایت خود بسازید.</li>
+      <li><strong>افزودن ابزارهای کاربردی:</strong> می‌توانید از ابزارهای آماده استفاده کنید یا کدهای آن‌ها را از سایت ما الگو بگیرید.</li>
+    </ul>
+
+    <h2>مشکلات رایج و راه‌حل‌ها</h2>
+    <ul style="padding-right:24px; line-height:2;">
+      <li><strong>❌ سایت من بالا نمی‌آید (خطای 404):</strong> مطمئن شوید که فایل <code>index.html</code> در ریشه (root) مخزن قرار دارد. همچنین ممکن است نیاز به چند دقیقه صبر داشته باشید.</li>
+      <li><strong>❌ تصاویر یا فایل‌های CSS لود نمی‌شوند:</strong> مسیر فایل‌ها را چک کنید. در گیت‌هاب، به بزرگی و کوچکی حروف (Case Sensitivity) بسیار حساس است.</li>
+      <li><strong>❌ سایت به روز نمی‌شود:</strong> کش مرورگر خود را پاک کنید (Ctrl + F5) یا از تب ناشناس استفاده کنید.</li>
+    </ul>
+
+    <p style="margin-top:24px; padding:20px; background:rgba(99,102,241,0.05); border-right:4px solid var(--accent); border-radius:8px;">
+      <strong>💡 جمع‌بندی:</strong> ساخت یک وب‌سایت رایگان با GitHub Pages بهترین راه برای شروع است. شما با صفر هزینه می‌توانید یک پورتفولیو حرفه‌ای، وبلاگ شخصی یا حتی مجموعه ابزارهای آنلاین (مثل ابزارک) داشته باشید. کافیست امروز اولین قدم را بردارید.
+    </p>
+
+    <div class="ad-container" style="margin: 30px auto; text-align: center; padding: 10px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
+      <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+      <div id="pos-article-text-card-123872"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="container">© ابزارک فارسی — <a href="../about.html" style="color:inherit">درباره</a> · <a href="../contact.html" style="color:inherit">تماس</a></div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script src="../js/theme.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/reading-tools.js"></script>
+<script>
+    !function(e,t,n){
+        e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];
+        var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");
+        s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l);
+    }(window,document,"yektanet");
+</script>
+</body>
+</html>

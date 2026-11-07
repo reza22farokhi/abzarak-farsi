@@ -283,6 +283,7 @@ const catalog = [
   { title: "مقاله: آموزش کامل Termux", url: "blog/termux-complete-guide.html", type: "article", icon: "📄", keywords: "ترموکس آموزش لینوکس اندروید" },
   { title: "مقاله: تبدیل سایت به اپلیکیشن", url: "blog/website-to-app-guide.html", type: "article", icon: "📄", keywords: "PWA PWABuilder اپلیکیشن اندروید" },
   { title: "آنالیزور PWA", url: "tools/pwa-checker.html", type: "tool", icon: "🔍", keywords: "PWA آنالیز اپلیکیشن سایت به اپ" },
+  { title: "مقاله: ساخت وب‌سایت رایگان", url: "blog/free-website-guide.html", type: "article", icon: "📄", keywords: "ساخت سایت رایگان گیت هاب هاست" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
