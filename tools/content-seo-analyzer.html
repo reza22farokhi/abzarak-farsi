@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آنالیزور سئوی متن و محتوا | ابزارک</title>
+<meta name="description" content="بررسی زنده سئوی متن فارسی: چگالی کلمه کلیدی، شناسایی حروف عربی، نیم فاصله، تعداد کلمات و نمره کلی سئو.">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+<style>
+  .analyzer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+  @media (max-width: 768px) { .analyzer-grid { grid-template-columns: 1fr; } }
+  
+  .analyzer-panel { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .analyzer-panel h3 { margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+  
+  .score-circle { width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 2rem; font-weight: 800; color: var(--text); position: relative; }
+  .score-label { text-align: center; font-weight: bold; margin-bottom: 20px; color: var(--muted); }
+  
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+  .stat-box { background: var(--bg); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid var(--border); }
+  .stat-box .num { font-size: 1.3rem; font-weight: bold; color: var(--accent); }
+  .stat-box .lbl { font-size: 0.8rem; color: var(--muted); }
+  
+  .check-list { list-style: none; padding: 0; margin: 0; }
+  .check-list li { padding: 10px 0; border-bottom: 1px dashed var(--border); font-size: 0.9rem; display: flex; align-items: flex-start; gap: 8px; line-height: 1.6; }
+  .check-list li:last-child { border-bottom: none; }
+  .check-list .icon { font-size: 1.1rem; }
+  
+  .success-text { color: #10b981; }
+  .error-text { color: #ef4444; }
+  .warn-text { color: #f59e0b; }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a> · <a href="../about.html">درباره</a><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button></nav>
+</div></header>
+<main class="container tool-page" style="max-width:1100px;">
+  <h1>آنالیزور سئوی متن</h1>
+  <p class="tool-desc">متن مقاله خود را وارد کنید تا وضعیت سئوی آن را به صورت زنده بررسی کنیم.</p>
+
+  <div class="analyzer-grid">
+    <!-- ورودی‌ها -->
+    <div class="analyzer-panel">
+      <h3>📝 متن و کلمه کلیدی</h3>
+      <div class="field">
+        <label>کلمه کلیدی هدف (Focus Keyword)</label>
+        <input type="text" id="keyword" placeholder="مثلاً: سئوی محتوا" oninput="analyze()">
+      </div>
+      <div class="field">
+        <label>متن مقاله</label>
+        <textarea id="text" rows="12" placeholder="متن مقاله خود را اینجا پیست کنید..." oninput="analyze()"></textarea>
+      </div>
+    </div>
+
+    <!-- نتایج -->
+    <div class="analyzer-panel">
+      <h3>📊 نتایج آنالیز</h3>
+      
+      <div class="score-circle" id="score-circle">
+        <span id="score-value">0</span>
+      </div>
+      <div class="score-label" id="score-label">در انتظار متن...</div>
+
+      <div class="stat-grid">
+        <div class="stat-box">
+          <div class="num" id="word-count">0</div>
+          <div class="lbl">تعداد کلمات</div>
+        </div>
+        <div class="stat-box">
+          <div class="num" id="density">0%</div>
+          <div class="lbl">چگالی کلمه کلیدی</div>
+        </div>
+      </div>
+
+      <ul class="check-list" id="checklist">
+        <li><span class="icon">⏳</span><span>برای شروع، متن خود را وارد کنید.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ad-container" style="margin: 40px auto; text-align: center; max-width: 800px; padding: 15px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1; display: block; clear: both; width: 100%;">
+      <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+      <div id="pos-article-display-card-123819"></div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script>
+function analyze() {
+  const text = document.getElementById('text').value;
+  const keyword = document.getElementById('keyword').value.trim();
+  const checklist = document.getElementById('checklist');
+  const scoreEl = document.getElementById('score-circle');
+  const scoreVal = document.getElementById('score-value');
+  const scoreLbl = document.getElementById('score-label');
+  
+  if (!text.trim()) {
+    scoreVal.textContent = '0';
+    scoreLbl.textContent = 'در انتظار متن...';
+    scoreEl.style.background = 'conic-gradient(#e2e8f0 0deg, #e2e8f0 360deg)';
+    document.getElementById('word-count').textContent = '0';
+    document.getElementById('density').textContent = '0%';
+    checklist.innerHTML = '<li><span class="icon">⏳</span><span>برای شروع، متن خود را وارد کنید.</span></li>';
+    return;
+  }
+
+  // ۱. محاسبات پایه
+  const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+  const wordCount = words.length;
+  document.getElementById('word-count').textContent = wordCount;
+
+  let score = 0;
+  let checks = [];
+
+  // ۲. بررسی طول متن
+  if (wordCount >= 300) {
+    score += 20;
+    checks.push('<span class="icon success-text">✅</span><span>طول متن عالی است (بیشتر از ۳۰۰ کلمه).</span>');
+  } else if (wordCount >= 100) {
+    score += 10;
+    checks.push('<span class="icon warn-text">⚠️</span><span>متن کمی کوتاه است. برای سئوی بهتر، حداقل ۳۰۰ کلمه بنویسید.</span>');
+  } else {
+    checks.push('<span class="icon error-text">❌</span><span>متن بسیار کوتاه است. گوگل به محتوای بلندتر رتبه بهتری می‌دهد.</span>');
+  }
+
+  // ۳. بررسی کلمه کلیدی
+  if (keyword) {
+    const keywordRegex = new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    const keywordMatches = (text.match(keywordRegex) || []).length;
+    const density = ((keywordMatches * (keyword.split(' ').length)) / wordCount * 100).toFixed(1);
+    
+    document.getElementById('density').textContent = density + '%';
+
+    if (density > 0 && density <= 3) {
+      score += 30;
+      checks.push('<span class="icon success-text">✅</span><span>چگالی کلمه کلیدی عالی است (' + density + '٪).</span>');
+    } else if (density === '0.0' || keywordMatches === 0) {
+      checks.push('<span class="icon error-text">❌</span><span>کلمه کلیدی در متن شما وجود ندارد!</span>');
+    } else if (density > 3) {
+      score += 10;
+      checks.push('<span class="icon warn-text">⚠️</span><span>چگالی کلمه کلیدی بالاست (' + density + '٪). گوگل ممکن است آن را اسپم بداند (Keyword Stuffing).</span>');
+    }
+  } else {
+    checks.push('<span class="icon warn-text">ℹ️</span><span>کلمه کلیدی وارد نشده است (اختیاری).</span>');
+  }
+
+  // ۴. بررسی حروف عربی
+  const arabicMatches = text.match(/[يك]/g);
+  if (arabicMatches) {
+    checks.push('<span class="icon error-text">❌</span><span>مشکل املایی: ' + arabicMatches.length + ' مورد حرف عربی (ي، ك) پیدا شد. از <a href="persian-cleaner.html" style="color:var(--accent)">ابزار پاک‌سازی متن</a> استفاده کنید.</span>');
+  } else {
+    score += 20;
+    checks.push('<span class="icon success-text">✅</span><span>هیچ حرف عربی در متن وجود ندارد.</span>');
+  }
+
+  // ۵. بررسی نیم‌فاصله
+  const nimeMatches = text.match(/‌/g);
+  if (nimeMatches && nimeMatches.length > 0) {
+    score += 15;
+    checks.push('<span class="icon success-text">✅</span><span>نیم‌فاصله‌ها رعایت شده‌اند (' + nimeMatches.length + ' مورد).</span>');
+  } else {
+    score += 5;
+    checks.push('<span class="icon warn-text">⚠️</span><span>از نیم‌فاصله استفاده نکرده‌اید. (مثلاً می‌روم به جای می روم).</span>');
+  }
+
+  // ۶. بررسی طول جملات (خوانایی)
+  const sentences = text.split(/[.?!؟]/).filter(s => s.trim().length > 0);
+  if (sentences.length > 0) {
+    const avgWordsPerSentence = Math.round(wordCount / sentences.length);
+    if (avgWordsPerSentence <= 25) {
+      score += 15;
+      checks.push('<span class="icon success-text">✅</span><span>جملات شما کوتاه و خوانا هستند (میانگین ' + avgWordsPerSentence + ' کلمه).</span>');
+    } else {
+      checks.push('<span class="icon warn-text">⚠️</span><span>جملات شما طولانی هستند (میانگین ' + avgWordsPerSentence + ' کلمه). برای خوانایی بهتر، جملات را کوتاه‌تر کنید.</span>');
+    }
+  }
+
+  // ۷. محاسبه نهایی و رنگ‌بندی
+  score = Math.min(100, score);
+  scoreVal.textContent = score;
+
+  let color, label;
+  if (score >= 80) { color = '#10b981'; label = 'عالی! متن شما از نظر سئو بی‌نقص است.'; }
+  else if (score >= 50) { color = '#f59e0b'; label = 'متوسط. با رفع هشدارهای بالا، رتبه بهتری می‌گیرید.'; }
+  else { color = '#ef4444'; label = 'ضعیف. متن شما نیاز به بازنگری جدی دارد.'; }
+
+  scoreEl.style.background = 'conic-gradient(' + color + ' 0deg, ' + color + ' ' + (score * 3.6) + 'deg, #e2e8f0 ' + (score * 3.6) + 'deg)';
+  scoreLbl.textContent = label;
+  scoreLbl.style.color = color;
+
+  // نمایش چک‌لیست
+  checklist.innerHTML = checks.map(c => '<li>' + c + '</li>').join('');
+}
+
+if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("../sw.js").catch(()=>{}));
+</script>
+<script src="../js/theme.js"></script>
+<script src="../js/app.js"></script>
+<script>
+    !function(e,t,n){
+        e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];
+        var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");
+        s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l);
+    }(window,document,"yektanet");
+</script>
+</body>
+</html>

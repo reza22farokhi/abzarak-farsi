@@ -1,5 +1,5 @@
 // Cache version - bump this when making major changes
-const CACHE = 'abzarak-v144';
+const CACHE = 'abzarak-v145';
 const PRECACHE = [
   './',
   './index.html',
