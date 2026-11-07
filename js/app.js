@@ -285,6 +285,7 @@ const catalog = [
   { title: "آنالیزور PWA", url: "tools/pwa-checker.html", type: "tool", icon: "🔍", keywords: "PWA آنالیز اپلیکیشن سایت به اپ" },
   { title: "مقاله: ساخت وب‌سایت رایگان", url: "blog/free-website-guide.html", type: "article", icon: "📄", keywords: "ساخت سایت رایگان گیت هاب هاست" },
   { title: "سازنده قالب سایت", url: "tools/website-builder.html", type: "tool", icon: "🏗️", keywords: "ساخت سایت قالب وب پورتفولیو گیت هاب" },
+  { title: "مقاله: راهنمای تبدیل واحدها", url: "blog/unit-conversion-guide.html", type: "article", icon: "📄", keywords: "تبدیل واحد طول وزن دما فرمول" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
