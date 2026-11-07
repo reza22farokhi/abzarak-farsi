@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سازنده پرامپت حرفه‌ای هوش مصنوعی + کتابخانه آماده | ابزارک</title>
+<meta name="description" content="ساخت پرامپت حرفه‌ای برای ChatGPT و Claude با روش ROLE-TASK-CONTEXT-FORMAT. شامل ۲۰+ پرامپت آماده و تخمین‌گر توکن.">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+<style>
+  .ai-tabs { display: flex; gap: 8px; margin: 20px 0; overflow-x: auto; padding-bottom: 8px; }
+  .ai-tab { padding: 12px 20px; border-radius: 12px; border: 1px solid var(--border); background: var(--card); cursor: pointer; font-family: inherit; font-size: 0.95rem; font-weight: 600; color: var(--muted); transition: all 0.2s; white-space: nowrap; }
+  .ai-tab:hover { border-color: var(--accent); }
+  .ai-tab.active { background: var(--accent-gradient); color: white; border-color: transparent; box-shadow: 0 4px 12px rgba(99,102,241,0.3); }
+  
+  .ai-panel { display: none; animation: fadeIn 0.3s ease; }
+  .ai-panel.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  
+  .builder-step { background: var(--bg); padding: 16px; border-radius: 12px; margin-bottom: 12px; border-right: 4px solid var(--accent); }
+  .builder-step .step-num { display: inline-flex; width: 24px; height: 24px; background: var(--accent); color: white; border-radius: 50%; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; margin-left: 8px; }
+  .builder-step label { font-weight: 700; display: block; margin-bottom: 8px; font-size: 0.95rem; }
+  .builder-step textarea, .builder-step select, .builder-step input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; background: var(--card); color: var(--text); font-size: 0.9rem; resize: vertical; }
+  .builder-step textarea:focus, .builder-step select:focus { border-color: var(--accent); outline: none; }
+  .builder-step .hint { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+  
+  .prompt-output { background: #0f172a; color: #a5f3fc; padding: 20px; border-radius: 12px; font-family: monospace; font-size: 0.9rem; direction: rtl; text-align: right; line-height: 1.9; white-space: pre-wrap; word-break: break-word; min-height: 100px; margin-top: 15px; border: 1px solid rgba(255,255,255,0.1); }
+  
+  .action-btns { display: flex; gap: 10px; margin-top: 12px; }
+  .action-btns button { flex: 1; padding: 12px; border-radius: 10px; border: none; cursor: pointer; font-family: inherit; font-weight: bold; font-size: 0.9rem; transition: all 0.2s; }
+  .btn-copy-prompt { background: var(--accent-gradient); color: white; }
+  .btn-copy-prompt:hover { transform: translateY(-2px); }
+  .btn-clear-prompt { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+  
+  /* Library */
+  .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-top: 15px; }
+  .library-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.2s; }
+  .library-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .library-card .icon-cat { font-size: 1.5rem; margin-bottom: 8px; }
+  .library-card h4 { font-size: 0.95rem; margin-bottom: 6px; }
+  .library-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+  .library-card .use-btn { margin-top: 10px; padding: 6px 12px; background: rgba(99,102,241,0.1); color: var(--accent); border: 1px solid rgba(99,102,241,0.3); border-radius: 6px; font-size: 0.8rem; cursor: pointer; font-family: inherit; font-weight: 600; }
+  
+  /* Token estimator */
+  .token-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 20px; }
+  .token-box { padding: 16px; background: var(--bg); border-radius: 12px; text-align: center; border: 1px solid var(--border); }
+  .token-box .num { font-size: 1.5rem; font-weight: bold; color: var(--accent); }
+  .token-box .lbl { font-size: 0.8rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a> · <a href="../about.html">درباره</a><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button></nav>
+</div></header>
+<main class="container tool-page" style="max-width:1000px;">
+  <h1>سازنده پرامپت حرفه‌ای AI</h1>
+  <p class="tool-desc">با روش علمی ROLE-TASK-CONTEXT-FORMAT، پرامپت کامل برای ChatGPT و Claude بسازید.</p>
+
+  <div class="ai-tabs">
+    <button class="ai-tab active" onclick="switchAITab('builder', this)">🛠️ سازنده پرامپت</button>
+    <button class="ai-tab" onclick="switchAITab('library', this)">📚 کتابخانه آماده</button>
+    <button class="ai-tab" onclick="switchAITab('token', this)">🎯 تخمین توکن</button>
+  </div>
+
+  <!-- ═══════════ تب ۱: سازنده ═══════════ -->
+  <div class="ai-panel active" id="panel-builder">
+    <div class="tool-box">
+      <div class="builder-step">
+        <label><span class="step-num">۱</span> نقش (Role) — AI باید چه کسی باشد؟</label>
+        <select id="b-role" onchange="generatePrompt()">
+          <option value="یک متخصص بازاریابی دیجیتال با ۱۰ سال تجربه">👨‍💼 متخصص بازاریابی دیجیتال</option>
+          <option value="یک برنامه‌نویس ارشد فول‌استک با تخصص در Python و JavaScript">💻 برنامه‌نویس ارشد</option>
+          <option value="یک کپی‌رایتر حرفه‌ای فارسی‌زبان">✍️ کپی‌رایتر حرفه‌ای</option>
+          <option value="یک مشاور کسب و کار و استراتژیست">📊 مشاور کسب و کار</option>
+          <option value="یک مترجم حرفه‌ای متون تخصصی">🌐 مترجم حرفه‌ای</option>
+          <option value="یک معلم دلسوز و صبور">🎓 معلم دلسوز</option>
+          <option value="یک متخصص سئو و بهینه‌سازی محتوا">📈 متخصص سئو</option>
+          <option value="یک تحلیلگر مالی و سرمایه‌گذار باتجربه">💰 تحلیلگر مالی</option>
+          <option value="یک روانشناس و مشاور">🧠 روانشناس</option>
+          <option value="یک نویسنده خلاق و داستان‌سرا">📖 نویسنده خلاق</option>
+        </select>
+        <div class="hint">💡 هرچه نقش دقیق‌تر، پاسخ باکیفیت‌تر</div>
+      </div>
+
+      <div class="builder-step">
+        <label><span class="step-num">۲</span> وظیفه (Task) — دقیقاً چه می‌خواهید؟</label>
+        <textarea id="b-task" rows="3" placeholder="مثال: یک ایمیل معرفی محصول برای مدیران فروشگاه‌ها بنویس" oninput="generatePrompt()"></textarea>
+        <div class="hint">💡 واضح و مشخص بنویسید</div>
+      </div>
+
+      <div class="builder-step">
+        <label><span class="step-num">۳</span> زمینه (Context) — اطلاعات لازم</label>
+        <textarea id="b-context" rows="3" placeholder="مثال: محصول ما اپلیکیشن حسابداری است، قیمت ماهانه ۵۰۰ هزار تومان، مخاطب صاحبان فروشگاه‌های کوچک" oninput="generatePrompt()"></textarea>
+        <div class="hint">💡 هرچه اطلاعات بیشتر، پاسخ مرتبط‌تر</div>
+      </div>
+
+      <div class="builder-step">
+        <label><span class="step-num">۴</span> فرمت (Format) — شکل خروجی</label>
+        <select id="b-format" onchange="generatePrompt()">
+          <option value="پاسخ را در ۳ پاراگراف کوتاه و خوانا بنویس">📄 ۳ پاراگراف کوتاه</option>
+          <option value="پاسخ را به صورت لیست بولت‌پوینت (Bullet Points) بنویس">📋 لیست بولت‌پوینت</option>
+          <option value="پاسخ را در قالب جدول مقایسه‌ای بنویس">📊 جدول مقایسه‌ای</option>
+          <option value="پاسخ را به صورت گام به گام (Step by step) بنویس">🪜 گام به گام</option>
+          <option value="پاسخ را در حداکثر ۱۰۰ کلمه بنویس">✂️ حداکثر ۱۰۰ کلمه</option>
+          <option value="پاسخ را به صورت JSON فرمت‌شده بنویس">{ } JSON فرمت</option>
+          <option value="پاسخ را به صورت کد کامل و کامنت‌گذاری‌شده بنویس">💾 کد کامنت‌گذاری‌شده</option>
+        </select>
+      </div>
+
+      <div class="builder-step" style="border-right-color: #f59e0b;">
+        <label><span class="step-num" style="background:#f59e0b;">۵</span> لحن (Tone) — اختیاری</label>
+        <select id="b-tone" onchange="generatePrompt()">
+          <option value="">(بدون لحن خاص)</option>
+          <option value="با لحن دوستانه و گرم">😊 دوستانه</option>
+          <option value="با لحن رسمی و حرفه‌ای">👔 رسمی</option>
+          <option value="با لحن آموزشی و ساده">📚 آموزشی</option>
+          <option value="با لحن طنز و سرگرم‌کننده">😂 طنز</option>
+          <option value="با لحن انگیزشی و الهام‌بخش">🔥 انگیزشی</option>
+        </select>
+      </div>
+
+      <h3 style="margin-top: 20px; margin-bottom: 10px;">📝 پرامپت نهایی شما:</h3>
+      <div class="prompt-output" id="final-prompt">پرامپت شما اینجا نمایش داده می‌شود...</div>
+      
+      <div class="action-btns">
+        <button class="btn-copy-prompt" onclick="copyPrompt()">📋 کپی پرامپت</button>
+        <button class="btn-clear-prompt" onclick="clearForm()">🗑️ پاک کردن</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ تب ۲: کتابخانه ═══════════ -->
+  <div class="ai-panel" id="panel-library">
+    <div class="tool-box">
+      <h3 style="margin-bottom: 8px;">📚 پرامپت‌های آماده و حرفه‌ای</h3>
+      <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 15px;">روی هر پرامپت کلیک کنید تا کپی شود و در ChatGPT/Claude استفاده کنید.</p>
+      <div class="library-grid" id="library-grid"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ تب ۳: تخمین توکن ═══════════ -->
+  <div class="ai-panel" id="panel-token">
+    <div class="tool-box">
+      <h3 style="margin-bottom: 12px;">🎯 تخمین‌گر توکن و هزینه API</h3>
+      <div class="field">
+        <label>متن یا پرامپت خود را وارد کنید:</label>
+        <textarea id="token-input" rows="8" placeholder="متن خود را اینجا پیست کنید..." oninput="estimateToken()" style="font-family: monospace; direction: rtl; text-align: right;"></textarea>
+      </div>
+      
+      <div class="token-results">
+        <div class="token-box">
+          <div class="num" id="token-count">0</div>
+          <div class="lbl">تخمین توکن</div>
+        </div>
+        <div class="token-box">
+          <div class="num" id="char-count-tk">0</div>
+          <div class="lbl">تعداد کاراکتر</div>
+        </div>
+        <div class="token-box">
+          <div class="num" id="word-count-tk">0</div>
+          <div class="lbl">تعداد کلمه</div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 20px; padding: 16px; background: rgba(99,102,241,0.05); border-right: 4px solid var(--accent); border-radius: 8px; font-size: 0.9rem; line-height: 1.9;">
+        <strong>💡 هزینه تخمینی API (GPT-4o):</strong><br>
+        • توکن ورودی: <span id="cost-in">$0</span><br>
+        • توکن خروجی (تقریبی): <span id="cost-out">$0</span><br>
+        • <strong>مجموع تخمینی: <span id="cost-total" style="color:var(--accent); font-size: 1.1rem;">$0</span></strong>
+        <br><br>
+        <span style="font-size: 0.8rem; color: var(--muted);">⚠️ تخمین تقریبی است. برای قیمت دقیق به سایت OpenAI مراجعه کنید. (نرخ: $2.5/1M ورودی، $10/1M خروجی)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-container" style="margin: 40px auto; text-align: center; padding: 15px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1; display: block; clear: both; width: 100%;">
+      <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+      <div id="pos-article-display-card-123819"></div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script>
+// ═══════════ Tabs ═══════════
+function switchAITab(tab, btn) {
+  document.querySelectorAll('.ai-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.ai-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+// ═══════════ Prompt Builder ═══════════
+function generatePrompt() {
+  const role = document.getElementById('b-role').value;
+  const task = document.getElementById('b-task').value.trim();
+  const context = document.getElementById('b-context').value.trim();
+  const format = document.getElementById('b-format').value;
+  const tone = document.getElementById('b-tone').value;
+  
+  const finalEl = document.getElementById('final-prompt');
+  
+  if (!task) {
+    finalEl.textContent = '⚠️ لطفاً بخش "وظیفه" را پر کنید.';
+    return;
+  }
+  
+  let prompt = `# نقش\nتو ${role} هستی.\n\n`;
+  prompt += `# وظیفه\n${task}\n\n`;
+  
+  if (context) {
+    prompt += `# زمینه و اطلاعات\n${context}\n\n`;
+  }
+  
+  prompt += `# فرمت خروجی\n${format}\n`;
+  
+  if (tone) {
+    prompt += `\n# لحن\n${tone}\n`;
+  }
+  
+  prompt += `\n# نکات مهم\n- پاسخ را به زبان فارسی روان و طبیعی بنویس.\n- از اطلاعات ساختگی خودداری کن و اگر چیزی نمی‌دانی، صادقانه بگو.\n- پاسخ را ساختاریافته و قابل خواندن ارائه بده.`;
+  
+  finalEl.textContent = prompt;
+}
+
+function copyPrompt() {
+  const text = document.getElementById('final-prompt').textContent;
+  if (text.includes('⚠️') || text.includes('اینجا نمایش')) return;
+  
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    const original = btn.textContent;
+    btn.textContent = '✅ کپی شد!';
+    setTimeout(() => btn.textContent = original, 1500);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    alert('✅ پرامپت کپی شد!');
+  });
+}
+
+function clearForm() {
+  document.getElementById('b-task').value = '';
+  document.getElementById('b-context').value = '';
+  document.getElementById('final-prompt').textContent = 'پرامپت شما اینجا نمایش داده می‌شود...';
+}
+
+// ═══════════ Library ═══════════
+const libraryPrompts = [
+  {
+    icon: '✍️', title: 'نوشتن پست اینستاگرام جذاب',
+    desc: 'پستی با قلاب قوی، بدنه ارزشمند و CTA',
+    prompt: `تو یک کپی‌رایتر حرفه‌ای اینستاگرام هستی.\n\nیک پست برای معرفی [محصول/خدمت] بنویس.\n\nمخاطب: [مخاطب هدف]\nمحصول: [توضیح محصول]\nمزایا: [۳ مزیت کلیدی]\n\nساختار:\n۱. قلاب قوی در خط اول (۵ کلمه)\n۲. بدنه ارزشمند (۳ پاراگراف کوتاه)\n۳. CTA واضح در انتها\n۴. هشتگ‌های مرتبط (حداکثر ۱۰)\n\nلحن: دوستانه، صمیمی، قابل اعتماد.`
+  },
+  {
+    icon: '💻', title: 'دیباگ کد و رفع خطا',
+    desc: 'پیدا کردن باگ و توضیح راه‌حل',
+    prompt: `تو یک برنامه‌نویس ارشد با ۱۰ سال تجربه هستی.\n\nمن این کد را نوشته‌ام اما [مشکل] دارد:\n\n\`\`\`\n[کد خود را اینجا بگذارید]\n\`\`\`\n\nخطای دریافتی:\n[خطا را اینجا پیست کنید]\n\nلطفاً:\n۱. علت خطا را دقیقاً توضیح بده\n۲. کد اصلاح‌شده را بنویس\n۳. تغییرات را کامنت‌گذاری کن\n۴. نکات پیشگیری از این خطا در آینده را بگو`
+  },
+  {
+    icon: '📧', title: 'نوشتن ایمیل حرفه‌ای',
+    desc: 'ایمیل رسمی، دوستانه یا تجاری',
+    prompt: `تو یک متخصص ارتباطات تجاری هستی.\n\nبرای من یک ایمیل [نوع: رسمی/دوستانه/تجاری] بنویس.\n\nمخاطب: [نام گیرنده و جایگاه]\nموضوع: [موضوع اصلی ایمیل]\nهدف: [چه چیزی می‌خواهی به دست آوری؟]\n\nساختار:\n- سلام مناسب\n- معرفی کوتاه (۱-۲ جمله)\n- بدنه اصلی (دقیق و شفاف)\n- CTA واضح\n- امضای حرفه‌ای\n\nلحن: [رسمی/دوستانه/محترمانه]`
+  },
+  {
+    icon: '📈', title: 'تحلیل سئوی مقاله',
+    desc: 'بررسی و بهبود مقاله برای گوگل',
+    prompt: `تو یک متخصص سئو با تخصص در زبان فارسی هستی.\n\nاین مقاله را برای من تحلیل کن:\n\n[متن مقاله]\n\nکلمه کلیدی هدف: [کلمه کلیدی]\n\nلطفاً بررسی کن:\n۱. چگالی کلمه کلیدی (مناسب است؟)\n۲. ساختار تیترها (H1, H2, H3)\n۳. طول محتوا (کافی است؟)\n۴. حروف عربی و نیم‌فاصله\n۵. خوانایی جملات\n۶. پیشنهاد ۵ عنوان جایگزین\n۷. لینک‌سازی داخلی پیشنهادی`
+  },
+  {
+    icon: '🎓', title: 'توضیح مفهوم پیچیده به ساده',
+    desc: 'برای یادگیری یا آموزش',
+    prompt: `تو یک معلم دلسوز و صبور هستی که مفاهیم پیچیده را ساده توضیح می‌دهی.\n\nمفهوم: [نام مفهوم]\nمخاطب: [مثلاً دانش‌آموز دبیرستان]\n\nلطفاً:\n۱. تعریف ساده در ۲ جمله\n۲. مثال واقعی و ملموس\n۳. تشبیه قابل فهم\n۴. کاربردهای عملی\n۵. سوال برای تست درک\n\nاز اصطلاحات فنی پرهیز کن یا اگر لازم بود، ساده توضیح بده.`
+  },
+  {
+    icon: '🌐', title: 'ترجمه حرفه‌ای',
+    desc: 'ترجمه با حفظ لحن و اصطلاحات',
+    prompt: `تو یک مترجم حرفه‌ای دو زبانه (فارسی/انگلیسی) با تخصص در متون [نوع متن] هستی.\n\nاین متن را ترجمه کن:\n\n[متن اصلی]\n\nدستورالعمل‌ها:\n- لحن متن اصلی را حفظ کن\n- اصطلاحات تخصصی را با معادل دقیق ترجمه کن\n- اگر اصطلاح فرهنگی وجود دارد، معادل نزدیک فارسی بیاور\n- ترجمه باید روان و طبیعی باشد، نه تحت‌اللفظی\n- در انتها، ۳ نکته درباره چالش‌های ترجمه این متن بگو`
+  },
+  {
+    icon: '🎯', title: 'ایده‌پردازی برای محتوا',
+    desc: 'تولید ۱۰ ایده محتوای جذاب',
+    prompt: `تو یک استراتژیست محتوای خلاق هستی.\n\nبرای موضوع [موضوع] در حوزه [حوزه]، ۱۰ ایده محتوای جذاب و قابل اجرا ارائه بده.\n\nمخاطب: [مخاطب هدف]\nپلتفرم: [اینستاگرام/وبلاگ/یوتیوب]\n\nبرای هر ایده:\n- عنوان جذاب\n- نوع محتوا (پست/مقاله/ویدیو)\n- چرا جذاب است؟\n- کلمه کلیدی سئو (اگر مقاله است)\n\nایده‌ها را از ساده به پیچیده مرتب کن.`
+  },
+  {
+    icon: '💰', title: 'تحلیل مالی و سرمایه‌گذاری',
+    desc: 'کمک به تصمیم‌گیری مالی',
+    prompt: `تو یک تحلیلگر مالی باتجربه و مشاور سرمایه‌گذاری هستی (بدون توصیه مستقیم).\n\nوضعیت من:\n- سن: [سن]\n- درآمد ماهانه: [مبلغ]\n- پس‌انداز: [مبلغ]\n- هدف: [مثلاً خرید خانه در ۵ سال]\n- ریسک‌پذیری: [کم/متوسط/زیاد]\n\nلطفاً:\n۱. یک سبد سرمایه‌گذاری متنوع پیشنهاد بده (درصد تخصیص)\n۲. مزایا و ریسک‌های هر گزینه را توضیح بده\n۳. نکات مالیاتی مهم را بگو\n۴. اشتباهات رایج در این مسیر را هشدار بده\n\n⚠️ تأکید کن که این مشاوره مالی نیست و باید با متخصص مشورت کنم.`
+  },
+  {
+    icon: '📝', title: 'خلاصه کردن متن طولانی',
+    desc: 'خلاصه‌ای دقیق و کامل',
+    prompt: `تو یک متخصص خلاصه‌سازی متن هستی.\n\nاین متن را خلاصه کن:\n\n[متن طولانی]\n\nفرمت خروجی:\n۱. خلاصه یک‌خطی (Tl;dr)\n۲. خلاصه ۳ پاراگرافه (حدود ۱۵۰ کلمه)\n۳. ۵ نکته کلیدی (Bullet Points)\n۴. سوالاتی که پس از خواندن این متن باقی می‌ماند\n\nمهم: هیچ اطلاعات مهمی را از دست نده.`
+  },
+  {
+    icon: '🎨', title: 'نوشتن شرح تصویر برای AI',
+    desc: 'پرامپت برای Midjourney / DALL-E',
+    prompt: `تو یک متخصص پرامپت‌نویسی برای Midjourney و DALL-E هستی.\n\nمی‌خواهم یک تصویر از [موضوع] بسازم.\n\nبرای من یک پرامپت حرفه‌ای به انگلیسی بنویس که شامل این جزئیات باشد:\n- موضوع اصلی: [توضیح دقیق]\n- سبک: [واقع‌گرایانه/هنری/کارتونی]\n- نورپردازی: [طبیعی/دراماتیک/نرم]\n- رنگ‌بندی: [گرم/سرد/رنگی/سیاه و سفید]\n- زاویه دوربین: [نمای نزدیک/دور/بالا]\n- کیفیت: 4K, highly detailed, professional\n- Aspect ratio: [16:9/1:1/9:16]\n\nپاسخ را به صورت یک پرامپت کامل انگلیسی (حداکثر ۱۰۰ کلمه) بنویس.`
+  },
+  {
+    icon: '🤝', title: 'نوشتن پاسخ به مشتری ناراضی',
+    desc: 'مدیریت بحران و جلب رضایت',
+    prompt: `تو یک متخصص پشتیبانی مشتری و مدیریت بحران هستی.\n\nمشتری ناراضی:\n[شکایت مشتری]\n\nمحصول/خدمت: [توضیح]\nشرکت: [نام شرکت]\n\nپاسخ حرفه‌ای بنویس که:\n۱. عذرخواهی صمیمانه (بدون بهانه‌تراشی)\n۲. همدلی واقعی نشان بدهد\n۳. راه‌حل مشخص و قابل اجرا ارائه دهد\n۴. جبران خسارت پیشنهاد دهد (اگر لازم است)\n۵. اعتماد را بازسازی کند\n\nلحن: صمیمی، محترمانه، حرفه‌ای. بدون تعهد غیرواقعی.`
+  },
+  {
+    icon: '📊', title: 'تحلیل SWOT کسب و کار',
+    desc: 'استراتژی کسب و کار',
+    prompt: `تو یک مشاور کسب و کار و استراتژیست هستی.\n\nبرای کسب و کار زیر تحلیل SWOT انجام بده:\n\nنام: [نام کسب و کار]\nصنعت: [صنعت]\nمحصول/خدمت: [توضیح]\nبازار هدف: [مشتریان]\nرقبا: [رقبای اصلی]\n\nارائه بده:\n۱. نقاط قوت (Strengths) - ۴ مورد\n۲. نقاط ضعف (Weaknesses) - ۴ مورد\n۳. فرصت‌ها (Opportunities) - ۴ مورد\n۴. تهدیدها (Threats) - ۴ مورد\n\nدر انتها، ۳ استراتژی عملی برای رشد پیشنهاد بده.`
+  }
+];
+
+function renderLibrary() {
+  const grid = document.getElementById('library-grid');
+  grid.innerHTML = libraryPrompts.map((p, i) => `
+    <div class="library-card" onclick="copyLibraryPrompt(${i})">
+      <div class="icon-cat">${p.icon}</div>
+      <h4>${p.title}</h4>
+      <p>${p.desc}</p>
+      <button class="use-btn">📋 استفاده از این پرامپت</button>
+    </div>
+  `).join('');
+}
+
+function copyLibraryPrompt(index) {
+  const prompt = libraryPrompts[index].prompt;
+  navigator.clipboard.writeText(prompt).then(() => {
+    alert('✅ پرامپت کپی شد! حالا در ChatGPT یا Claude پیست کنید.');
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = prompt;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    alert('✅ پرامپت کپی شد!');
+  });
+}
+
+// ═══════════ Token Estimator ═══════════
+function estimateToken() {
+  const text = document.getElementById('token-input').value;
+  const chars = text.length;
+  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  // تخمین: ۱ توکن ≈ ۴ کاراکتر انگلیسی یا ۱-۲ کاراکتر فارسی
+  // برای فارسی حدود ۱.۵ کاراکتر به ازای هر توکن
+  const tokens = Math.ceil(chars / 1.5);
+  
+  document.getElementById('token-count').textContent = tokens.toLocaleString('fa-IR');
+  document.getElementById('char-count-tk').textContent = chars.toLocaleString('fa-IR');
+  document.getElementById('word-count-tk').textContent = words.toLocaleString('fa-IR');
+  
+  // GPT-4o: $2.5 per 1M input, $10 per 1M output
+  const costIn = (tokens / 1000000) * 2.5;
+  const costOut = (tokens / 1000000) * 10;
+  const costTotal = costIn + costOut;
+  
+  document.getElementById('cost-in').textContent = '$' + costIn.toFixed(6);
+  document.getElementById('cost-out').textContent = '$' + costOut.toFixed(6);
+  document.getElementById('cost-total').textContent = '$' + costTotal.toFixed(6);
+}
+
+// اجرای اولیه
+window.addEventListener('DOMContentLoaded', () => {
+  generatePrompt();
+  renderLibrary();
+  estimateToken();
+});
+
+if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("../sw.js").catch(()=>{}));
+</script>
+<script src="../js/theme.js"></script>
+<script src="../js/app.js"></script>
+<script>
+    !function(e,t,n){
+        e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];
+        var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");
+        s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l);
+    }(window,document,"yektanet");
+</script>
+</body>
+</html>

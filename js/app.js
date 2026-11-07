@@ -298,6 +298,7 @@ const catalog = [
   { title: "مقاله: راهنمای ورود به بورس", url: "blog/stock-market-guide.html", type: "article", icon: "📄", keywords: "بورس سرمایه گذاری سهام تحلیل مالی" },
   { title: "محاسبه‌گر جامع بورس", url: "tools/stock-calculator.html", type: "tool", icon: "📈", keywords: "بورس سهام سود کارمزد میانگین حد ضرر" },
   { title: "مقاله: هوش مصنوعی از صفر تا صد", url: "blog/ai-complete-guide.html", type: "article", icon: "📄", keywords: "هوش مصنوعی AI چت جی پی تی یادگیری" },
+  { title: "سازنده پرامپت AI", url: "tools/ai-prompt-builder.html", type: "tool", icon: "🤖", keywords: "پرامپت هوش مصنوعی ChatGPT prompt AI" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
