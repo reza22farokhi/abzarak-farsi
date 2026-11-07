@@ -164,10 +164,10 @@ function generateHTML() {
 </head>
 <body>
   <div class="card">
-    <div class="avatar">${name.charAt(0)}</div>
+    <div class="avatar">${name ? name.charAt(0) : '👤'}</div>
     <h1>${name}</h1>
     <h2>${job}</h2>
-    <p>${bio.replace(/\\n/g, '<br>')}</p>
+    <p>${bio.replace(/\n/g, '<br>')}</p>
     <div class="buttons">
       ${linksHTML}
     </div>
@@ -179,11 +179,7 @@ function generateHTML() {
 function updatePreview() {
   const html = generateHTML();
   document.getElementById('code-output').value = html;
-  const iframe = document.getElementById('preview-frame');
-  const doc = iframe.contentDocument || iframe.contentWindow.document;
-  doc.open();
-  doc.write(html);
-  doc.close();
+  document.getElementById('preview-frame').srcdoc = html;
 }
 
 function copyCode() {
