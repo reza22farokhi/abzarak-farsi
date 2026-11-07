@@ -40,6 +40,7 @@ async function analyze() {
   res.innerHTML = 'در حال بررسی...';
   
   let html = '<ul style="text-align:right; list-style:none; padding:0;">';
+  html += '<p style="font-size:12px; color:gray;">توجه: برخی سایت‌ها (مثل گیت‌هاب) به دلیل امنیت، اجازه آنالیز خودکار را نمی‌دهند. <a href="' + base + '/manifest.json" target="_blank">اینجا کلیک کنید</a> تا فایل را دستی ببینید.</p>';
   let score = 0;
 
   // HTTPS
@@ -50,13 +51,13 @@ async function analyze() {
   let manFound = false;
   let r1 = await fetchCORS(base + '/manifest.json');
   if(r1 && r1.ok) { manFound = true; score += 40; html += '<li>✅ فایل manifest.json پیدا شد</li>'; }
-  else { html += '<li>❌ فایل manifest.json پیدا نشد</li>'; }
+  else { html += '<li>❌ فایل پیدا نشد (محدودیت امنیتی مرورگر - لینک مستقیم را چک کنید)</li>'; }
 
   // Service Worker
   let swFound = false;
   let r2 = await fetchCORS(base + '/sw.js');
   if(r2 && r2.ok) { swFound = true; score += 40; html += '<li>✅ فایل sw.js پیدا شد</li>'; }
-  else { html += '<li>❌ فایل sw.js پیدا نشد</li>'; }
+  else { html += '<li>❌ فایل پیدا نشد (محدودیت امنیتی مرورگر - لینک مستقیم را چک کنید)</li>'; }
 
   html += '</ul>';
   
