@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محاسبه کالری روزانه (BMR و TDEE) | ابزارک</title>
+<meta name="description" content="محاسبه دقیق کالری مورد نیاز روزانه بدن برای کاهش وزن، حفظ وزن و افزایش وزن. فرمول علمی میفلین-سنت جور.">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+<style>
+  .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+  .cal-box { padding: 20px; border-radius: 12px; text-align: center; border: 1px solid var(--border); background: var(--card); transition: transform 0.2s; }
+  .cal-box:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .cal-box h4 { font-size: 0.95rem; color: var(--muted); margin-bottom: 8px; }
+  .cal-box .value { font-size: 1.8rem; font-weight: 800; }
+  .cal-box .unit { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+  
+  .maintain { border-top: 4px solid #6366f1; }
+  .maintain .value { color: #6366f1; }
+  .lose { border-top: 4px solid #10b981; }
+  .lose .value { color: #10b981; }
+  .gain { border-top: 4px solid #f59e0b; }
+  .gain .value { color: #f59e0b; }
+  
+  .gender-group { display: flex; gap: 15px; }
+  .gender-option { flex: 1; padding: 12px; border: 2px solid var(--border); border-radius: 8px; text-align: center; cursor: pointer; font-weight: bold; transition: all 0.2s; background: var(--card); }
+  .gender-option.active { border-color: var(--accent); background: rgba(99,102,241,0.1); color: var(--accent); }
+  .gender-option input { display: none; }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a> · <a href="../about.html">درباره</a><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button></nav>
+</div></header>
+<main class="container tool-page">
+  <h1>محاسبه‌گر کالری روزانه (BMR و TDEE)</h1>
+  <p class="tool-desc">با وارد کردن اطلاعات خود، دقیقاً بدانید روزانه چقدر کالری نیاز دارید.</p>
+
+  <div class="tool-box">
+    <div class="field">
+      <label>جنسیت</label>
+      <div class="gender-group">
+        <label class="gender-option active" id="lbl-male" onclick="setGender('male')">
+          <input type="radio" name="gender" value="male" checked> 👨 آقا
+        </label>
+        <label class="gender-option" id="lbl-female" onclick="setGender('female')">
+          <input type="radio" name="gender" value="female"> 👩 خانم
+        </label>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <div class="field"><label>سن (سال)</label><input type="number" id="age" placeholder="مثلاً 30" value="30"></div>
+      <div class="field"><label>وزن (کیلوگرم)</label><input type="number" id="weight" placeholder="مثلاً 70" value="70" step="0.1"></div>
+      <div class="field"><label>قد (سانتی‌متر)</label><input type="number" id="height" placeholder="مثلاً 175" value="175"></div>
+      <div class="field"><label>میزان فعالیت</label>
+        <select id="activity">
+          <option value="1.2">بی‌تحرک (بدون ورزش)</option>
+          <option value="1.375">فعالیت سبک (۱-۳ روز در هفته)</option>
+          <option value="1.55" selected>فعالیت متوسط (۳-۵ روز در هفته)</option>
+          <option value="1.725">فعالیت شدید (۶-۷ روز در هفته)</option>
+          <option value="1.9">فعالیت بسیار شدید (کار بدنی سخت)</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn" onclick="calculateCalories()" style="width:100%; margin-top:10px;">🔍 محاسبه کالری</button>
+
+    <div id="result" style="display:none;">
+      <h3 style="text-align:center; margin-top:30px; margin-bottom:10px; font-size:1.2rem;">نتیجه محاسبه:</h3>
+      <div class="result-grid">
+        <div class="cal-box lose">
+          <h4>کاهش وزن (کمی)</h4>
+          <div class="value" id="res-lose">0</div>
+          <div class="unit">کالری در روز</div>
+        </div>
+        <div class="cal-box maintain">
+          <h4>حفظ وزن فعلی</h4>
+          <div class="value" id="res-maintain">0</div>
+          <div class="unit">کالری در روز</div>
+        </div>
+        <div class="cal-box gain">
+          <h4>افزایش وزن</h4>
+          <div class="value" id="res-gain">0</div>
+          <div class="unit">کالری در روز</div>
+        </div>
+      </div>
+      
+      <div style="margin-top:20px; padding:15px; background:rgba(99,102,241,0.05); border-radius:8px; border-right:4px solid var(--accent);">
+        <p style="font-size:0.9rem; color:var(--text); line-height:1.8;">
+          <strong>💡 نکته:</strong> برای کاهش اصولی وزن، حدود ۵۰۰ کالری کمتر از نیاز روزانه (ستون وسط) مصرف کنید. همچنین می‌توانید برای دیدن شاخص توده بدنی خود از <a href="bmi-calculator.html" style="color:var(--accent);">محاسبه‌گر BMI</a> استفاده کنید.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-container" style="margin: 40px auto; text-align: center; max-width: 800px; padding: 15px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1; display: block; clear: both; width: 100%;">
+      <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+      <div id="pos-article-display-card-123819"></div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script>
+let currentGender = 'male';
+
+function setGender(g) {
+  currentGender = g;
+  document.getElementById('lbl-male').classList.remove('active');
+  document.getElementById('lbl-female').classList.remove('active');
+  document.getElementById('lbl-' + g).classList.add('active');
+}
+
+function calculateCalories() {
+  const age = parseFloat(document.getElementById('age').value);
+  const weight = parseFloat(document.getElementById('weight').value);
+  const height = parseFloat(document.getElementById('height').value);
+  const activity = parseFloat(document.getElementById('activity').value);
+
+  if (!age || !weight || !height) {
+    alert('لطفاً سن، وزن و قد را به درستی وارد کنید.');
+    return;
+  }
+
+  // BMR فرمول میفلین-سنت جور
+  let bmr;
+  if (currentGender === 'male') {
+    bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+  } else {
+    bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+  }
+
+  // TDEE
+  const tdee = bmr * activity;
+
+  // محاسبات هدف
+  const lose = Math.round(tdee - 500); // کاهش وزن استاندارد
+  const maintain = Math.round(tdee); // حفظ وزن
+  const gain = Math.round(tdee + 500); // افزایش وزن
+
+  document.getElementById('res-lose').textContent = lose.toLocaleString('fa-IR');
+  document.getElementById('res-maintain').textContent = maintain.toLocaleString('fa-IR');
+  document.getElementById('res-gain').textContent = gain.toLocaleString('fa-IR');
+
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+}
+
+if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("../sw.js").catch(()=>{}));
+</script>
+<script src="../js/theme.js"></script>
+<script src="../js/app.js"></script>
+<script>
+    !function(e,t,n){
+        e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];
+        var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");
+        s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l);
+    }(window,document,"yektanet");
+</script>
+</body>
+</html>

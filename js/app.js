@@ -290,6 +290,7 @@ const catalog = [
   { title: "مقاله: کاهش حجم عکس و بهینه‌سازی", url: "blog/image-optimization-guide.html", type: "article", icon: "📄", keywords: "فشرده سازی عکس کاهش حجم تصویر WebP" },
   { title: "مبدل فرمت عکس (WebP)", url: "tools/webp-converter.html", type: "tool", icon: "🔄", keywords: "مبدل فرمت عکس webp jpg png تبدیل" },
   { title: "مقاله: محاسبه کالری و کاهش وزن", url: "blog/calorie-and-weight-loss-guide.html", type: "article", icon: "📄", keywords: "کالری کاهش وزن لاغری BMR رژیم" },
+  { title: "محاسبه کالری روزانه", url: "tools/calorie-calculator.html", type: "tool", icon: "🔥", keywords: "کالری BMR TDEE رژیم لاغری" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
