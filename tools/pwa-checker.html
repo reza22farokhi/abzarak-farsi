@@ -2,475 +2,73 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>آنالیزور PWA و آماده‌سازی برای تبدیل به اپلیکیشن | ابزارک</title>
-<meta name="description" content="بررسی کنید سایت شما آماده تبدیل به اپلیکیشن اندروید هست یا نه. آنالیز manifest.json، Service Worker، HTTPS و آیکون‌ها.">
-<meta name="theme-color" content="#6366f1">
-<link rel="manifest" href="../manifest.json">
-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<title>آنالیزور PWA | ابزارک</title>
 <link rel="stylesheet" href="../css/style.css">
-<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
-<style>
-  .pwa-hero {
-    background: linear-gradient(135deg, #6366f1, #a855f7);
-    border-radius: 20px; padding: 40px 30px; text-align: center; color: white; margin-bottom: 30px;
-  }
-  .pwa-hero h2 { font-size: 1.5rem; margin-bottom: 10px; }
-  .pwa-hero p { opacity: 0.9; margin-bottom: 24px; }
-  .pwa-input-group {
-    display: flex; gap: 10px; max-width: 600px; margin: 0 auto;
-    background: white; padding: 6px; border-radius: 50px;
-  }
-  .pwa-input-group input {
-    flex: 1; padding: 14px 20px; border: none; outline: none;
-    font-family: inherit; font-size: 1rem; background: transparent;
-    color: #0f172a; direction: ltr; text-align: left; border-radius: 50px;
-  }
-  .pwa-input-group button {
-    background: #0f172a; color: white; border: none; padding: 12px 28px;
-    border-radius: 50px; cursor: pointer; font-family: inherit; font-weight: 700;
-    font-size: 1rem; transition: all 0.2s;
-  }
-  .pwa-input-group button:hover { background: #1e293b; transform: scale(1.03); }
-  .pwa-input-group button:disabled { opacity: 0.6; cursor: wait; }
-
-  .progress-ring { display: flex; justify-content: center; align-items: center; margin: 30px 0; }
-  .progress-circle {
-    width: 180px; height: 180px; border-radius: 50%; position: relative;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .progress-inner {
-    width: 140px; height: 140px; border-radius: 50%; background: var(--bg);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-  }
-  .progress-score { font-size: 2.5rem; font-weight: 800; line-height: 1; }
-  .progress-label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
-
-  .check-item {
-    display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px;
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 12px; margin-bottom: 10px; transition: all 0.2s;
-  }
-  .check-item:hover { box-shadow: var(--shadow); }
-  .check-icon {
-    width: 36px; height: 36px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem; flex-shrink: 0;
-  }
-  .check-icon.success { background: rgba(16,185,129,0.15); color: #10b981; }
-  .check-icon.warning { background: rgba(251,191,36,0.15); color: #f59e0b; }
-  .check-icon.error { background: rgba(239,68,68,0.15); color: #ef4444; }
-  .check-icon.info { background: rgba(59,130,246,0.15); color: #3b82f6; }
-  .check-content { flex: 1; min-width: 0; }
-  .check-title { font-weight: 700; margin-bottom: 4px; }
-  .check-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; word-break: break-word; }
-
-  .btn-pwabuilder {
-    display: block; text-align: center; padding: 18px; background: linear-gradient(135deg, #6366f1, #a855f7);
-    color: white; text-decoration: none; border-radius: 14px; font-weight: 700; font-size: 1.1rem;
-    margin: 24px 0; transition: all 0.2s; box-shadow: 0 10px 30px rgba(99,102,241,0.3);
-  }
-  .btn-pwabuilder:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(99,102,241,0.4); }
-
-  .spinner-large {
-    width: 50px; height: 50px; border: 4px solid rgba(99,102,241,0.2);
-    border-top-color: #6366f1; border-radius: 50%; animation: spin 1s linear infinite;
-    margin: 30px auto;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .hidden { display: none; }
-</style>
 </head>
 <body>
-<header class="site-header"><div class="container header-inner">
-  <a href="../index.html" class="brand">ابزارک فارسی</a>
-  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a> · <a href="../about.html">درباره</a><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button></nav>
-</div></header>
-
-<main class="container tool-page" style="max-width: 900px;">
-  <h1>آنالیزور PWA - آماده‌سازی برای اپلیکیشن</h1>
-  <p class="tool-desc">آدرس سایت خود را وارد کنید تا بررسی کنیم آماده تبدیل به اپلیکیشن اندروید هست یا نه.</p>
-
-  <div class="pwa-hero">
-    <h2>🚀 سایت خود را به اپ تبدیل کنید</h2>
-    <p>ابتدا بررسی کنید سایت شما آماده است یا نه</p>
-    <div class="pwa-input-group">
-      <input type="url" id="url-input" placeholder="https://example.com" autocomplete="off">
-      <button onclick="checkPWA()" id="check-btn">🔍 آنالیز</button>
-    </div>
-  </div>
-
-  <div id="loading" class="hidden">
-    <div class="spinner-large"></div>
-    <p style="text-align: center; color: var(--muted);">در حال آنالیز سایت... (۱۰ تا ۲۰ ثانیه)</p>
-  </div>
-
-  <div id="results" class="hidden">
-    <div class="progress-ring" id="progress-section"></div>
-    
-    <h3 style="margin: 30px 0 16px; font-size: 1.3rem;">📋 نتایج بررسی</h3>
-    <div id="checks-container"></div>
-
-    <div id="recommendations"></div>
-
-    <div id="pwabuilder-cta" class="hidden">
-      <a href="https://www.pwabuilder.com/" target="_blank" rel="noopener" class="btn-pwabuilder">
-        🚀 ورود به PWABuilder برای ساخت اپلیکیشن →
-      </a>
-      <p style="text-align: center; color: var(--muted); font-size: 0.85rem;">
-        سایت شما آماده است! روی دکمه بالا کلیک کنید و مراحل ساده را دنبال کنید.
-      </p>
-    </div>
-
-    <div class="article-cta" style="margin-top: 30px;">
-      <h3>📖 آموزش کامل ساخت اپلیکیشن</h3>
-      <p>راهنمای گام به گام تبدیل سایت به اپلیکیشن اندروید را مطالعه کنید.</p>
-      <a href="../blog/website-to-app-guide.html" class="btn" style="text-decoration:none;display:inline-block;margin-top:10px">مشاهده راهنما</a>
-    </div>
-  </div>
-
-  <div class="ad-container" style="margin: 40px auto; text-align: center; padding: 15px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
-    <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
-    <div id="pos-article-text-card-123872"></div>
-  </div>
+<header class="site-header"><div class="container header-inner"><a href="../index.html" class="brand">ابزارک فارسی</a></div></header>
+<main class="container" style="padding:40px 20px; text-align:center;">
+  <h1>آنالیزور PWA</h1>
+  <p>آدرس سایت خود را وارد کنید:</p>
+  <input type="text" id="url" placeholder="https://example.com" style="width:100%; max-width:400px; padding:10px; margin-bottom:15px;">
+  <br>
+  <button onclick="analyze()" style="padding:10px 30px; background:#6366f1; color:#fff; border:none; border-radius:5px; cursor:pointer;">آنالیز</button>
+  <div id="result" style="margin-top:30px;"></div>
 </main>
-<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
-<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <script>
-// پشتیبانی از CORS Proxy
-const CORS_PROXIES = [
+const PROXIES = [
   'https://api.allorigins.win/raw?url=',
-  'https://corsproxy.io/?'
+  'https://corsproxy.io/?',
+  'https://api.codetabs.com/v1/proxy?quest='
 ];
-
-async function fetchWithCORS(url) {
-  for (const proxy of CORS_PROXIES) {
+async function fetchCORS(url) {
+  for (let p of PROXIES) {
     try {
-      const res = await fetch(proxy + encodeURIComponent(url), { 
-        signal: AbortSignal.timeout(8000) 
-      });
-      if (res.ok) return res;
-    } catch(e) { /* try next */ }
+      let finalUrl = p.includes('quest=') ? p + url : p + encodeURIComponent(url);
+      let r = await fetch(finalUrl, {signal: AbortSignal.timeout(5000)});
+      if(r.ok) return r;
+    } catch(e) {}
   }
-  throw new Error('CORS failed');
+  return null;
 }
-
-async function checkPWA() {
-  const input = document.getElementById('url-input');
-  const btn = document.getElementById('check-btn');
-  let url = input.value.trim();
+async function analyze() {
+  let url = document.getElementById('url').value.trim();
+  if(!url) return alert('آدرس وارد کنید');
+  if(!url.startsWith('http')) url = 'https://' + url;
+  let base = url.replace(/\/$/, '');
+  let res = document.getElementById('result');
+  res.innerHTML = 'در حال بررسی...';
   
-  if (!url) {
-    alert('لطفاً آدرس سایت را وارد کنید');
-    return;
-  }
-  
-  if (!url.startsWith('http')) url = 'https://' + url;
-  
-  try {
-    new URL(url);
-  } catch(e) {
-    alert('آدرس نامعتبر است. مثال: https://example.com');
-    return;
-  }
-  
-  btn.disabled = true;
-  btn.textContent = '⏳ در حال بررسی...';
-  document.getElementById('loading').classList.remove('hidden');
-  document.getElementById('results').classList.add('hidden');
-  
-  const baseUrl = url.replace(/\/$/, '');
-  const checks = [];
+  let html = '<ul style="text-align:right; list-style:none; padding:0;">';
   let score = 0;
-  let maxScore = 100;
-  
-  // ────────────────────────────
-  // چک ۱: HTTPS
-  // ────────────────────────────
-  if (url.startsWith('https://')) {
-    checks.push({ 
-      icon: '✅', type: 'success', 
-      title: 'HTTPS فعال است', 
-      desc: 'سایت با پروتکل امن HTTPS باز می‌شود.' 
-    });
-    score += 20;
-  } else {
-    checks.push({ 
-      icon: '❌', type: 'error', 
-      title: 'HTTPS فعال نیست', 
-      desc: 'برای ساخت اپلیکیشن، سایت باید HTTPS داشته باشد. از Let\'s Encrypt یا Cloudflare استفاده کنید.' 
-    });
-  }
-  
-  // ────────────────────────────
-  // چک ۲: manifest.json
-  // ────────────────────────────
-  let manifest = null;
-  let manifestUrl = null;
-  try {
-    const manifestPaths = [
-      `${baseUrl}/manifest.json`,
-      `${baseUrl}/site.webmanifest`,
-      `${baseUrl}/manifest.webmanifest`
-    ];
-    
-    for (const path of manifestPaths) {
-      try {
-        const res = await fetchWithCORS(path);
-        if (res.ok) {
-          manifest = await res.json();
-          manifestUrl = path;
-          break;
-        }
-      } catch(e) { /* try next */ }
-    }
-  } catch(e) { /* ignore */ }
-  
-  if (manifest) {
-    checks.push({ 
-      icon: '✅', type: 'success', 
-      title: 'فایل manifest.json پیدا شد', 
-      desc: `مسیر: ${manifestUrl}` 
-    });
-    score += 20;
-    
-    // چک فیلدهای manifest
-    const manifestChecks = [];
-    if (manifest.name) manifestChecks.push('name');
-    if (manifest.short_name) manifestChecks.push('short_name');
-    if (manifest.start_url) manifestChecks.push('start_url');
-    if (manifest.display) manifestChecks.push('display');
-    if (manifest.icons && manifest.icons.length >= 2) manifestChecks.push('icons (2+)');
-    if (manifest.theme_color) manifestChecks.push('theme_color');
-    
-    if (manifestChecks.length >= 5) {
-      checks.push({ 
-        icon: '✅', type: 'success', 
-        title: 'فایل manifest کامل است', 
-        desc: `فیلدهای موجود: ${manifestChecks.join(', ')}` 
-      });
-      score += 15;
-    } else if (manifestChecks.length >= 3) {
-      checks.push({ 
-        icon: '⚠️', type: 'warning', 
-        title: 'manifest ناقص است', 
-        desc: `فقط ${manifestChecks.length} از ۶ فیلد ضروری موجود است. فیلدهای گم‌شده: ${['name','short_name','start_url','display','icons','theme_color'].filter(f => !manifestChecks.includes(f) && !manifestChecks.some(m => m.startsWith(f))).join(', ')}` 
-      });
-      score += 8;
-    } else {
-      checks.push({ 
-        icon: '❌', type: 'error', 
-        title: 'manifest بسیار ناقص است', 
-        desc: 'فقط برخی فیلدهای ضروری وجود دارند. لطفاً manifest را کامل کنید.' 
-      });
-      score += 3;
-    }
-    
-    // چک آیکون‌ها
-    if (manifest.icons && manifest.icons.length >= 2) {
-      const has192 = manifest.icons.some(i => i.sizes && i.sizes.includes('192'));
-      const has512 = manifest.icons.some(i => i.sizes && i.sizes.includes('512'));
-      
-      if (has192 && has512) {
-        checks.push({ 
-          icon: '✅', type: 'success', 
-          title: 'آیکون‌های ضروری وجود دارند', 
-          desc: 'آیکون‌های ۱۹۲×۱۹۲ و ۵۱۲×۵۱۲ پیدا شدند.' 
-        });
-        score += 10;
-      } else {
-        checks.push({ 
-          icon: '⚠️', type: 'warning', 
-          title: 'آیکون‌ها ناقص هستند', 
-          desc: `آیکون ۱۹۲: ${has192 ? '✓' : '✗'} | آیکون ۵۱۲: ${has512 ? '✓' : '✗'}` 
-        });
-        score += 5;
-      }
-    } else {
-      checks.push({ 
-        icon: '❌', type: 'error', 
-        title: 'آیکون اپلیکیشن ندارد', 
-        desc: 'حداقل ۲ آیکون (۱۹۲ و ۵۱۲) در manifest لازم است.' 
-      });
-    }
-  } else {
-    checks.push({ 
-      icon: '❌', type: 'error', 
-      title: 'فایل manifest.json پیدا نشد', 
-      desc: 'این فایل در ریشه سایت وجود ندارد. بدون آن، ساخت اپلیکیشن ممکن نیست.' 
-    });
-  }
-  
-  // ────────────────────────────
-  // چک ۳: Service Worker
-  // ────────────────────────────
+
+  // HTTPS
+  if(url.startsWith('https')) { score += 20; html += '<li>✅ HTTPS فعال است</li>'; }
+  else { html += '<li>❌ HTTPS فعال نیست</li>'; }
+
+  // Manifest
+  let manFound = false;
+  let r1 = await fetchCORS(base + '/manifest.json');
+  if(r1 && r1.ok) { manFound = true; score += 40; html += '<li>✅ فایل manifest.json پیدا شد</li>'; }
+  else { html += '<li>❌ فایل manifest.json پیدا نشد</li>'; }
+
+  // Service Worker
   let swFound = false;
-  try {
-    const swPaths = [
-      `${baseUrl}/sw.js`,
-      `${baseUrl}/service-worker.js`,
-      `${baseUrl}/serviceworker.js`
-    ];
-    
-    for (const path of swPaths) {
-      try {
-        const res = await fetchWithCORS(path);
-        if (res.ok) {
-          const text = await res.text();
-          if (text.includes('addEventListener') || text.includes('self.addEventListener')) {
-            swFound = true;
-            checks.push({ 
-              icon: '✅', type: 'success', 
-              title: 'Service Worker پیدا شد', 
-              desc: `مسیر: ${path}` 
-            });
-            score += 20;
-            break;
-          }
-        }
-      } catch(e) { /* try next */ }
-    }
-  } catch(e) { /* ignore */ }
+  let r2 = await fetchCORS(base + '/sw.js');
+  if(r2 && r2.ok) { swFound = true; score += 40; html += '<li>✅ فایل sw.js پیدا شد</li>'; }
+  else { html += '<li>❌ فایل sw.js پیدا نشد</li>'; }
+
+  html += '</ul>';
   
-  if (!swFound) {
-    checks.push({ 
-      icon: '❌', type: 'error', 
-      title: 'Service Worker پیدا نشد', 
-      desc: 'بدون sw.js، سایت شما از کارکرد آفلاین پشتیبانی نمی‌کند و اپ نمی‌شود.' 
-    });
-  }
-  
-  // ────────────────────────────
-  // چک ۴: theme-color در صفحه اصلی
-  // ────────────────────────────
-  try {
-    const res = await fetchWithCORS(baseUrl + '/');
-    const html = await res.text();
-    
-    if (html.includes('theme-color')) {
-      checks.push({ 
-        icon: '✅', type: 'success', 
-        title: 'theme-color تعریف شده', 
-        desc: 'رنگ نوار وضعیت مرورگر تنظیم شده است.' 
-      });
-      score += 8;
-    } else {
-      checks.push({ 
-        icon: '⚠️', type: 'warning', 
-        title: 'theme-color تعریف نشده', 
-        desc: 'با اضافه کردن theme-color، ظاهر اپ حرفه‌ای‌تر می‌شود.' 
-      });
-    }
-    
-    if (html.includes('rel="manifest"') || html.includes("rel='manifest'")) {
-      checks.push({ 
-        icon: '✅', type: 'success', 
-        title: 'لینک manifest در HTML موجود است', 
-        desc: 'صفحه اصلی به manifest لینک داده شده.' 
-      });
-      score += 7;
-    } else {
-      checks.push({ 
-        icon: '⚠️', type: 'warning', 
-        title: 'لینک manifest در HTML نیست', 
-        desc: 'باید در <head> صفحه اصلی، لینک manifest اضافه شود.' 
-      });
-    }
-  } catch(e) { /* ignore */ }
-  
-  // ────────────────────────────
-  // نمایش نتایج
-  // ────────────────────────────
-  score = Math.min(100, score);
-  
-  // رنگ بر اساس امتیاز
-  let scoreColor, scoreLabel;
-  if (score >= 80) { scoreColor = '#10b981'; scoreLabel = 'آماده! عالی'; }
-  else if (score >= 50) { scoreColor = '#f59e0b'; scoreLabel = 'نزدیک به آماده'; }
-  else { scoreColor = '#ef4444'; scoreLabel = 'نیاز به کار دارد'; }
-  
-  const degrees = (score / 100) * 360;
-  document.getElementById('progress-section').innerHTML = `
-    <div class="progress-circle" style="background: conic-gradient(${scoreColor} 0deg, ${scoreColor} ${degrees}deg, var(--border) ${degrees}deg 360deg);">
-      <div class="progress-inner">
-        <div class="progress-score" style="color: ${scoreColor};">${score}</div>
-        <div class="progress-label">${scoreLabel}</div>
-      </div>
-    </div>
-  `;
-  
-  // نمایش چک‌ها
-  const checksHtml = checks.map(c => `
-    <div class="check-item">
-      <div class="check-icon ${c.type}">${c.icon}</div>
-      <div class="check-content">
-        <div class="check-title">${c.title}</div>
-        <div class="check-desc">${c.desc}</div>
-      </div>
-    </div>
-  `).join('');
-  document.getElementById('checks-container').innerHTML = checksHtml;
-  
-  // توصیه‌ها
-  let recommendations = '';
   if (score >= 80) {
-    recommendations = `
-      <div class="article-cta" style="background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(99,102,241,0.1)); border-color: rgba(16,185,129,0.3);">
-        <h3 style="color: #10b981;">🎉 تبریک! سایت شما آماده است</h3>
-        <p>سایت شما تمام پیش‌نیازهای PWA را دارد. حالا می‌توانید با PWABuilder اپلیکیشن خود را بسازید.</p>
-      </div>
-    `;
-    document.getElementById('pwabuilder-cta').classList.remove('hidden');
-  } else if (score >= 50) {
-    recommendations = `
-      <div class="article-cta" style="background: linear-gradient(135deg, rgba(251,191,36,0.1), rgba(239,68,68,0.05)); border-color: rgba(251,191,36,0.3);">
-        <h3 style="color: #f59e0b;">⚠️ سایت شما نزدیک به آماده است</h3>
-        <p>با رفع موارد نارنجی و قرمز بالا، سایت شما آماده تبدیل به اپ خواهد شد.</p>
-      </div>
-    `;
+    html += '<h3 style="color:green;">🎉 عالی! سایت شما آماده تبدیل به اپلیکیشن است.</h3>';
+    html += '<a href="https://www.pwabuilder.com/" target="_blank" style="display:inline-block; margin-top:10px; padding:10px 20px; background:green; color:white; text-decoration:none; border-radius:5px;">ساخت اپلیکیشن</a>';
   } else {
-    recommendations = `
-      <div class="article-cta" style="background: linear-gradient(135deg, rgba(239,68,68,0.1), rgba(251,191,36,0.05)); border-color: rgba(239,68,68,0.3);">
-        <h3 style="color: #ef4444;">🔧 سایت شما نیاز به کار دارد</h3>
-        <p>موارد قرمز بالا را یکی‌یکی رفع کنید. برای راهنمایی، مقاله آموزشی ما را مطالعه کنید.</p>
-      </div>
-    `;
+    html += '<h3 style="color:red;">⚠️ سایت شما نیاز به کار دارد.</h3>';
   }
-  document.getElementById('recommendations').innerHTML = recommendations;
-  
-  document.getElementById('loading').classList.add('hidden');
-  document.getElementById('results').classList.remove('hidden');
-  
-  btn.disabled = false;
-  btn.textContent = '🔍 آنالیز';
-  
-  // ذخیره در localStorage
-  try {
-    localStorage.setItem('pwa_last_url', url);
-  } catch(e) {}
+
+  res.innerHTML = html;
 }
-
-// بارگذاری آدرس قبلی
-window.addEventListener('DOMContentLoaded', () => {
-  try {
-    const last = localStorage.getItem('pwa_last_url');
-    if (last) document.getElementById('url-input').value = last;
-  } catch(e) {}
-});
-
-// Enter برای اجرا
-document.getElementById('url-input').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') checkPWA();
-});
-
-if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("../sw.js").catch(()=>{}));
 </script>
-<script src="../js/theme.js"></script>
-<script src="../js/app.js"></script>
-<script>
-    !function(e,t,n){
-        e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];
-        var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");
-        s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l);
-    }(window,document,"yektanet");
-</script>
-</body></html>
+</body>
+</html>
