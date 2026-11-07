@@ -2,7 +2,7 @@
 // NETWORK-FIRST Service Worker
 // با پاک کردن کامل کش و بارگذاری مستقیم از شبکه
 // ═══════════════════════════════════════
-const CACHE_VERSION = 'abzarak-network-v1';
+const CACHE_VERSION = 'abzarak-network-v1794094280';
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();
