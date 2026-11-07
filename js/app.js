@@ -287,6 +287,7 @@ const catalog = [
   { title: "سازنده قالب سایت", url: "tools/website-builder.html", type: "tool", icon: "🏗️", keywords: "ساخت سایت قالب وب پورتفولیو گیت هاب" },
   { title: "مقاله: راهنمای تبدیل واحدها", url: "blog/unit-conversion-guide.html", type: "article", icon: "📄", keywords: "تبدیل واحد طول وزن دما فرمول" },
   { title: "مبدل واحد پیشرفته", url: "tools/advanced-unit-converter.html", type: "tool", icon: "📊", keywords: "مبدل واحد پیشرفته طول وزن دما همزمان" },
+  { title: "مقاله: کاهش حجم عکس و بهینه‌سازی", url: "blog/image-optimization-guide.html", type: "article", icon: "📄", keywords: "فشرده سازی عکس کاهش حجم تصویر WebP" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
