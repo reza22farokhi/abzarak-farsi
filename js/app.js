@@ -292,6 +292,7 @@ const catalog = [
   { title: "مقاله: محاسبه کالری و کاهش وزن", url: "blog/calorie-and-weight-loss-guide.html", type: "article", icon: "📄", keywords: "کالری کاهش وزن لاغری BMR رژیم" },
   { title: "محاسبه کالری روزانه", url: "tools/calorie-calculator.html", type: "tool", icon: "🔥", keywords: "کالری BMR TDEE رژیم لاغری" },
   { title: "مقاله: امنیت دیجیتال و محافظت از اکانت", url: "blog/digital-security-guide.html", type: "article", icon: "📄", keywords: "امنیت هک رمز عبور 2FA فیشینگ" },
+  { title: "آنالیزور قدرت رمز عبور", url: "tools/password-strength.html", type: "tool", icon: "🛡️", keywords: "آنالیز رمز عبور امنیت تست پسورد" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },
