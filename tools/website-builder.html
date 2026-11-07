@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سازنده قالب سایت شخصی (رایگان و بدون کدنویسی) | ابزارک</title>
+<meta name="description" content="با این ابزار رایگان، در چند ثانیه یک قالب سایت شخصی، پورتفولیو یا صفحه معرفی برای GitHub Pages بسازید. کد HTML آماده را کپی کنید.">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+<style>
+  .builder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+  @media (max-width: 768px) { .builder-grid { grid-template-columns: 1fr; } }
+  
+  .builder-panel { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .builder-panel h3 { margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+  
+  .form-group { margin-bottom: 12px; }
+  .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: var(--muted); }
+  .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; background: var(--bg); color: var(--text); }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); outline: none; }
+  
+  .color-picker { display: flex; gap: 10px; margin-top: 5px; }
+  .color-btn { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: transform 0.2s; }
+  .color-btn:hover { transform: scale(1.1); }
+  .color-btn.active { border-color: #fff; box-shadow: 0 0 0 2px var(--accent); }
+
+  .preview-area { background: #e2e8f0; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; height: 500px; }
+  .preview-header { background: #0f172a; color: #94a3b8; padding: 8px 15px; font-size: 0.8rem; display: flex; align-items: center; gap: 10px; }
+  .preview-dot { width: 10px; height: 10px; border-radius: 50%; background: #ef4444; }
+  .preview-dot:nth-child(2) { background: #f59e0b; }
+  .preview-dot:nth-child(3) { background: #10b981; }
+  .preview-iframe { flex: 1; width: 100%; border: none; background: #fff; }
+  
+  .code-area { width: 100%; height: 300px; font-family: monospace; font-size: 0.8rem; direction: ltr; text-align: left; padding: 15px; border-radius: 8px; background: #0f172a; color: #a5f3fc; border: none; margin-top: 15px; resize: vertical; }
+  .action-btns { display: flex; gap: 10px; margin-top: 10px; }
+  .action-btns button { flex: 1; padding: 10px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; font-family: inherit; }
+  .btn-copy { background: var(--accent-gradient); color: white; }
+  .btn-download { background: #10b981; color: white; }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a> · <a href="../about.html">درباره</a><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button></nav>
+</div></header>
+<main class="container tool-page" style="max-width:1100px;">
+  <h1>سازنده قالب سایت شخصی</h1>
+  <p class="tool-desc">اطلاعات خود را وارد کنید تا یک قالب HTML آماده برای GitHub Pages تحویل بگیرید.</p>
+
+  <div class="builder-grid">
+    <!-- پنل تنظیمات -->
+    <div class="builder-panel">
+      <h3>⚙️ تنظیمات سایت</h3>
+      
+      <div class="form-group">
+        <label>نام و نام خانوادگی</label>
+        <input type="text" id="input-name" value="رضا فرخی" oninput="updatePreview()">
+      </div>
+      
+      <div class="form-group">
+        <label>عنوان شغلی / تخصص</label>
+        <input type="text" id="input-job" value="توسعه‌دهنده وب و طراح ابزارهای آنلاین" oninput="updatePreview()">
+      </div>
+
+      <div class="form-group">
+        <label>درباره من (بیوگرافی کوتاه)</label>
+        <textarea id="input-bio" rows="3" oninput="updatePreview()">من یک برنامه‌نویس علاقه‌مند به ساخت ابزارهای کاربردی و بهینه‌سازی سایت برای موتورهای جستجو هستم.</textarea>
+      </div>
+
+      <div class="form-group">
+        <label>رنگ اصلی قالب</label>
+        <div class="color-picker">
+          <div class="color-btn active" style="background: #6366f1;" onclick="setColor(this, '#6366f1')"></div>
+          <div class="color-btn" style="background: #0ea5e9;" onclick="setColor(this, '#0ea5e9')"></div>
+          <div class="color-btn" style="background: #10b981;" onclick="setColor(this, '#10b981')"></div>
+          <div class="color-btn" style="background: #ef4444;" onclick="setColor(this, '#ef4444')"></div>
+          <div class="color-btn" style="background: #f59e0b;" onclick="setColor(this, '#f59e0b')"></div>
+          <div class="color-btn" style="background: #1e293b;" onclick="setColor(this, '#1e293b')"></div>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top: 20px;">
+        <label>ایمیل (اختیاری)</label>
+        <input type="email" id="input-email" placeholder="you@example.com" oninput="updatePreview()">
+      </div>
+      
+      <div class="form-group">
+        <label>لینک گیت‌هاب (اختیاری)</label>
+        <input type="url" id="input-github" placeholder="https://github.com/username" oninput="updatePreview()">
+      </div>
+    </div>
+
+    <!-- پنل پیش‌نمایش و کد -->
+    <div class="builder-panel">
+      <h3>👁️ پیش‌نمایش زنده</h3>
+      <div class="preview-area">
+        <div class="preview-header">
+          <div class="preview-dot"></div>
+          <div class="preview-dot"></div>
+          <div class="preview-dot"></div>
+          <span style="direction: ltr; margin-right: auto; margin-left: 10px;">index.html</span>
+        </div>
+        <iframe class="preview-iframe" id="preview-frame"></iframe>
+      </div>
+      
+      <h3 style="margin-top: 20px;">📝 کد HTML</h3>
+      <textarea class="code-area" id="code-output" readonly></textarea>
+      <div class="action-btns">
+        <button class="btn-copy" onclick="copyCode()">📋 کپی کد</button>
+        <button class="btn-download" onclick="downloadCode()">⬇️ دانلود index.html</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-container" style="margin: 40px auto; text-align: center; padding: 15px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
+    <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+    <div id="pos-article-text-card-123872"></div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script>
+let currentColor = '#6366f1';
+
+function setColor(btn, color) {
+  document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentColor = color;
+  updatePreview();
+}
+
+function generateHTML() {
+  const name = document.getElementById('input-name').value || 'نام شما';
+  const job = document.getElementById('input-job').value || 'عنوان شغلی';
+  const bio = document.getElementById('input-bio').value || 'متن درباره من...';
+  const email = document.getElementById('input-email').value.trim();
+  const github = document.getElementById('input-github').value.trim();
+  
+  let linksHTML = '';
+  if (email) linksHTML += `<a href="mailto:${email}" target="_blank" class="btn">✉️ ارسال ایمیل</a>`;
+  if (github) linksHTML += `<a href="${github}" target="_blank" class="btn">🐙 گیت‌هاب</a>`;
+
+  return `<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${name} | ${job}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Vazirmatn', Tahoma, sans-serif; }
+    body { background: #f8fafc; color: #0f172a; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
+    .card { background: white; max-width: 500px; width: 100%; padding: 40px 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; border-top: 5px solid ${currentColor}; }
+    .avatar { width: 100px; height: 100px; background: ${currentColor}; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: bold; margin: 0 auto 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    h1 { font-size: 1.8rem; margin-bottom: 8px; color: #0f172a; }
+    h2 { font-size: 1rem; color: ${currentColor}; font-weight: 500; margin-bottom: 20px; }
+    p { color: #64748b; line-height: 1.8; margin-bottom: 30px; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .btn { background: ${currentColor}; color: white; text-decoration: none; padding: 10px 20px; border-radius: 10px; font-weight: bold; font-size: 0.9rem; transition: 0.2s; }
+    .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="avatar">${name.charAt(0)}</div>
+    <h1>${name}</h1>
+    <h2>${job}</h2>
+    <p>${bio.replace(/\\n/g, '<br>')}</p>
+    <div class="buttons">
+      ${linksHTML}
+    </div>
+  </div>
+</body>
+</html>`;
+}
+
+function updatePreview() {
+  const html = generateHTML();
+  document.getElementById('code-output').value = html;
+  const iframe = document.getElementById('preview-frame');
+  const doc = iframe.contentDocument || iframe.contentWindow.document;
+  doc.open();
+  doc.write(html);
+  doc.close();
+}
+
+function copyCode() {
+  const code = document.getElementById('code-output');
+  code.select();
+  document.execCommand('copy');
+  alert('✅ کد با موفقیت کپی شد!');
+}
+
+function downloadCode() {
+  const code = document.getElementById('code-output').value;
+  const blob = new Blob([code], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'index.html';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// اجرای اولیه
+window.onload = updatePreview;
+</script>
+<script src="../js/theme.js"></script>
+<script src="../js/app.js"></script>
+<script>
+    !function(e,t,n){
+        e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];
+        var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");
+        s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l);
+    }(window,document,"yektanet");
+</script>
+</body>
+</html>
