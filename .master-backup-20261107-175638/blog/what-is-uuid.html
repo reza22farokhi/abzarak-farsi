@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UUID چیست؟ راهنمای کامل و تفاوت آن با GUID | ابزارک</title>
+<meta name="description" content="آموزش جامع UUID (شناسه یکتا) در پایگاه داده و برنامه‌نویسی. تفاوت UUID و GUID، نسخه‌های مختلف UUID، و کاربردهای واقعی آن.">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav>
+    <a href="../index.html">ابزارها</a>
+    <a href="index.html" style="color:var(--accent);font-weight:600">وبلاگ</a>
+    <a href="../about.html">درباره</a>
+    <button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button>
+  </nav>
+</div></header>
+
+<main class="container article-main">
+  <h1>UUID چیست؟ راهنمای کامل و تفاوت آن با GUID</h1>
+  <div class="article-meta">دسته: برنامه‌نویسی و پایگاه داده | زمان مطالعه: ۶ دقیقه</div>
+  
+  <div class="article-body">
+    <p>اگر شما یک برنامه‌نویس وب، موبایل یا مدیر پایگاه داده (Database) باشید، حتماً با مفهوم <strong>UUID</strong> روبه‌رو شده‌اید. اما UUID دقیقاً چیست و چرا به آن نیاز داریم؟ در این مقاله، به زبان ساده و کاربردی، به تمام سؤالات شما درباره UUID پاسخ می‌دهیم.</p>
+    
+    <div class="article-cta">
+      <h3>می‌خواهید یک UUID بسازید؟</h3>
+      <p>ابزار رایگان ما به شما امکان می‌دهد در کسری از ثانیه یک UUID کاملاً یکتا و معتبر بسازید.</p>
+      <a href="../tools/uuid.html" class="btn" style="text-decoration:none;display:inline-block;margin-top:10px">ساخت UUID آنلاین</a>
+    </div>
+
+    <h2>UUID چیست؟</h2>
+    <p>UUID مخفف عبارت <strong>Universally Unique Identifier</strong> به معنای «شناسه یکتای جهانی» است. این یک رشته ۱۲۸ بیتی است که در قالب ۳۲ کاراکتر هگزادسیمال (Hexadecimal) نمایش داده می‌شود و به صورت ۵ گروه با خط تیره از هم جدا می‌شود.</p>
+    
+    <h3>نمونه یک UUID:</h3>
+    <blockquote style="direction: ltr; text-align: left; font-family: monospace; font-size: 0.95rem;">
+      550e8400-e29b-41d4-a716-446655440000
+    </blockquote>
+    
+    <p>نکته حیرت‌انگیز درباره UUID این است که احتمال تکرار یک UUID در سراسر جهان تقریباً <strong>صفر</strong> است. برای درک بهتر: اگر هر ثانیه ۱ میلیارد UUID جدید بسازید، باز هم میلیون‌ها سال طول می‌کشد تا حتی یک تکراری رخ دهد.</p>
+
+    <h2>تفاوت UUID و GUID در چیست؟</h2>
+    <p>این یکی از رایج‌ترین سؤالات است. پاسخ ساده:</p>
+    <p><strong>از نظر فنی، هیچ تفاوتی ندارند!</strong> GUID مخفف <strong>Globally Unique Identifier</strong> است و توسط شرکت مایکروسافت در دنیای .NET استفاده می‌شود. اما ساختار و ماهیت آن‌ها دقیقاً یکسان است. فقط اسم تجاری متفاوت است.</p>
+
+    <div id="pos-article-text-123879" style="margin: 30px 0; text-align: center; min-height: 100px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px;"></div>
+
+    <h2>چرا UUID مهم است؟ (مقایسه با ID عددی)</h2>
+    <p>در گذشته، برنامه‌نویسان از شناسه‌های عددی ساده (مثل ۱، ۲، ۳، ۴...) به عنوان ID در دیتابیس استفاده می‌کردند. اما این روش چند مشکل اساسی دارد:</p>
+    
+    <h3>مشکل ۱: مقیاس‌پذیری در سیستم‌های توزیع‌شده</h3>
+    <p>اگر دو سرور مختلف همزمان بخواهند یک رکورد جدید ثبت کنند، با ID عددی به مشکل می‌خورید چون باید یک جا هماهنگ شود که چه کسی چه شماره‌ای می‌گیرد. اما با UUID، هر سرور می‌تواند مستقل UUID بسازد بدون نگرانی از تکرار.</p>
+    
+    <h3>مشکل ۲: افشای اطلاعات</h3>
+    <p>اگر URL سایت شما به این شکل باشد: <code>example.com/order/1234</code>، یک رقیب یا هکر می‌فهمد که شما فقط ۱۲۳۴ سفارش دارید. اما با UUID: <code>example.com/order/550e8400-e29b-...</code> هیچ اطلاعاتی لو نمی‌رود. این یک ویژگی امنیتی مهم است.</p>
+    
+    <h3>مشکل ۳: ادغام داده‌ها</h3>
+    <p>اگر دو سیستم مختلف داشته باشید (مثلاً سیستم فروش و سیستم پشتیبانی) و بخواهید آن‌ها را ادغام کنید، IDهای عددی تداخل پیدا می‌کنند. اما UUID هیچ‌وقت تداخل پیدا نمی‌کند.</p>
+
+    <h2>نسخه‌های مختلف UUID</h2>
+    <p>تا به امروز، ۵ نسخه اصلی از UUID تعریف شده است:</p>
+    
+    <h3>UUID v1 (زمانی)</h3>
+    <p>بر اساس زمان فعلی + MAC آدرس دستگاه تولید می‌شود. مشکل: MAC آدرس دستگاه را لو می‌دهد (نقص امنیتی).</p>
+
+    <h3>UUID v3 (MD5)</h3>
+    <p>از یک نام + یک namespace با الگوریتم MD5 ساخته می‌شود. امروزه کمتر استفاده می‌شود چون MD5 شکسته شده است.</p>
+
+    <h3>UUID v4 (تصادفی) — رایج‌ترین!</h3>
+    <p>کاملاً تصادفی است. این نسخه‌ای است که در ۹۵٪ موارد استفاده می‌شود و ابزار ما هم از این نسخه استفاده می‌کند. امن، سریع و بدون افشای اطلاعات.</p>
+
+    <h3>UUID v5 (SHA-1)</h3>
+    <p>مشابه v3 اما با الگوریتم SHA-1. امن‌تر است ولی کمتر استفاده می‌شود.</p>
+
+    <h3>UUID v7 (زمانی-تصادفی) — جدیدترین</h3>
+    <p>ترکیبی از زمان و تصادفی، طراحی شده برای دیتابیس‌های مدرن. عملکرد بهتری در ایندکس‌گذاری دارد.</p>
+
+    <h2>کاربردهای واقعی UUID</h2>
+    
+    <h3>۱. شناسه رکورد در دیتابیس</h3>
+    <p>در سیستم‌های مدرن مثل MySQL، PostgreSQL و MongoDB، استفاده از UUID به عنوان Primary Key رایج است.</p>
+
+    <h3>۲. شناسه نشست (Session ID)</h3>
+    <p>وقتی وارد یک سایت می‌شوید، سرور به شما یک Session ID اختصاصی می‌دهد. این ID معمولاً یک UUID است تا نتوان حدس زد.</p>
+
+    <h3>۳. شناسه فایل‌های آپلودی</h3>
+    <p>سایت‌هایی مثل Google Drive یا Dropbox هر فایل آپلود شده را با یک UUID ذخیره می‌کنند.</p>
+
+    <h3>۴. شناسه تراکنش‌های مالی</h3>
+    <p>در سیستم‌های بانکی و بلاکچین، هر تراکنش یک UUID منحصربه‌فرد دارد.</p>
+
+    <h3>۵. شناسه پیام‌ها</h3>
+    <p>در سیستم‌های چت (مثل WhatsApp، Telegram)، هر پیام یک UUID دارد تا از تکرار آن جلوگیری شود.</p>
+
+    <div class="article-cta">
+      <h3>UUID v4 رایگان بسازید</h3>
+      <p>ابزار ما به صورت ۱۰۰٪ در مرورگر شما کار می‌کند و هیچ داده‌ای به سرور ارسال نمی‌شود.</p>
+      <a href="../tools/uuid.html" class="btn" style="text-decoration:none;display:inline-block;margin-top:10px">ورود به سازنده UUID</a>
+    </div>
+
+    <h2>نقاط ضعف UUID</h2>
+    <p>UUID همه چیز نیست و بی‌عیب هم نیست. این‌ها را بدانید:</p>
+    <ul>
+      <li><strong>حجم بیشتر:</strong> UUID ۳۶ کاراکتر است در حالی که ID عددی می‌تواند فقط ۴ بایت باشد. این یعنی فضای ذخیره‌سازی بیشتر.</li>
+      <li><strong>ایندکس کندتر:</strong> در دیتابیس‌های سنتی (مثل MySQL)، ایندکس‌گذاری روی UUID کندتر از ID عددی است.</li>
+      <li><strong>خواندن سخت‌تر:</strong> برای انسان، ۵۵۰e8400-... خواندنش سخت‌تر از ۱۲۳۴ است.</li>
+    </ul>
+    <p>به همین دلیل، خیلی از سیستم‌های مدرن از UUID نسخه ۷ استفاده می‌کنند که هم یکتاست و هم برای ایندکس‌گذاری بهتر است.</p>
+
+    <h2>چطور UUID بسازیم؟</h2>
+    <p>بستگی به زبان برنامه‌نویسی شما دارد. در اکثر زبان‌ها یک تابع ساده وجود دارد:</p>
+    <ul>
+      <li><strong>JavaScript:</strong> <code>crypto.randomUUID()</code></li>
+      <li><strong>Python:</strong> <code>import uuid; uuid.uuid4()</code></li>
+      <li><strong>PHP:</strong> <code>bin2hex(random_bytes(16))</code> یا کتابخانه ramsey/uuid</li>
+      <li><strong>Java:</strong> <code>UUID.randomUUID()</code></li>
+      <li><strong>C#:</strong> <code>Guid.NewGuid()</code></li>
+    </ul>
+    <p>یا اگر نمی‌خواهید کد بنویسید، از <a href="../tools/uuid.html">ابزار آنلاین ما</a> استفاده کنید که در یک کلیک UUID v4 معتبر تولید می‌کند.</p>
+
+    <h2>جمع‌بندی</h2>
+    <p>UUID یک ابزار قدرتمند و ضروری در دنیای برنامه‌نویسی مدرن است. اگر پروژه‌ای دارید که در آن به شناسه یکتا نیاز است، UUID بهترین انتخاب شماست. مخصوصاً اگر سیستم توزیع‌شده باشد، یا امنیت اطلاعات مهم باشد.</p>
+    <p>البته اگر سیستم شما کوچک است و حجم دیتابیس مهم است، می‌توانید از ترکیب UUID و ID عددی استفاده کنید (سیستم Hybrid).</p>
+
+    <div class="article-cta" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(99, 102, 241, 0.1));">
+      <h3>آماده‌اید UUID بسازید؟</h3>
+      <p>ابزار رایگان ما به شما امکان می‌دهد در یک کلیک تا ۱۰۰ UUID همزمان بسازید و کپی کنید.</p>
+      <a href="../tools/uuid.html" class="btn" style="text-decoration:none;display:inline-block;margin-top:10px">ورود به ابزار UUID</a>
+    </div>
+
+    
+  
+
+  
+  <div class="related-section">
+    <h3 class="related-title">📚 مقالات مرتبط</h3>
+    <div class="related-grid">
+      <a href="regex-guide.html" class="related-card">
+        <span class="related-icon">📄</span>
+        <span class="related-name">راهنمای کامل Regex</span>
+      </a>
+      <a href="json-guide.html" class="related-card">
+        <span class="related-icon">📄</span>
+        <span class="related-name">راهنمای فرمت JSON</span>
+      </a>
+      <a href="what-is-hashing.html" class="related-card">
+        <span class="related-icon">📄</span>
+        <span class="related-name">راهنمای هش (Hash)</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="ad-container" style="margin: 30px auto; text-align: center; padding: 10px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
+      <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+      <div id="pos-article-text-card-123872"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="container">© ابزارک فارسی — <a href="../about.html" style="color:inherit">درباره</a> · <a href="../contact.html" style="color:inherit">تماس</a></div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script src="../js/theme.js"></script>
+<script src="../js/app.js"></script>
+<!-- Yektanet Publisher Script -->
+<script>
+    !function(e,t,n){
+        e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];
+        var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");
+        s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l);
+    }(window,document,"yektanet");
+</script>
+<script src="../js/reading-tools.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("../sw.js").catch(() => {});
+  });
+}
+</script>
+</body>
+</html>

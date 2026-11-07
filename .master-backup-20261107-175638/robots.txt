@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reza22farokhi.github.io/abzarak-farsi/sitemap.xml

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مرجع کامل دستورات Termux به فارسی | ابزارک</title>
+<meta name="description" content="مرجع جامع ۱۴۰+ دستور Termux به فارسی: نصب پکیج، فایل‌ها، شبکه، میانبرهای اختصاصی و... با قابلیت جستجو و کپی سریع.">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+<style>
+  .termux-search { max-width: 100%; margin: 20px 0; position: relative; }
+  .termux-search input {
+    width: 100%; padding: 16px 50px 16px 20px; border: 2px solid var(--border);
+    border-radius: 50px; font-size: 1rem; font-family: inherit; outline: none;
+    background: var(--card); color: var(--text); transition: all 0.3s;
+    box-shadow: var(--shadow);
+  }
+  .termux-search input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(99,102,241,0.15); }
+  .termux-search::before {
+    content: '🔍'; position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+    font-size: 1.2rem; pointer-events: none;
+  }
+
+  .cat-tabs {
+    display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; margin-bottom: 20px;
+    scrollbar-width: thin; -ms-overflow-style: none;
+  }
+  .cat-tabs::-webkit-scrollbar { height: 4px; }
+  .cat-tabs::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .cat-tab {
+    padding: 10px 18px; border-radius: 50px; border: 1px solid var(--border);
+    background: var(--card); color: var(--text); cursor: pointer;
+    font-family: inherit; font-size: 0.9rem; font-weight: 600; white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .cat-tab:hover { border-color: var(--accent); }
+  .cat-tab.active {
+    background: var(--accent-gradient); color: white; border-color: transparent;
+    box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+  }
+
+  .category-header {
+    margin: 30px 0 15px; padding: 12px 18px; border-radius: 12px;
+    color: white; font-weight: 700; font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .category-header .count {
+    background: rgba(255,255,255,0.25); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem;
+  }
+
+  .cmd-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 20px; margin-bottom: 12px; display: flex; align-items: flex-start;
+    gap: 14px; transition: all 0.2s; box-shadow: var(--shadow);
+  }
+  .cmd-card:hover { transform: translateX(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-color: var(--accent); }
+
+  .cmd-content { flex: 1; min-width: 0; }
+  .cmd-code {
+    font-family: 'Courier New', Consolas, monospace; font-size: 0.95rem;
+    background: #0f172a; color: #a5f3fc; padding: 10px 14px; border-radius: 8px;
+    direction: ltr; text-align: left; word-break: break-all; line-height: 1.5;
+    border: 1px solid rgba(255,255,255,0.1); margin-bottom: 8px;
+  }
+  .cmd-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+  .copy-btn {
+    background: var(--bg); border: 1px solid var(--border); color: var(--accent);
+    width: 44px; height: 44px; border-radius: 10px; cursor: pointer;
+    font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  .copy-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+  .copy-btn.copied { background: #10b981; color: white; border-color: #10b981; }
+
+  .toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: #10b981; color: white; padding: 14px 24px; border-radius: 12px;
+    font-weight: 600; font-size: 1rem; z-index: 99999; opacity: 0;
+    transition: all 0.3s; box-shadow: 0 10px 30px rgba(16,185,129,0.4);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+  .no-results { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 1.1rem; }
+
+  @media (max-width: 640px) {
+    .cmd-code { font-size: 0.85rem; padding: 8px 10px; }
+    .cmd-card { padding: 12px 14px; gap: 10px; }
+    .copy-btn { width: 40px; height: 40px; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="../index.html">ابزارها</a> · <a href="../blog/index.html">وبلاگ</a> · <a href="../about.html">درباره</a><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button></nav>
+</div></header>
+<main class="container tool-page" style="max-width: 900px;">
+  <h1>مرجع کامل دستورات Termux</h1>
+  <p class="tool-desc">بیش از ۱۴۰ دستور پرکاربرد Termux به فارسی — با قابلیت جستجو و کپی سریع</p>
+
+  <div class="termux-search">
+    <input type="text" id="search" placeholder="جستجوی دستور... (مثلاً: git، pkg، network)">
+  </div>
+
+  <div class="cat-tabs" id="cat-tabs"></div>
+  <div id="commands-container"></div>
+
+  <div class="toast" id="toast">✅ کپی شد!</div>
+
+  
+  <div style="margin: 30px auto; max-width: 800px; padding: 24px; background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(168,85,247,0.1)); border: 1px solid rgba(99,102,241,0.3); border-radius: 14px; text-align: center;">
+    <p style="margin-bottom: 12px; font-weight: 600; color: var(--text); font-size: 1.05rem;">📖 تازه با Termux آشنا شدید؟</p>
+    <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 16px;">راهنمای کامل ما از نصب تا اجرای پروژه‌های واقعی، همه چیز را به شما آموزش می‌دهد.</p>
+    <a href="../blog/termux-complete-guide.html" style="display: inline-block; padding: 12px 24px; background: var(--accent-gradient); color: white; text-decoration: none; border-radius: 10px; font-weight: bold;">مشاهده راهنمای کامل Termux →</a>
+  </div>
+
+  <div class="ad-container" style="margin: 40px auto; text-align: center; padding: 15px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
+    <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+    <div id="pos-article-text-card-123872"></div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script src="../js/termux-data.js"></script>
+<script>
+  let activeCategory = 'all';
+  let searchQuery = '';
+
+  function renderTabs() {
+    const tabs = document.getElementById('cat-tabs');
+    let html = `<button class="cat-tab ${activeCategory==='all'?'active':''}" onclick="filterCat('all')">همه (${termuxCommands.length})</button>`;
+    for (const [key, info] of Object.entries(categories)) {
+      const count = termuxCommands.filter(c => c.cat === key).length;
+      html += `<button class="cat-tab ${activeCategory===key?'active':''}" onclick="filterCat('${key}')">${info.name} (${count})</button>`;
+    }
+    tabs.innerHTML = html;
+  }
+
+  function filterCat(cat) {
+    activeCategory = cat;
+    renderTabs();
+    renderCommands();
+  }
+
+  function renderCommands() {
+    const container = document.getElementById('commands-container');
+    let filtered = termuxCommands;
+
+    if (activeCategory !== 'all') {
+      filtered = filtered.filter(c => c.cat === activeCategory);
+    }
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter(c => c.cmd.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q));
+    }
+
+    if (filtered.length === 0) {
+      container.innerHTML = '<div class="no-results">❌ دستوری با این مشخصات پیدا نشد</div>';
+      return;
+    }
+
+    let html = '';
+    if (activeCategory === 'all') {
+      // گروه‌بندی بر اساس دسته
+      const grouped = {};
+      filtered.forEach(c => {
+        if (!grouped[c.cat]) grouped[c.cat] = [];
+        grouped[c.cat].push(c);
+      });
+      
+      for (const [cat, cmds] of Object.entries(grouped)) {
+        const info = categories[cat];
+        if (!info) continue;
+        html += `<div class="category-header" style="background: ${info.color};">${info.name}<span class="count">${cmds.length} دستور</span></div>`;
+        cmds.forEach(c => html += makeCard(c));
+      }
+    } else {
+      filtered.forEach(c => html += makeCard(c));
+    }
+
+    container.innerHTML = html;
+  }
+
+  function makeCard(c) {
+    const escaped = c.cmd.replace(/"/g, '&quot;');
+    return `
+      <div class="cmd-card">
+        <div class="cmd-content">
+          <div class="cmd-code">${c.cmd}</div>
+          <div class="cmd-desc">${c.desc}</div>
+        </div>
+        <button class="copy-btn" onclick="copyCmd(this, &quot;${escaped}&quot;)" title="کپی">📋</button>
+      </div>
+    `;
+  }
+
+  function copyCmd(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.classList.add('copied');
+      btn.innerHTML = '✅';
+      showToast();
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = '📋';
+      }, 1500);
+    }).catch(() => {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast();
+    });
+  }
+
+  function showToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1500);
+  }
+
+  document.getElementById('search').addEventListener('input', (e) => {
+    searchQuery = e.target.value.trim();
+    renderCommands();
+  });
+
+  // Init
+  renderTabs();
+  renderCommands();
+
+  if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("../sw.js").catch(()=>{}));
+</script>
+<script src="../js/theme.js"></script>
+<script src="../js/app.js"></script>
+<!-- Yektanet Publisher Script -->
+<script>
+    !function(e,t,n){
+        e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];
+        var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");
+        s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l);
+    }(window,document,"yektanet");
+</script>
+</body></html>
