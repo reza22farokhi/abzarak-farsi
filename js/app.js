@@ -281,6 +281,7 @@ const catalog = [
   { title: "مقاله: راهنمای نوشتن رزومه حرفه‌ای", url: "blog/professional-resume-guide.html", type: "article", icon: "📄", keywords: "رزومه کاریابی استخدام مصاحبه شغلی" },
   { title: "دستورات Termux", url: "tools/termux-commands.html", type: "tool", icon: "💻", keywords: "ترموکس دستور لینوکس terminal" },
   { title: "مقاله: آموزش کامل Termux", url: "blog/termux-complete-guide.html", type: "article", icon: "📄", keywords: "ترموکس آموزش لینوکس اندروید" },
+  { title: "مقاله: تبدیل سایت به اپلیکیشن", url: "blog/website-to-app-guide.html", type: "article", icon: "📄", keywords: "PWA PWABuilder اپلیکیشن اندروید" },
   // --- مقالات ---
   { title: "مقاله: راهنمای تبدیل تاریخ", url: "blog/date-converter-guide.html", type: "article", icon: "📄", keywords: "" },
   { title: "مقاله: شاخص BMI", url: "blog/what-is-bmi.html", type: "article", icon: "📄", keywords: "" },

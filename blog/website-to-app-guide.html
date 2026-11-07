@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آموزش تبدیل هر وب‌سایتی به اپلیکیشن اندروید (رایگان و بدون کدنویسی) | ابزارک</title>
+<meta name="description" content="راهنمای کامل تبدیل سایت به اپلیکیشن اندروید با PWABuilder. از صفر تا انتشار در کافه‌بازار و مایکت. تجربه واقعی ساخت اپلیکیشن ابزارک.">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114021652', 'ym');ym(114021652, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "آموزش تبدیل سایت به اپلیکیشن اندروید با PWABuilder",
+  "description": "راهنمای کامل و رایگان ساخت APK از سایت با PWABuilder",
+  "author": {"@type": "Organization", "name": "ابزارک فارسی"},
+  "datePublished": "2026-11-07",
+  "inLanguage": "fa-IR"
+}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="../index.html" class="brand">ابزارک فارسی</a>
+  <nav>
+    <a href="../index.html">ابزارها</a>
+    <a href="index.html" style="color:var(--accent);font-weight:600">وبلاگ</a>
+    <a href="../app.html" style="color:var(--accent);font-weight:600;">📱 اپلیکیشن</a>
+    <a href="../about.html">درباره</a>
+    <button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span></button>
+  </nav>
+</div></header>
+
+<main class="container article-main">
+  <h1>آموزش تبدیل هر وب‌سایتی به اپلیکیشن اندروید (رایگان و بدون کدنویسی)</h1>
+  <div class="article-meta">دسته: توسعه وب و موبایل | زمان مطالعه: ۱۲ دقیقه | به‌روزرسانی: آبان ۱۴۰۵</div>
+  
+  <div class="article-body">
+    <p>تا چند سال پیش، اگر می‌خواستید یک سایت را به اپلیکیشن موبایل تبدیل کنید، باید یک تیم برنامه‌نویس استخدام می‌کردید، ماه‌ها کدنویسی می‌کردید و هزینه‌های سنگینی می‌پرداختید. اما امروزه با تکنولوژی <strong>PWA (Progressive Web App)</strong> و ابزار رایگان <strong>PWABuilder</strong>، می‌توانید در کمتر از ۱۰ دقیقه و بدون نوشتن یک خط کد، سایت خود را به یک اپلیکیشن اندروید واقعی تبدیل کنید.</p>
+    
+    <p>در این مقاله، تجربه واقعی خودم را در تبدیل سایت ابزارک به اپلیکیشن اندروید، قدم به قدم با شما به اشتراک می‌گذارم. اگر شما هم یک وب‌سایت دارید و می‌خواهید کاربران آن را روی گوشی نصب کنند، این مقاله دقیقاً برای شماست.</p>
+
+    <div class="article-cta">
+      <h3>می‌خواهید نتیجه کار را ببینید؟</h3>
+      <p>اپلیکیشن ابزارک فارسی که با همین روش ساخته شده، آماده دانلود و نصب است.</p>
+      <a href="../app.html" class="btn" style="text-decoration:none;display:inline-block;margin-top:10px">📱 مشاهده اپلیکیشن ابزارک</a>
+    </div>
+
+    <h2>PWA چیست و چرا انقلاب بزرگی در دنیای اپلیکیشن‌هاست؟</h2>
+    <p><strong>PWA</strong> یا <strong>Progressive Web App</strong> یک تکنولوژی مدرن است که به وب‌سایت‌ها امکان می‌دهد مثل یک اپلیکیشن واقعی رفتار کنند. یک سایت PWA می‌تواند:</p>
+    <ul style="padding-right:24px; line-height:2;">
+      <li>📱 روی گوشی نصب شود (روی صفحه اصلی)</li>
+      <li>⚡ بدون اینترنت هم کار کند (Offline Mode)</li>
+      <li>🔔 نوتیفیکیشن Push دریافت کند</li>
+      <li>🏃 سرعتش از اپ‌های نیتیو کمتر نباشد</li>
+      <li>🔒 در محیط تمام‌صفحه (Full Screen) اجرا شود</li>
+    </ul>
+    
+    <h3>مزایای PWA نسبت به اپ‌های نیتیو</h3>
+    <ul style="padding-right:24px; line-height:2;">
+      <li><strong>یک کد، همه پلتفرم‌ها:</strong> یک بار سایت PWA می‌سازید، روی اندروید، iOS، ویندوز و... کار می‌کند</li>
+      <li><strong>به‌روزرسانی فوری:</strong> نیازی به آپدیت در استورها ندارد، همان لحظه که سایت را تغییر می‌دهید، اپلیکیشن هم به‌روز می‌شود</li>
+      <li><strong>حجم کمتر:</strong> اپ‌های PWA معمولاً ۱ تا ۵ مگابایت هستند، در حالی که اپ‌های نیتیو می‌توانند ۵۰ مگابایت یا بیشتر باشند</li>
+      <li><strong>هزینه صفر:</strong> نیازی به تیم برنامه‌نویسی اندروید و iOS ندارید</li>
+    </ul>
+
+    <div id="pos-article-text-123879" style="margin: 30px 0; text-align: center; min-height: 100px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px;"></div>
+
+    <h2>پیش‌نیازها: سایت شما باید چه ویژگی‌هایی داشته باشد؟</h2>
+    <p>برای اینکه بتوانید سایتتان را به اپلیکیشن تبدیل کنید، ابتدا باید سایت شما PWA باشد. یعنی این ۴ مورد را داشته باشد:</p>
+
+    <h3>۱. فایل manifest.json</h3>
+    <p>این یک فایل JSON است که به مرورگر می‌گوید نام اپلیکیشن چیست، آیکون‌هایش کدامند، رنگش چه باشد و... . یک نمونه ساده:</p>
+    <pre style="background:#0f172a; color:#a5f3fc; padding:14px; border-radius:8px; direction:ltr; text-align:left; overflow-x:auto; font-size:0.85rem;"><code>{
+  "name": "نام کامل اپلیکیشن",
+  "short_name": "نام کوتاه",
+  "start_url": "./",
+  "display": "standalone",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192" },
+    { "src": "icon-512.png", "sizes": "512x512" }
+  ]
+}</code></pre>
+
+    <h3>۲. فایل Service Worker (sw.js)</h3>
+    <p>این یک اسکریپت جاوااسکریپت است که به سایت شما امکان کارکرد آفلاین می‌دهد. بدون این فایل، PWABuilder به شما اجازه ساخت اپ نمی‌دهد.</p>
+
+    <h3>۳. آیکون اپلیکیشن</h3>
+    <p>حداقل به دو آیکون نیاز دارید: یکی ۱۹۲×۱۹۲ پیکسل و دیگری ۵۱۲×۵۱۲ پیکسل، هر دو با فرمت PNG.</p>
+
+    <h3>۴. HTTPS (SSL)</h3>
+    <p>سایت شما باید با پروتکل HTTPS باز شود. اگر از GitHub Pages یا Cloudflare استفاده می‌کنید، این به صورت خودکار فعال است.</p>
+
+    <div class="article-cta">
+      <h3>آیا سایت شما PWA هست؟</h3>
+      <p>راه ساده‌ای برای تست: سایت خود را در Chrome باز کنید و در آدرس‌بار دنبال آیکون نصب (Install) بگردید. اگر وجود دارد، سایت شما PWA است.</p>
+    </div>
+
+    <h2>مرحله ۱: آماده‌سازی سایت</h2>
+    <p>اگر سایت شما PWA نیست، نگران نباشید. کافیست این مراحل را انجام دهید (من همین کارها را روی سایت ابزارک انجام دادم):</p>
+
+    <h3>الف) فایل manifest.json را بسازید</h3>
+    <p>در ریشه سایت خود، یک فایل به نام `manifest.json` بسازید و محتوای بالا را در آن قرار دهید. آیکون‌ها را هم در ریشه سایت آپلود کنید.</p>
+
+    <h3>ب) فایل sw.js را بسازید</h3>
+    <p>یک فایل ساده Service Worker بسازید که صفحات اصلی را کش کند:</p>
+    <pre style="background:#0f172a; color:#a5f3fc; padding:14px; border-radius:8px; direction:ltr; text-align:left; overflow-x:auto; font-size:0.85rem;"><code>const CACHE = 'my-site-v1';
+const PRECACHE = ['./', './index.html', './css/style.css'];
+
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(PRECACHE)));
+});
+self.addEventListener('fetch', e => {
+  e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+});</code></pre>
+
+    <h3>ج) لینک‌ها را به HTML اضافه کنید</h3>
+    <p>در قسمت `<head>` تمام صفحات سایتتان، این خطوط را اضافه کنید:</p>
+    <pre style="background:#0f172a; color:#a5f3fc; padding:14px; border-radius:8px; direction:ltr; text-align:left; overflow-x:auto; font-size:0.85rem;"><code>&lt;link rel="manifest" href="manifest.json"&gt;
+&lt;meta name="theme-color" content="#6366f1"&gt;</code></pre>
+    <p>و در قسمت `<body>` این خط را برای فعال‌سازی Service Worker اضافه کنید:</p>
+    <pre style="background:#0f172a; color:#a5f3fc; padding:14px; border-radius:8px; direction:ltr; text-align:left; overflow-x:auto; font-size:0.85rem;"><code>&lt;script&gt;
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+&lt;/script&gt;</code></pre>
+
+    <h2>مرحله ۲: تست PWA بودن سایت</h2>
+    <p>قبل از رفتن به PWABuilder، مطمئن شوید سایت شما از نظر PWA سالم است. چند راه وجود دارد:</p>
+    <ul style="padding-right:24px; line-height:2;">
+      <li><strong>در Chrome:</strong> سایت را باز کنید، در منوی سه‌نقطه گزینه «Install» یا «نصب» را ببینید. اگر وجود دارد، همه چیز آماده است.</li>
+      <li><strong>در Lighthouse:</strong> در Chrome، F12 بزنید → تب Lighthouse → روی «Generate Report» کلیک کنید. باید در بخش PWA نمره بالایی بگیرید.</li>
+      <li><strong>در PWABuilder:</strong> مستقیم آدرس سایت را وارد کنید، اگر نمره بالای ۷۰ گرفتید، آماده است.</li>
+    </ul>
+
+    <h2>مرحله ۳: استفاده از PWABuilder (قلب ماجرا)</h2>
+    <p>حالا نوبت به مرحله اصلی می‌رسد. PWABuilder یک ابزار رایگان از مایکروسافت است که سایت PWA شما را به اپلیکیشن تبدیل می‌کند.</p>
+
+    <h3>گام ۱: رفتن به سایت</h3>
+    <p>در مرورگر خود آدرس زیر را باز کنید:</p>
+    <pre style="background:#0f172a; color:#a5f3fc; padding:14px; border-radius:8px; direction:ltr; text-align:left; overflow-x:auto; font-size:0.85rem;"><code>https://www.pwabuilder.com/</code></pre>
+
+    <h3>گام ۲: وارد کردن آدرس سایت</h3>
+    <p>در باکس وسط صفحه، آدرس کامل سایت خود را وارد کنید (با https). سپس روی دکمه <strong>Start</strong> کلیک کنید.</p>
+
+    <h3>گام ۳: بررسی نمره</h3>
+    <p>PWABuilder سایت شما را آنالیز می‌کند و یک نمره از ۱۰۰ می‌دهد. هرچه نمره بالاتر، اپلیکیشن نهایی بهتر خواهد بود. معمولاً اگر نمره بالای ۷۰ باشد، می‌توانید ادامه دهید.</p>
+
+    <h3>گام ۴: انتخاب پلتفرم</h3>
+    <p>روی دکمه <strong>Package for Stores</strong> کلیک کنید. صفحه‌ای باز می‌شود که سه گزینه دارد:</p>
+    <ul style="padding-right:24px; line-height:2;">
+      <li>🪟 <strong>Microsoft Store (Windows):</strong> برای ویندوز</li>
+      <li>🤖 <strong>Google Play (Android):</strong> برای اندروید ← <strong>این را انتخاب کنید</strong></li>
+      <li>🍎 <strong>App Store (iOS):</strong> برای آیفون (تجربی)</li>
+    </ul>
+
+    <h3>گام ۵: تنظیمات نهایی</h3>
+    <p>بعد از انتخاب اندروید، این اطلاعات را وارد کنید:</p>
+    <ul style="padding-right:24px; line-height:2;">
+      <li><strong>Package ID:</strong> یک شناسه یکتا (مثلاً `ir.yoursite.app`)</li>
+      <li><strong>App name:</strong> نام نمایشی اپ</li>
+      <li><strong>Short name:</strong> نام کوتاه (برای صفحه اصلی گوشی)</li>
+    </ul>
+
+    <h3>گام ۶: دانلود</h3>
+    <p>روی دکمه <strong>Download Package</strong> کلیک کنید. یک فایل ZIP دانلود می‌شود که شامل:</p>
+    <ul style="padding-right:24px; line-height:2;">
+      <li><code>app-release-signed.apk</code> → فایل نصبی اپلیکیشن</li>
+      <li><code>assetlinks.json</code> → فایل تأیید مالکیت (برای حالت Full Screen)</li>
+      <li><code>signing-key-info.txt</code> → کلید امضا (بسیار مهم - نگه‌دارید)</li>
+    </ul>
+
+    <h2>مرحله ۴: حذف نوار آدرس (Full Screen Mode)</h2>
+    <p>وقتی برای اولین بار APK را نصب کنید و اپ را باز کنید، می‌بینید که یک نوار آدرس بالای اپ وجود دارد. این یعنی اپ هنوز در حالت «Trusted Web Activity» (TWA) کار می‌کند اما اندروید هنوز تأیید نکرده که سایت مال شماست.</p>
+    
+    <p>برای حذف کامل این نوار آدرس، باید فایل <code>assetlinks.json</code> را در مسیر زیر روی سایت خود قرار دهید:</p>
+    <pre style="background:#0f172a; color:#a5f3fc; padding:14px; border-radius:8px; direction:ltr; text-align:left; overflow-x:auto; font-size:0.85rem;"><code>https://yourdomain.com/.well-known/assetlinks.json</code></pre>
+
+    <h3>⚠️ نکته بسیار مهم:</h3>
+    <p>اگر سایت شما در یک زیرشاخه است (مثل `yoursite.github.io/project`)، فایل `assetlinks.json` باید در <strong>ریشه دامنه اصلی</strong> قرار بگیرد، نه در زیرشاخه.</p>
+
+    <div class="article-cta" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(99, 102, 241, 0.1));">
+      <h3>💡 تجربه من:</h3>
+      <p>من برای سایت ابزارک، یک مخزن جدید به نام <code>reza22farokhi.github.io</code> ساختم و فقط فایل <code>assetlinks.json</code> و <code>.nojekyll</code> را در آن قرار دادم. حالا اپلیکیشن کاملاً Full Screen کار می‌کند!</p>
+    </div>
+
+    <h2>مرحله ۵: انتشار در استورهای ایرانی</h2>
+    <p>حالا که APK آماده است، می‌توانید آن را در استورهای ایرانی منتشر کنید. چون گوگل پلی برای ایرانی‌ها دردسر دارد، این گزینه‌ها بهتر است:</p>
+
+    <h3>🥇 کافه بازار</h3>
+    <ul style="padding-right:24px; line-height:2;">
+      <li>ثبت‌نام در: <code>cafebazaar.ir/developers</code></li>
+      <li>هزینه: رایگان (برای اپ‌های رایگان)</li>
+      <li>زمان بررسی: ۳ تا ۷ روز کاری</li>
+      <li>دسترسی: میلیون‌ها کاربر ایرانی</li>
+    </ul>
+
+    <h3>🥈 مایکت</h3>
+    <ul style="padding-right:24px; line-height:2;">
+      <li>ثبت‌نام در: <code>myket.ir/developers</code></li>
+      <li>هزینه: رایگان</li>
+      <li>دسترسی: کاربران اندروید ایرانی</li>
+    </ul>
+
+    <h3>🥉 توزیع مستقیم از سایت خودتان</h3>
+    <p>ساده‌ترین راه: فایل APK را در سایت خود قرار دهید و یک لینک دانلود بگذارید. کاربران می‌توانند مستقیم دانلود کنند. (این کاری است که در <a href="../app.html">صفحه اپلیکیشن ابزارک</a> انجام دادم)</p>
+
+    <h2>نکات حرفه‌ای که در تجربه‌ام یاد گرفتم</h2>
+
+    <h3>۱. کلید امضا (Signing Key) را گم نکنید!</h3>
+    <p>فایل <code>signing-key-info.txt</code> که در ZIP دانلودی هست، کلید امنیتی اپ شماست. اگر آن را گم کنید، نمی‌توانید نسخه‌های بعدی اپ را در استورها آپدیت کنید. حتماً در یک جای امن (مثل Google Drive) ذخیره‌اش کنید.</p>
+
+    <h3>۲. آیکون و اسکرین‌شات حرفه‌ای بسازید</h3>
+    <p>کافه‌بازار و مایکت به آیکون و اسکرین‌شات‌های حرفه‌ای اهمیت زیادی می‌دهند. اگر گرافیست نیستید، از ابزارهای رایگان آنلاین مثل Canva استفاده کنید.</p>
+
+    <h3>۳. توضیحات کامل و جذاب بنویسید</h3>
+    <p>در صفحه اپلیکیشن، توضیحات کاملی از قابلیت‌ها بنویسید. از کلمات کلیدی مرتبط استفاده کنید (سئوی داخلی استور).</p>
+
+    <h3>۴. اپلیکیشن را تست کنید</h3>
+    <p>قبل از آپلود به استور، اپ را روی چند گوشی مختلف تست کنید. مشکلات رایج:</p>
+    <ul style="padding-right:24px; line-height:2;">
+      <li>آیا در حالت آفلاین کار می‌کند؟</li>
+      <li>آیا همه لینک‌ها درست باز می‌شوند؟</li>
+      <li>آیا سرعت بارگذاری قابل قبول است؟</li>
+      <li>آیا دکمه بازگشت (Back) درست کار می‌کند؟</li>
+    </ul>
+
+    <h3>۵. نسخه‌گذاری درست انجام دهید</h3>
+    <p>هر بار که می‌خواهید اپ را آپدیت کنید، باید نسخه (versionCode و versionName) را افزایش دهید. مثلاً از 1.0.0 به 1.0.1.</p>
+
+    <h2>چالش‌های رایج و راه‌حل‌های آن‌ها</h2>
+
+    <h3>❌ مشکل: PWABuilder سایت من را نمی‌شناسد</h3>
+    <p><strong>راه‌حل:</strong> مطمئن شوید سایت شما با HTTPS باز می‌شود و manifest.json در ریشه سایت است. همچنین در Chrome، گزینه Install باید در منو ظاهر شود.</p>
+
+    <h3>❌ مشکل: نوار آدرس حذف نمی‌شود</h3>
+    <p><strong>راه‌حل:</strong> فایل assetlinks.json باید در مسیر <code>/.well-known/</code> ریشه دامنه باشد. سپس اپلیکیشن را Uninstall کرده و دوباره نصب کنید.</p>
+
+    <h3>❌ مشکل: کافه‌بازار اپ را رد کرد</h3>
+    <p><strong>راه‌حل:</strong> معمولاً به خاطر آیکون ضعیف، توضیحات ناقص، یا خطا در نسخه‌گذاری است. فیدبک کافه‌بازار را دقیق بخوانید و اصلاح کنید.</p>
+
+    <h3>❌ مشکل: اپ بعد از آپدیت سایت، آپدیت نمی‌شود</h3>
+    <p><strong>راه‌حل:</strong> در فایل sw.js، نسخه cache را تغییر دهید (مثلاً از v1 به v2) تا مرورگر نسخه جدید را دریافت کند.</p>
+
+    <h2>آیا ساخت اپلیکیشن از سایت واقعاً به صرفه است؟</h2>
+    <p><strong>بله، کاملاً!</strong> در اینجا مقایسه‌ای با ساخت اپ نیتیو داشته باشیم:</p>
+
+    <table style="width:100%; border-collapse:collapse; margin:20px 0; text-align:center;">
+      <thead>
+        <tr style="background:var(--bg);">
+          <th style="padding:12px; border:1px solid var(--border);">معیار</th>
+          <th style="padding:12px; border:1px solid var(--border);">اپ PWA</th>
+          <th style="padding:12px; border:1px solid var(--border);">اپ نیتیو</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:12px; border:1px solid var(--border);">هزینه</td><td style="padding:12px; border:1px solid var(--border);">۰ تومان</td><td style="padding:12px; border:1px solid var(--border);">۵۰-۳۰۰ میلیون</td></tr>
+        <tr><td style="padding:12px; border:1px solid var(--border);">زمان ساخت</td><td style="padding:12px; border:1px solid var(--border);">۱۰ دقیقه</td><td style="padding:12px; border:1px solid var(--border);">۳-۶ ماه</td></tr>
+        <tr><td style="padding:12px; border:1px solid var(--border);">حجم اپ</td><td style="padding:12px; border:1px solid var(--border);">۱-۵ مگابایت</td><td style="padding:12px; border:1px solid var(--border);">۲۰-۱۰۰ مگابایت</td></tr>
+        <tr><td style="padding:12px; border:1px solid var(--border);">به‌روزرسانی</td><td style="padding:12px; border:1px solid var(--border);">فوری</td><td style="padding:12px; border:1px solid var(--border);">نیاز به آپدیت استور</td></tr>
+        <tr><td style="padding:12px; border:1px solid var(--border);">دسترسی به سخت‌افزار</td><td style="padding:12px; border:1px solid var(--border);">محدود</td><td style="padding:12px; border:1px solid var(--border);">کامل</td></tr>
+        <tr><td style="padding:12px; border:1px solid var(--border);">مناسب برای</td><td style="padding:12px; border:1px solid var(--border);">ابزار، وبلاگ، فروشگاه ساده</td><td style="padding:12px; border:1px solid var(--border);">بازی، اپ‌های پیچیده</td></tr>
+      </tbody>
+    </table>
+
+    <p>همان‌طور که می‌بینید، برای ۹۰٪ سایت‌ها، PWA بهترین انتخاب است. فقط اگر اپلیکیشن شما نیاز به دسترسی مستقیم به سخت‌افزار (مثل دوربین حرفه‌ای، بلوتوث، سنسورها) دارد، اپ نیتیو بهتر است.</p>
+
+    <div class="article-cta">
+      <h3>می‌خواهید کد کامل سایت ابزارک را برای الگو ببینید؟</h3>
+      <p>تمام کدهای سایت ابزارک (manifest، sw.js و...) به صورت عمومی در گیت‌هاب در دسترس است.</p>
+      <a href="https://github.com/reza22farokhi/abzarak-farsi" target="_blank" rel="noopener" class="btn" style="text-decoration:none;display:inline-block;margin-top:10px">مشاهده در GitHub</a>
+    </div>
+
+    <h2>جمع‌بندی: نقشه راه شما</h2>
+    <p>اگر می‌خواهید همین امروز سایتتان را به اپلیکیشن تبدیل کنید، این مراحل را دنبال کنید:</p>
+    <ol style="padding-right:24px; line-height:2;">
+      <li><strong>مرحله ۱:</strong> چک کنید سایت PWA هست (manifest + sw + HTTPS)</li>
+      <li><strong>مرحله ۲:</strong> در Chrome سایت را باز کنید و گزینه Install را تست کنید</li>
+      <li><strong>مرحله ۳:</strong> به PWABuilder.com بروید و سایت را بسته‌بندی کنید</li>
+      <li><strong>مرحله ۴:</strong> APK را دانلود و نصب کنید</li>
+      <li><strong>مرحله ۵:</strong> assetlinks.json را در ریشه دامنه قرار دهید</li>
+      <li><strong>مرحله ۶:</strong> اپ را Uninstall و دوباره نصب کنید (حالت Full Screen)</li>
+      <li><strong>مرحله ۷:</strong> APK را در کافه‌بازار یا سایت خودتان منتشر کنید</li>
+    </ol>
+
+    <p style="margin-top:24px; padding:20px; background:rgba(99,102,241,0.05); border-right:4px solid var(--accent); border-radius:8px;">
+      <strong>💡 پیشنهاد ویژه:</strong> اگر به ترمینال علاقه‌مند هستید و می‌خواهید سایتتان را با <strong>Termux</strong> بسازید و مدیریت کنید، از <a href="../tools/termux-commands.html">مرجع کامل دستورات Termux</a> ما استفاده کنید. من با همین روش، سایت ابزارک را ساختم و به اپلیکیشن تبدیل کردم!
+    </p>
+
+    <p>اگر این مقاله برایتان مفید بود یا سؤالی داشتید، از طریق <a href="../contact.html">صفحه تماس</a> با من در ارتباط باشید. موفق باشید! 🚀</p>
+
+    <div class="ad-container" style="margin: 30px auto; text-align: center; padding: 10px; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
+      <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px;">تبلیغات</div>
+      <div id="pos-article-text-card-123872"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="container">© ابزارک فارسی — <a href="../about.html" style="color:inherit">درباره</a> · <a href="../contact.html" style="color:inherit">تماس</a></div></footer>
+<noscript><div><img src="https://mc.yandex.ru/watch/114021652" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script src="../js/theme.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/reading-tools.js"></script>
+<script>
+    !function(e,t,n){
+        e.yektanetAnalyticsObject=n,e[n]=e[n]||function(){e[n].q.push(arguments)},e[n].q=e[n].q||[];
+        var a=t.getElementsByTagName("head")[0],r=new Date,c="https://cdn.yektanet.com/superscript-v2/CUKx2v9v/native-49061/yn_pub.js?v="+r.getFullYear().toString()+"0"+r.getMonth()+"0"+r.getDate()+"0"+r.getHours(),s=t.createElement("link");
+        s.rel="preload",s.as="script",s.href=c,a.appendChild(s);var l=t.createElement("script");l.async=!0,l.src=c,a.appendChild(l);
+    }(window,document,"yektanet");
+</script>
+</body>
+</html>
