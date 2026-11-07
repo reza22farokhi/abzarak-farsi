@@ -9,63 +9,56 @@
 <header class="site-header"><div class="container header-inner"><a href="../index.html" class="brand">ابزارک فارسی</a></div></header>
 <main class="container" style="padding:40px 20px; text-align:center;">
   <h1>آنالیزور PWA</h1>
-  <p>آدرس سایت خود را وارد کنید:</p>
-  <input type="text" id="url" placeholder="https://example.com" style="width:100%; max-width:400px; padding:10px; margin-bottom:15px;">
+  <p>آدرس سایت خود را وارد کنید (مثلاً: https://google.com):</p>
+  <input type="text" id="url" placeholder="https://example.com" style="width:100%; max-width:400px; padding:10px; margin-bottom:15px; direction:ltr;">
   <br>
   <button onclick="analyze()" style="padding:10px 30px; background:#6366f1; color:#fff; border:none; border-radius:5px; cursor:pointer;">آنالیز</button>
   <div id="result" style="margin-top:30px;"></div>
 </main>
 <script>
-const PROXIES = [
-  'https://api.allorigins.win/raw?url=',
-  'https://corsproxy.io/?',
-  'https://api.codetabs.com/v1/proxy?quest='
-];
-async function fetchCORS(url) {
-  for (let p of PROXIES) {
-    try {
-      let finalUrl = p.includes('quest=') ? p + url : p + encodeURIComponent(url);
-      let r = await fetch(finalUrl, {signal: AbortSignal.timeout(5000)});
-      if(r.ok) return r;
-    } catch(e) {}
-  }
-  return null;
-}
 async function analyze() {
   let url = document.getElementById('url').value.trim();
+  
+  // پاکسازی آدرس از / اضافی در ابتدا و انتها
+  url = url.replace(/^\/+/, '').replace(/\/+$/, ''); 
+  
   if(!url) return alert('آدرس وارد کنید');
   if(!url.startsWith('http')) url = 'https://' + url;
-  let base = url.replace(/\/$/, '');
+
   let res = document.getElementById('result');
-  res.innerHTML = 'در حال بررسی...';
+  res.innerHTML = '⏳ در حال بررسی... (ممکن است چند ثانیه طول بکشد)';
   
-  let html = '<ul style="text-align:right; list-style:none; padding:0;">';
-  html += '<p style="font-size:12px; color:gray;">توجه: برخی سایت‌ها (مثل گیت‌هاب) به دلیل امنیت، اجازه آنالیز خودکار را نمی‌دهند. <a href="' + base + '/manifest.json" target="_blank">اینجا کلیک کنید</a> تا فایل را دستی ببینید.</p>';
+  let html = '<ul style="text-align:right; list-style:none; padding:0; font-size:1.1rem; line-height:2;">';
   let score = 0;
 
-  // HTTPS
+  // 1. HTTPS
   if(url.startsWith('https')) { score += 20; html += '<li>✅ HTTPS فعال است</li>'; }
   else { html += '<li>❌ HTTPS فعال نیست</li>'; }
 
-  // Manifest
-  let manFound = false;
-  let r1 = await fetchCORS(base + '/manifest.json');
-  if(r1 && r1.ok) { manFound = true; score += 40; html += '<li>✅ فایل manifest.json پیدا شد</li>'; }
-  else { html += '<li>❌ فایل پیدا نشد (محدودیت امنیتی مرورگر - لینک مستقیم را چک کنید)</li>'; }
+  try {
+    // 2. Manifest (بررسی مستقیم بدون واسطه)
+    let r1 = await fetch(url + '/manifest.json', {signal: AbortSignal.timeout(5000)});
+    if(r1.ok) { score += 40; html += '<li>✅ فایل manifest.json پیدا شد</li>'; }
+    else { html += '<li>❌ فایل manifest.json پیدا نشد</li>'; }
+  } catch(e) {
+    html += '<li>⚠️ خطا در خواندن manifest (محدودیت مرورگر یا وجود ندارد)</li>';
+  }
 
-  // Service Worker
-  let swFound = false;
-  let r2 = await fetchCORS(base + '/sw.js');
-  if(r2 && r2.ok) { swFound = true; score += 40; html += '<li>✅ فایل sw.js پیدا شد</li>'; }
-  else { html += '<li>❌ فایل پیدا نشد (محدودیت امنیتی مرورگر - لینک مستقیم را چک کنید)</li>'; }
+  try {
+    // 3. Service Worker (بررسی مستقیم بدون واسطه)
+    let r2 = await fetch(url + '/sw.js', {signal: AbortSignal.timeout(5000)});
+    if(r2.ok) { score += 40; html += '<li>✅ فایل sw.js پیدا شد</li>'; }
+    else { html += '<li>❌ فایل sw.js پیدا نشد</li>'; }
+  } catch(e) {
+    html += '<li>⚠️ خطا در خواندن sw.js (محدودیت مرورگر یا وجود ندارد)</li>';
+  }
 
   html += '</ul>';
   
   if (score >= 80) {
-    html += '<h3 style="color:green;">🎉 عالی! سایت شما آماده تبدیل به اپلیکیشن است.</h3>';
-    html += '<a href="https://www.pwabuilder.com/" target="_blank" style="display:inline-block; margin-top:10px; padding:10px 20px; background:green; color:white; text-decoration:none; border-radius:5px;">ساخت اپلیکیشن</a>';
+    html += '<h3 style="color:green; margin-top:20px;">🎉 عالی! سایت شما آماده تبدیل به اپلیکیشن است.</h3>';
   } else {
-    html += '<h3 style="color:red;">⚠️ سایت شما نیاز به کار دارد.</h3>';
+    html += '<h3 style="color:red; margin-top:20px;">⚠️ سایت شما نیاز به کار دارد یا اجازه خواندن فایل‌ها را نمی‌دهد.</h3>';
   }
 
   res.innerHTML = html;
