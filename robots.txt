@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://abzarak.devs.li/sitemap.xml
+Sitemap: https://abzarak.ir/sitemap.xml
