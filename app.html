@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دانلود اپلیکیشن ابزارک فارسی | اندروید</title>
+<meta name="description" content="اپلیکیشن اندروید ابزارک فارسی را دانلود کنید. ۴۶ ابزار، ۲۸+ مقاله، فال حافظ و تاروت، همه در یک اپلیکیشن سریع و آفلاین.">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .app-hero { text-align: center; padding: 60px 20px; background: radial-gradient(circle at center, rgba(99,102,241,0.1) 0%, transparent 70%); }
+  .app-icon { font-size: 5rem; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .app-title { font-size: 2.2rem; font-weight: 900; margin-bottom: 10px; }
+  .app-subtitle { color: var(--muted); font-size: 1.1rem; margin-bottom: 30px; }
+  .download-btn { display: inline-block; background: var(--accent-gradient); color: white; text-decoration: none; padding: 16px 40px; border-radius: 50px; font-size: 1.2rem; font-weight: bold; box-shadow: 0 10px 25px rgba(99,102,241,0.4); transition: all 0.3s; }
+  .download-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(99,102,241,0.5); }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 40px auto; max-width: 800px; }
+  .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; text-align: center; }
+  .feature-card .icon { font-size: 2rem; margin-bottom: 10px; }
+  .note-box { margin-top: 30px; padding: 16px; background: rgba(251,191,36,0.1); border-right: 4px solid #fbbf24; border-radius: 8px; text-align: right; font-size: 0.9rem; max-width: 600px; margin-inline: auto; }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner">
+  <a href="index.html" class="brand">ابزارک فارسی</a>
+  <nav><a href="index.html">خانه</a> · <a href="about.html">درباره</a></nav>
+</div></header>
+<main class="container">
+  <div class="app-hero">
+    <div class="app-icon">📱</div>
+    <h1 class="app-title">اپلیکیشن ابزارک فارسی</h1>
+    <p class="app-subtitle">همون ابزارک، اینبار روی گوشی شما! سریع‌تر، آفلاین و بدون نیاز به مرورگر.</p>
+    <a href="app/abzarak.apk" class="download-btn" download>⬇️ دانلود نسخه اندروید (APK)</a>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card"><div class="icon">🛠️</div><h3>۴۶ ابزار</h3><p>همه ابزارها در جیب شما</p></div>
+    <div class="feature-card"><div class="icon">📚</div><h3>۲۸+ مقاله</h3><p>دسترسی آفلاین به مقالات</p></div>
+    <div class="feature-card"><div class="icon">🔮</div><h3>فال و تاروت</h3><p>سرگرمی و پیشگویی</p></div>
+    <div class="feature-card"><div class="icon">🌙</div><h3>دارک مود</h3><p>حالت تاریک چشم‌نواز</p></div>
+  </div>
+
+  <div class="note-box">
+    <strong>💡 نکته:</strong> هنگام نصب ممکن است پیام «نصب از منابع ناشناس» را ببینید. این طبیعی است، روی «اجازه دادن» بزنید. همچنین این نسخه فقط برای اندروید است.
+  </div>
+</main>
+<footer class="site-footer"><div class="container">© ابزارک فارسی</div></footer>
+<script>
+if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(()=>{}));
+</script>
+<script src="js/theme.js"></script>
+</body>
+</html>
