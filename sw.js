@@ -1,32 +1,21 @@
-// ═══════════════════════════════════════
-// NETWORK-FIRST Service Worker
-// با پاک کردن کامل کش و بارگذاری مستقیم از شبکه
-// ═══════════════════════════════════════
-const CACHE_VERSION = 'abzarak-network-v1794094280';
-
-self.addEventListener('install', (e) => {
-  self.skipWaiting();
+const V='abzarak-v2';
+const CORE=['./','index.html','css/style.css','manifest.json','favicon.svg'];
+self.addEventListener('install',e=>{
+  e.waitUntil(caches.open(V).then(c=>Promise.allSettled(CORE.map(u=>c.add(u)))).then(()=>self.skipWaiting()));
 });
-
-self.addEventListener('activate', (e) => {
-  e.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(keys.map(k => caches.delete(k))))
-      .then(() => self.clients.claim())
-  );
+self.addEventListener('activate',e=>{
+  e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()));
 });
-
-self.addEventListener('fetch', (e) => {
-  // فقط GET
-  if (e.request.method !== 'GET') return;
-  
-  // فایل‌های خارجی رو دست نزن
-  const url = new URL(e.request.url);
-  if (url.origin !== self.location.origin) return;
-  
-  // همه چیز از شبکه، bypass کامل کش مرورگر
-  e.respondWith(
-    fetch(e.request, { cache: 'no-store' })
-      .catch(() => caches.match(e.request))
-  );
+self.addEventListener('fetch',e=>{
+  const r=e.request;
+  if(r.method!=='GET'||new URL(r.url).origin!==location.origin)return;
+  if(r.mode==='navigate'){
+    e.respondWith(fetch(r).then(res=>{const c=res.clone();caches.open(V).then(x=>x.put(r,c));return res})
+      .catch(()=>caches.match(r).then(m=>m||caches.match('index.html'))));
+    return;
+  }
+  e.respondWith(caches.match(r).then(m=>{
+    const n=fetch(r).then(res=>{const c=res.clone();caches.open(V).then(x=>x.put(r,c));return res}).catch(()=>m);
+    return m||n;
+  }));
 });
